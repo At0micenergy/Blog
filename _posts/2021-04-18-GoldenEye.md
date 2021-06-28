@@ -1,8 +1,7 @@
 ---
 title: GoldenEye
-author: vulnhub
+layout : post
 date: 2021-04-18 16:44:00 +5:30 
-categories: [vulnhub , oscpLike]
 tags: []
 ---
 # nmap 
