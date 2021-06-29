@@ -1,6 +1,7 @@
 ---
-title: Rickdiculously
 layout : post
+title: Rickdiculously
+
 date: 2021-03-02 04:43 EST
 categories: [vulnhub , CTF]
 tags: [SSH BruteForce]
@@ -73,7 +74,7 @@ Nmap done: 1 IP address (1 host up) scanned in 27.43 seconds
 # Enumeration 
 /passwords/password.html user commented out the password 
 
-![](\assets\img\vulnhub\Rickduculously\idk.png)
+![]({{site.baseurl}}/img/vulnhub/Rickduculously/idk.png)
 
 # Enumeration 
 
@@ -85,9 +86,9 @@ hydra -T 200 -L users.txt -P pass.txt -vV ssh://10.0.2.15:22222
 ```
 dont forword files , likE FILES CONTINING dATA INSIDE A FILE
 
-![](\assets\img\vulnhub\Rickduculously\lfi.png)
+![]({{site.baseurl}}/img/vulnhub/Rickduculously/lfi.png)
 
 # privilageEsclation 
 
-![](\assets\img\vulnhub\Rickduculously\gtfobinsudo.png)
+![]({{site.baseurl}}/img/vulnhub/Rickduculously/gtfobinsudo.png)
 
