@@ -1,7 +1,7 @@
 ---
 layout : post
 title: Rickdiculously
-
+image : Rickdiculously.png
 date: 2021-03-02 04:43 EST
 categories: [vulnhub , CTF]
 tags: [SSH BruteForce]
