@@ -59,7 +59,7 @@ from suid , healthChecker is executing the fdisk , ipconfig without path
 
 can override the  `ifconfig` , path 
 
-The program is vulnerable because we control the PATH and the program doesn’t use the absolute path to execute the programs so we can execute anything we want as root. To get root I’ll just create a script that sets the SUID bit on /bin/bash, name it fdisk and call /usr/bin/healthcheck after setting the path to my current directory so it doesn’t execute the real fdisk program but my own script
+The program is vulnerable because we control the PATH and the program doesn’t use the absolute path to execute the programs so we can execute anything we want as root. To get root I’ll just create a script that sets the SUID bit on /bin/bash, name it ifconfig and call /usr/bin/healthcheck after setting the path to my current directory so it doesn’t execute the real fdisk program but my own script
 
 ```bash
 cd /tmp 
