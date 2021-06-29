@@ -1,7 +1,7 @@
 ---
 layout : post
 title: HealthCare
-image : At0micenergy.jpg
+image : HealthCare.png
 date: 2021-03-01 04:43 EST
 
 tags: [sqlmap,PathHijacking Linux,php File Upload]
