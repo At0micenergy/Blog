@@ -1,7 +1,7 @@
 ---
 layout : post
 title: HealthCare
-
+image : https://1.bp.blogspot.com/-8Tuwhp9cJi8/X2YHcGf0Y-I/AAAAAAAAonU/lXaPHA3fSuwHEZpi_hv9Z0dSQd-IivsZACLcBGAsYHQ/s16000/6.png
 date: 2021-03-01 04:43 EST
 
 tags: [sqlmap,PathHijacking Linux,php File Upload]
