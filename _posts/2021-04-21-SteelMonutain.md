@@ -1,6 +1,7 @@
 ---
 layout : post 
 title: SteelMonutain
+image : SteelMountain.png
 date: 2021-04-21 04:43 +0530
 tags: [Rejetto HTTP File Server , unquoted paths]
 ---
