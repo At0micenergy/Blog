@@ -1,12 +1,12 @@
 ---
 layout : post
 title: Investigate Web Attack Writeup
-image : Investigate Web Attack.png
+image : Investigate_Web_Attack.png
 date: 2024-04-10 10:18 +0530
 tags: [OWASP ,SIEM , Incident Response , Splunk ] 
 ---
 
-In this walkthrough, we will delve into investigating web application logs using Splunk. We'll explore a scenario where an attacker successfully compromised the system through web application hacking techniques. They achieved this by executing a code injection attack, manipulating the URL parameters. Additionally, the application exhibited numerous vulnerabilities, including file inclusion, Cross-Site Scripting (XSS), and successful privilege escalation, wherein the attacker added a remote user for persistence.  
+In this walkthrough, we will delve into investigating web application logs using Splunk. We'll explore a scenario where an attacker successfully compromised the system through web application hacking techniques. They achieved this by executing a code injection attack, manipulating the URL parameters. Additionally, the application exhibited numerous vulnerabilities, including file inclusion, Cross-Site Scripting (XSS), and successful privilege escalation , code injuction, wherein the attacker added a remote user for persistence.  
 
 [Here is the link to the Incident ](https://app.letsdefend.io/challenge/investigate-web-attack)
 
@@ -92,7 +92,7 @@ we can see that the attacker performed brute force attack on login.php
 
 ### Q4.Is the third attack successful?
 
-### yes 
+yes , After a long brute attack on login.php attacker finaly able to login 
 
 ### Q5.What is the name of fourth attack?
 
@@ -138,7 +138,8 @@ Here is the decoded code that attacker used
 
 ![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/persistency.png)
 
-### Answer for this question is  
+### Answer for this question is 
+
 ```
 %22%22;%20system(%27net%20user%20hacker%20Asd123!!%20/add%27)
 ```
