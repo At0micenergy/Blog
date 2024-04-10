@@ -138,7 +138,9 @@ Here is the decoded code that attacker used
 
 ![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/persistency.png)
 
-### Answer for this question is " %22%22;%20system(%27net%20user%20hacker%20Asd123!!%20/add%27) "
-
+### Answer for this question is  
+```
+%22%22;%20system(%27net%20user%20hacker%20Asd123!!%20/add%27)
+```
 
 
