@@ -18,7 +18,7 @@ The network team was able to provide the log data from the incident. Now, we nee
 
 Navigating to settings and importing the log file, we'll also set up the index, source, host, and sourcetype. It's crucial to specify the correct source when parsing data into Splunk. This ensures that the data is categorized appropriately based on the source data using built-in data parsing plugins. 
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/sourcing.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Sourcing.png)
 
 Previewing the dataset allows us to inspect the data before ingesting it fully into the system. This step helps ensure that the data is correctly formatted and that any necessary adjustments can be made before further processing.
 
@@ -46,7 +46,7 @@ if we observe the User-Agent field in the HTTP requests and find that it contain
 ```
 index=main host="Client-Server"
 | stats count by useragent
- ```
+```
 
 ### So that Answer for the tool is "Nikto" 
 
@@ -75,6 +75,7 @@ When facing dictionary-type attacks, the system will query every possible direct
 index="main" host="Client-Server"  clientip="192.168.199.2" status=404
 ```
 
+
 This will query the all 404 request made by 192.168.199.2 
 
 ### So that Answer for the attack performed after reconnaissance is "Directory Brute Force" 
@@ -102,11 +103,11 @@ Based on the above tracing, we have obtained the attacker's IP address and statu
 
 ![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/1.0Uri-paths-for-Q5.png)
 
-/bWAPP/phpi.php	
+/bwapp/phpi.php	
 /bwapp/admin/	
 /bwapp/phpinfo.php
 
-starting with /bWAPP/phpi.php 
+starting with /bwapp/phpi.php 
 
 Right away, we observe that the attacker executed code injection through "phpi.php" utilizing the "message" variable. Moreover, they employed obfuscation techniques to evade detection
 
@@ -114,6 +115,7 @@ Right away, we observe that the attacker executed code injection through "phpi.p
 index="main" host="Client-Server" uri_path="/bWAPP/phpi.php" 
 |  stats count by uri_query , clientip , useragent
 ```
+
 
 ### Name of the forth attack is "Code Injection"
 
@@ -145,6 +147,7 @@ Here is the decoded code that attacker used
 ```
 %22%22;%20system(%27net%20user%20hacker%20Asd123!!%20/add%27)
 ```
+
 
 ## Summary 
 
