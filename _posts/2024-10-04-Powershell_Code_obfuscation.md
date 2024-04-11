@@ -61,11 +61,13 @@ Creates a new instance of the WebClient class, which is used to download content
 $web_client=New-Object System.Net.WebClient;
 ```
 
+
 variable defines a user-agent string that will be used in the HTTP request headers. It's crafted to mimic a legitimate web browser.
 
 ```powershell
 $user_agent='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko';
 ```
+
 
 Adds the user-agent string to the HTTP request headers.
 
@@ -73,11 +75,13 @@ Adds the user-agent string to the HTTP request headers.
 $web_client.Headers.Add('User-Agent',$user_agent); 
 ```
 
+
 Sets the proxy settings to use the system's default web proxy.
 
 ```powershell
 $web_client.Proxy = [System.Net.WebRequest]::DefaultWebProxy;
 ```
+
 
 sets the proxy credentials to use the default network credentials.
 
@@ -85,12 +89,16 @@ sets the proxy credentials to use the default network credentials.
 $web_client.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; 
 ```
 
+
 Variable holds a password.
+
 ```powershell
 $Password='<Key>';
 ```
 
+
 Initializes a counter variable.
+
 ```powershell
 $i=0;
 ```
