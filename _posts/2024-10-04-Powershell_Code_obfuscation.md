@@ -1,7 +1,7 @@
 ---
 layout : post
 title: Powershell_Code_obfuscation
-image : powershell.png
+image : Powershell.png
 date: 2024-04-10 10:18 +0530
 tags: [Base64 ,Powershell ,Incident Response, Deobfuscate ] 
 ---
