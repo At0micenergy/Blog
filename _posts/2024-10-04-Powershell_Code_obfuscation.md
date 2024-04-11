@@ -10,7 +10,7 @@ tags: [Base64 ,Powershell ,Incident Response, Deobfuscate ]
 
 Incident response team reported malicious PowerShell code for deobfuscation, seemingly laced with malicious intent. Your mission, should you choose to accept it, is to dissect and analyze this script, unveiling its true nature and potential risks. Dive into the code and reveal its secrets to safeguard our digital realm.
 
-![]({{site.baseurl}}/img/Letsdefence/Powershell IR/Power-shell.jpeg)
+![]({{site.baseurl}}/img/Letsdefence/Powershell IR/Power-shell.png)
 
 Deobfuscating the code allows for a deeper understanding of the attacker's techniques and aids in identifying indicators of compromise (IOCs) [Reference: MITRE ATT&CK ](https://attack.mitre.org/techniques/T1140/)
 
