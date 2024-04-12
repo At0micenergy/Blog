@@ -41,3 +41,10 @@ Certified professional
     data-share-badge-host="https://www.credly.com">
 </script>
 
+<script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"
+    data-iframe-width="150"
+    data-iframe-height="270"
+    data-share-badge-id="deed9690-ef73-458f-807d-82297ff26fb1"
+    data-share-badge-host="https://www.credly.com">
+</script>
+
