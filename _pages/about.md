@@ -1,7 +1,6 @@
 ---
 layout: page
 title: About
-image: At0micenergy.jpg
 permalink: /about/
 ---
 
