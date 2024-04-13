@@ -5,11 +5,21 @@ image: At0micenergy.jpg
 permalink: /about/
 ---
 
-A **Security Analyst** & **Pentester** 
-
 Welcome to the W0rld 0f 3xpl01tat10n & DFIR 
 
+I possess a strong background in cybersecurity with a focus on various domains such as security operations, cloud security, and incident response. My technical skills include expertise in utilizing SIEM, threat intelligence platforms, and the latest tools for vulnerability assessment and endpoint protection. I've demonstrated proficiency in conducting proactive threat hunting, implementing security controls based on industry standards such as NIST frameworks and MITRE ATT&CK, and staying updated with emerging technologies. Additionally, my experience extends to cloud security, network security, digital forensics, and endpoint protection, where I've contributed to reducing security incidents through the development and deployment of security tools and automated processes. My soft skills, including collaboration, critical thinking, and effective communication, have also played a crucial role in my roles as a security analyst and intern. Overall, I have a well-rounded skill set and practical experience in addressing cybersecurity challenges across different environments.
+
+### Achivements
+
+> Achieved up to 26% reduction in mean time to detect security incidents through proactive threat hunting and advanced detection techniques.
+> Spearheaded the development of a cloud security tool, resulting in a 18% reduction in security incidents.
+> Implemented cost-effective architectures for automated processes, enhancing operational efficiency.
+> Reduced false positives by 15% through the deployment of custom IOAs & IOCs for incident response.
+> Contributed to an 38% reduction in mean time to detect security incidents through proactive threat hunting and threat intelligence analysis.
+> Achieved a 28% reduction in endpoint security incidents through effective utilization of EDR tools.
+
 <script src="https://www.hackthebox.eu/badge/427574"></script>
+
 
 Certified professional 
 
