@@ -11,8 +11,8 @@ I possess a strong background in cybersecurity with a focus on various domains s
 
 ### Achivements
 
-> Achieved up to 26% reduction in mean time to detect security incidents through proactive threat hunting and advanced detection techniques.
-> Spearheaded the development of a cloud security tool, resulting in a 18% reduction in security incidents.
+> Achieved up to 26% reduction in mean time to detect security incidents through proactive threat hunting and advanced detection techniques. <>
+<Spearheaded the development of a cloud security tool, resulting in a 18% reduction in security incidents.>
 > Implemented cost-effective architectures for automated processes, enhancing operational efficiency.
 > Reduced false positives by 15% through the deployment of custom IOAs & IOCs for incident response.
 > Contributed to an 38% reduction in mean time to detect security incidents through proactive threat hunting and threat intelligence analysis.
