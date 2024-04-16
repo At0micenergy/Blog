@@ -61,7 +61,6 @@ Creates a new instance of the WebClient class, which is used to download content
 $web_client=New-Object System.Net.WebClient;
 ```
 
-
 variable defines a user-agent string that will be used in the HTTP request headers. It's crafted to mimic a legitimate web browser.
 
 ```powershell
@@ -118,13 +117,13 @@ IEX ($Payload -join '')
 
 In summary, this script downloads and executes a payload from a remote server while obfuscating its content using XOR encryption with a password. The use of XOR encryption and obfuscation suggests malicious intent, as this is a common technique used by attackers to evade detection by security tools.
 
-### Q1.What encoding is the malicious script using?
+***Q1.What encoding is the malicious script using?***
 
 ```powershell
 Base64
 ```
 
-### Q2.What parameter in the powershell script makes it so that the powershell window is hidden when executed?
+***Q2.What parameter in the powershell script makes it so that the powershell window is hidden when executed?***
 
 This flag sets the window style of the PowerShell process to "Hidden," which means it runs without displaying a visible window, this is commonly used for running scripts in the background without user interference.
 
@@ -132,7 +131,7 @@ This flag sets the window style of the PowerShell process to "Hidden," which mea
 -W Hidden
 ```
 
-### Q3.What parameter in the Powershell script prevents the user from closing the process?
+***Q3.What parameter in the Powershell script prevents the user from closing the process?***
 
 This flag stands for "NonInteractive" and runs PowerShell in non-interactive mode, meaning it doesn't wait for user input or display prompts.
 
@@ -140,25 +139,25 @@ This flag stands for "NonInteractive" and runs PowerShell in non-interactive mod
 -NonI
 ```
 
-### Q4.What line of code allows the script to interact with websites and retrieve information from them?
+***Q4.What line of code allows the script to interact with websites and retrieve information from them?***
 
 ```powershell
 $WC=New-Object System.Net.WebClient
 ```
 
-### Q5.What is the user agent string that is being spoofed in the malicious script?
+***Q5.What is the user agent string that is being spoofed in the malicious script?***
 
 ```powershell 
 Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko
 ```
 
-### Q6.What line of code is used to set the proxy credentials for authentication in the script?
+***Q6.What line of code is used to set the proxy credentials for authentication in the script? ***
 
 ```Powershell
 $wc.PROxY.CrEdenTialS = [SysTem.NEt.CRedeNTIAlCAcHE]::DeFAULTNetWOrKCredENTiAls
 ```
 
-### Q7.When the malicious script is executed, what is the URL that the script contacts to download the malicious payload?
+***Q7.When the malicious script is executed, what is the URL that the script contacts to download the malicious payload?***
 
 ```powershell
 http://98.103.103.170:7443/index.asp
