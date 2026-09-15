@@ -193,7 +193,7 @@ table th {
   text-align: left;
   border: 1px solid $border-color;
   color: $white;
-  background-color: $green-darken;
+  background-color: $surface-strong;
 }
 
 table tr {
@@ -211,5 +211,5 @@ table td {
 }
 
 table tr:hover {
-  background-color: $green-darken;
+  background-color: $surface-strong;
 }
