@@ -151,10 +151,10 @@
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #c1c1c7;
-    background: #4f505d;
+    color: $text;
+    background: $lighten-black;
     &::placeholder {
-      color: #c1c1c7;
+      color: $gray-blue;
     }
   }
 }
