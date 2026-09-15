@@ -1,0 +1,89 @@
+.icon-button {
+  padding: 8px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+
+  svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.search[hidden] {
+  display: none;
+}
+
+.overlay-open {
+  overflow: hidden;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 3px solid $primary-color;
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  padding: 10px 16px;
+  background: $black;
+  color: $white;
+  transform: translateY(-160%);
+  z-index: 1000;
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+.post-body, .page-body {
+  overflow-wrap: break-word;
+
+  pre {
+    max-width: 100%;
+    margin-bottom: 24px;
+    tab-size: 2;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+  }
+
+  .highlight {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+.tags-title, .archive-year h2 {
+  scroll-margin-top: 24px;
+}
+
+.tag-date {
+  display: inline-block;
+  margin-left: 8px;
+  color: #b5bec9;
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

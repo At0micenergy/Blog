@@ -102,9 +102,9 @@ pre {
   padding: 15px;
   margin-bottom: 0;
   font-size: 14px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  word-break: break-all;
+  white-space: pre;
+  word-wrap: normal;
+  word-break: normal;
 }
 
 
@@ -165,9 +165,9 @@ pre {
   padding: 15px;
   margin-bottom: 0;
   font-size: 14px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  word-break: break-all;
+  white-space: pre;
+  word-wrap: normal;
+  word-break: normal;
 }
 
 // Table

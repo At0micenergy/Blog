@@ -29,7 +29,7 @@
       
        {% if site.twitter %}
       <li class="social-profiles-item">
-        <a href="{{ site.twitter }}" class="social-profiles-link"><i class="ion ion-logo-twitter"></i></a>
+        <a href="{{ site.twitter }}" class="social-profiles-link" aria-label="Follow on Twitter"><i class="ion ion-logo-twitter" aria-hidden="true"></i></a>
       </li>
       {% else %} {% endif %}
 
@@ -37,22 +37,24 @@
     </ul>
   </div>
 
+  {% if site.mailchimp and site.mailchimp != empty %}
   <div class="widget widget-newsletter">
     <h3 class="widget-title">Newsletter</h3>
     <div class="newsletter-subtitle">Get Interesting News</div>
     <div class="newsletter-text">Receive the latest news via email.</div>
-    <form class="c-newsletter-form validate" action="{% if site.mailchimp %}//{{site.mailchimp}}{% else %}#{% endif %}" method="POST"
-      id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
+    <form class="c-newsletter-form validate" action="https://{{ site.mailchimp | remove_first: 'https://' | remove_first: 'http://' | remove_first: '//' | escape }}" method="POST"
+      id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" rel="noopener">
       <div class="newsletter-group">
         <div class="newsletter-group-top">
           <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
           <i class="email-icon ion ion-ios-mail"></i>
-          <input class="newsletter-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="E-mail">
+          <input class="newsletter-email required email" id="mce-EMAIL" type="email" name="EMAIL" placeholder="E-mail" autocomplete="email" required>
         </div>
         <input class="newsletter-button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
       </div>
     </form>
   </div>
+  {% endif %}
 
   {% if site.instafeed == true %}
   <div class="widget widget-instagram">
@@ -66,13 +68,10 @@
 
   <div class="widget widget-tags">
     <h3 class="widget-title">Tag Cloud</h3>
-    {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{%
-    endcapture %} {% assign tag_words = site_tags | split:',' | sort %}
+    {% assign sorted_tags = site.tags | sort %}
     <ul class="tag-list list-reset">
-    {% for item in (0..site.tags.size) %}{% unless forloop.last %}
-      {% capture this_word %}{{ tag_words[item] | strip_newlines }}{% endcapture %}
-        <li class="tag-item"><a href="{{ site.baseurl }}/tags#{{ this_word | cgi_escape }}" class="tag">{{ this_word }}</a></li>
-      {% endunless %}
+    {% for tag in sorted_tags %}
+      <li class="tag-item"><a href="{{ '/tags/' | relative_url }}#{{ tag[0] | cgi_escape | cgi_escape }}" class="tag">{{ tag[0] | escape }}</a></li>
     {% endfor %}
     </ul>
   </div>

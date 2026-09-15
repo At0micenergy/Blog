@@ -6,7 +6,9 @@
           <h2 class="logo-title">
             <a href="{{site.baseurl}}/" class="logo-text">At0micenergy</a>
           </h2>
-          <div class="top"><i class="ion ion-ios-arrow-up"></i></div>
+          <button type="button" class="top icon-button" aria-label="Back to top">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6" /></svg>
+          </button>
         </div>
         <div class="footer-bottom">
           <div class="copyright">
@@ -14,6 +16,7 @@
           </div>
           <div class="footer-social">
             <ul class="list-reset">
+              <li><a href="{{ '/feed.xml' | relative_url }}">RSS</a></li>
              
 
               {% if site.twitter %}
