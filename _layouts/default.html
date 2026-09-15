@@ -4,14 +4,16 @@
 {% include head.html %}
 
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   {% if site.google-analytics %}
     {% include google-analytics.html %}
   {% endif %}
-  {% include loader.html %}
   {% include header.html %}
 
+  <main id="main-content" tabindex="-1">
       {{ content }}
+  </main>
 
   {% include footer.html %}
   {% include javascripts.html %}

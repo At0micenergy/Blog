@@ -1,133 +1,100 @@
-$(function() {
+(function () {
   'use strict';
 
-  /* =======================
-  // Toggle Menu and Search
-  ======================= */
-  var $menuOpenButton = $(".menu-button"),
-      $menuCloseButton = $(".menu-close"),
-      $navMenu = $(".nav-menu"),
+  var menu = document.querySelector('.nav-menu');
+  var menuButton = document.querySelector('.menu-button');
+  var search = document.querySelector('.search');
+  var searchButton = document.querySelector('.search-button');
+  var searchInput = document.getElementById('js-search-input');
+  var activeOverlay = null;
+  var returnFocus = null;
 
-      $searchOpenButton = $(".search-button"),
-      $searchCloseButton = $(".search-close-button"),
-      $search = $(".search");
+  function closeOverlay(restoreFocus) {
+    if (!activeOverlay) return;
+    activeOverlay.classList.remove('active');
+    if (activeOverlay === search) search.hidden = true;
+    menuButton.setAttribute('aria-expanded', 'false');
+    searchButton.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('overlay-open');
+    activeOverlay = null;
+    if (restoreFocus && returnFocus) returnFocus.focus();
+    returnFocus = null;
+  }
 
-  $(window).on("resize", function () {
-    var e = $(this);
-    if (e.width() >= 991) {
-      $navMenu.removeClass("active"); // Remove class - "active" if width window more than 991px
+  function openOverlay(overlay, button, focusTarget) {
+    closeOverlay(false);
+    returnFocus = button;
+    activeOverlay = overlay;
+    overlay.hidden = false;
+    overlay.classList.add('active');
+    button.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('overlay-open');
+    focusTarget.focus();
+  }
+
+  menuButton.addEventListener('click', function () {
+    openOverlay(menu, menuButton, menu.querySelector('.menu-close'));
+  });
+  menu.querySelector('.menu-close').addEventListener('click', function () {
+    closeOverlay(true);
+  });
+  searchButton.addEventListener('click', function () {
+    openOverlay(search, searchButton, searchInput);
+  });
+  search.querySelector('.search-close-button').addEventListener('click', function () {
+    closeOverlay(true);
+  });
+  menu.addEventListener('click', function (event) {
+    if (event.target.closest('a')) closeOverlay(false);
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth >= 992 && activeOverlay === menu) closeOverlay(false);
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (!activeOverlay) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeOverlay(true);
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    var targets = Array.prototype.filter.call(
+      activeOverlay.querySelectorAll('a[href], button, input, [tabindex="0"]'),
+      function (element) { return !element.disabled && element.getClientRects().length > 0; }
+    );
+    var first = targets[0];
+    var last = targets[targets.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
     }
   });
 
-  $menuOpenButton.on("click", function() {
-    openMenu();
+  document.querySelector('.top').addEventListener('click', function () {
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+    document.querySelector('.logo-text').focus({ preventScroll: true });
   });
 
-  $menuCloseButton.on("click", function() {
-    closeMenu();
+  // Keep wide tables inside the article on small screens.
+  document.querySelectorAll('.post-body table, .page-body table').forEach(function (table) {
+    if (table.parentElement.classList.contains('table-container')) return;
+    var wrapper = document.createElement('div');
+    wrapper.className = 'table-container';
+    wrapper.tabIndex = 0;
+    wrapper.setAttribute('role', 'region');
+    wrapper.setAttribute('aria-label', 'Scrollable table');
+    table.parentNode.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
   });
 
-  $searchOpenButton.on("click", function() {
-    openSearch();
-  });
-
-  $searchCloseButton.on("click", function() {
-    closeSearch();
-  });
-
-
-  function openMenu() {
-    $navMenu.addClass("active");
-  }
-
-  function closeMenu() {
-    $navMenu.removeClass("active");
-  }
-
-  function openSearch() {
-    $search.addClass("active");
-  }
-
-  function closeSearch() {
-    $search.removeClass("active");
-  }
-
-
-  /* =======================
-  // Reveal Image
-  ======================= */
-  var ww = window.innerWidth,
-    wh = window.innerHeight;
-
-  $(window).ready(function () {
-    $('body').waitForImages({
-      finished: function () {
-        setTimeout(function () {
-          $('.preloader').addClass('hide');
-
-          setTimeout(function () {
-            reveals();
-          }, 100);
-        }, 500);
-      },
-      waitForAll: true
+  if (window.jQuery && window.jQuery.fn.fitVids) {
+    window.jQuery('.post-content, .page-content').fitVids({
+      customSelector: ['iframe[src*="ted.com"]']
     });
-  });
-
-  function reveals() {
-    $(window).on('scroll', function () {
-      $(".article-box, .article-first, .post-image-box, .page-image-box, .post-body img, .page-body img, .recent-header").each(
-        function(i) {
-          var el_top = $(this).offset().top,
-            win_bottom = wh + $(window).scrollTop();
-
-          if (el_top < win_bottom) {
-            $(this)
-              .delay(i * 100)
-              .queue(function() {
-                $(this).addClass("reveal-in");
-              });
-          }
-        }
-      );
-    }).scroll();
   }
-
-
-  /* =======================
-  // Responsive Videos
-  ======================= */
-  $(".post-content, .page-content").fitVids({
-    customSelector: ['iframe[src*="ted.com"]']
-  });
-  
-
-  /* =======================
-  // Instagram Feed
-  ======================= */
-  // userId and accessToken from Matthew Elsom (https://codepen.io/matthewelsom/pen/zrrrLN) for example, for which he thanks a lot!
-  var instagramFeed = new Instafeed({
-    get: 'user',
-    limit: 6,
-    resolution: 'standard_resolution',
-    userId: '8987997106',
-    accessToken: '8987997106.924f677.8555ecbd52584f41b9b22ec1a16dafb9',
-    template:
-      '<li class="instagram-item"><a href="{{link}}" aria-label="{{caption}}" target="_blank"><img src="{{image}}" alt="{{caption}}"></a></li>'
-  });
-
-  if ($('#instafeed').length) {
-    instagramFeed.run();
-  }
-
-
-  /* =======================
-  // Scroll Top Button
-  ======================= */
-  $(".top").click(function () {
-    $("html, body")
-      .stop()
-      .animate({ scrollTop: 0 }, "slow", "swing");
-  });
-
-});
+}());

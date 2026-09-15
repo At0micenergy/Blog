@@ -37,10 +37,12 @@
   bottom: 0;
   transform: scale(.5);
   z-index: -1;
+  visibility: hidden;
   background: $blue-black;
   overflow-y: auto;
   opacity: 0;
   &.active {
+    visibility: visible;
     transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform: scale(1);
     z-index: 10;
@@ -368,7 +370,7 @@
 
 .article-first .article-image-first, .article-box .article-image {
   position: relative;
-  opacity: 0;
+  opacity: 1;
   transition: all 1s cubic-bezier(0.6, 0.3, 0, 1);
 }
 
@@ -421,6 +423,7 @@
 
 @media only screen and (min-width: 992px) {
   .nav-menu {
+    visibility: visible;
     position: relative;
     display: block;
     transform: none;
