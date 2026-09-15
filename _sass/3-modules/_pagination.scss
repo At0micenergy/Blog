@@ -20,7 +20,7 @@
         background: rgba($blue-darken, .95);
         transition: $global-transition;
         &:hover {
-          background: rgba(28, 29, 31, 0.95);
+          background: rgba($blue-darken, .95);
         }
       }
     }

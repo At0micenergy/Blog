@@ -1,6 +1,6 @@
 .archive-intro {
   max-width: 65ch;
-  color: #d4d8df;
+  color: $text;
 }
 
 .archive-year {
@@ -9,7 +9,7 @@
 
 .archive-count {
   margin-left: 12px;
-  color: #b5bec9;
+  color: $gray-blue;
   font-size: 14px;
   font-weight: normal;
 }
@@ -28,7 +28,7 @@
   border-top: 1px solid $border-color;
 
   time {
-    color: #b5bec9;
+    color: $gray-blue;
     font-size: 14px;
   }
 
@@ -39,7 +39,7 @@
 
   p {
     margin-bottom: 12px;
-    color: #d4d8df;
+    color: $text;
     font-size: 15px;
   }
 }
