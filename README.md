@@ -21,12 +21,12 @@ python3 scripts/verify_site.py _site
 node --check js/common.js
 ```
 
-The site check verifies that every post appears in the archive and search index, the RSS feed parses, local images and scripts exist, tag links reach their sections, and the archive does not contain the old timestamp log or a blank image banner.
+The site check verifies that every post appears in the search index, the RSS feed parses, local images and scripts exist, tag links reach their sections, and the removed `/blog/` endpoint is not generated.
 
 ## Content and settings
 
 - Writeups live in `_posts/`. Preserve their existing URLs when editing.
-- `blog.md` generates the archive automatically from the posts, grouped by year.
+- The home page lists the posts automatically using Jekyll pagination.
 - `tags.html` generates topic lists. Tag IDs preserve the existing CGI-encoded names; links encode those IDs for URL fragments, including tags with spaces or `&`.
 - Pages can omit `image` to display without a banner. An optional author avatar must name an existing file in `img/`.
 - The newsletter form is displayed only when `mailchimp` has a form endpoint in `_config.yml`. No newsletter service is configured by default.

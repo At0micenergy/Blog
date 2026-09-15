@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the rendered Jekyll site: archive, search, feeds, images and tag links.
+"""Check the rendered Jekyll site: search, feeds, images and tag links.
 
 Run after building: python3 scripts/verify_site.py _site
 """
@@ -50,17 +50,11 @@ def verify(root):
     errors = []
     pages = {path.relative_to(root).as_posix(): Page(path.read_text())
              for path in root.rglob('*.html')}
-    for required in ('index.html', 'blog/index.html', 'about/index.html', 'tags/index.html', '404.html'):
+    for required in ('index.html', 'about/index.html', 'tags/index.html', '404.html'):
         if required not in pages:
             errors.append(f'Missing page: {required}')
-    archive = pages.get('blog/index.html')
-    if archive:
-        if archive.h1s != ['My Blog']:
-            errors.append('The archive must have one My Blog heading')
-        if 'page-image-box' in archive.classes:
-            errors.append('The archive has an empty image banner')
-        if 'Blog update on' in (root / 'blog/index.html').read_text():
-            errors.append('Update timestamps leaked into the archive')
+    if (root / 'blog').exists():
+        errors.append('The /blog/ endpoint must not be generated')
     search = json.loads((root / 'search.json').read_text())
     if not search:
         errors.append('Search index is empty')
@@ -68,8 +62,6 @@ def verify(root):
     if len(set(search_urls)) != len(search_urls):
         errors.append('Duplicate post URLs in the search index')
     for post in search:
-        if archive and post['url'] not in archive.links:
-            errors.append(f'Post missing from archive: {post["title"]}')
         if not (root / unquote(post['url']).lstrip('/') / 'index.html').is_file():
             errors.append(f'Post URL does not exist: {post["url"]}')
     feed = ET.parse(root / 'feed.xml')
