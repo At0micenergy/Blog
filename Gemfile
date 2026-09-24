@@ -5,6 +5,8 @@ gem "jekyll-paginate"
 gem "jekyll-sitemap"
 gem "kramdown-parser-gfm", "~> 1.1"
 gem "webrick", "~> 1.8"
+gem "base64"
+gem "bigdecimal"
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
