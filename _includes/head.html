@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
-  {% assign page_description = page.description | default: site.description %}
+  {% assign page_description = page.description | default: page.excerpt | default: site.description %}
   {% assign page_title = page.title | default: site.title %}
   {% assign page_image = page.image | default: site.image %}
   {% assign page_image_url = page_image | prepend: "/img/" | absolute_url %}
