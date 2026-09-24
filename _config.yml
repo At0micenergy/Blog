@@ -5,6 +5,7 @@ title: At0micenergy
 description: Here We are in the new world of Exploitation  # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://saiprasad-cybsec.com"
+image: At0micenergy.jpg
 
 
 #-------------------------------
