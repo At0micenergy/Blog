@@ -2,6 +2,30 @@
 
 One entry per feature: what was added, what was verified.
 
+## 2026-09-27 - Feature 7: Scroll-velocity ticker
+
+**Added**
+- `assets/js/ticker.js`: takes over the tag marquee with a rAF loop. The strip
+  drifts at its resting speed (~36s loop parity), accelerates up to 5x with
+  scroll speed, and skews up to 10deg into the motion. Pauses on hover (now
+  container-level, matching the original CSS `:hover` rule). The loop runs only
+  while the ticker intersects the viewport (IntersectionObserver) and re-measures
+  on resize; wrap-around is seamless because the tag list is rendered twice.
+- `_sass/_chrome.scss`: `.ticker-track.is-live { animation: none; }` hands
+  control to JS. Without JS the original CSS marquee runs unchanged.
+- Reduced motion: the script bails before touching the DOM, so the existing
+  CSS kill-switch governs.
+
+**Verified**
+- Chromium QA: rest drift ~80px/500ms; oscillating scroll burst (ticker kept in
+  view) moved 185px/600ms = 1.9x speedup with skew up to 2.07deg reacting live;
+  hover froze the strip at 0.00px/600ms; `is-live` present normally and absent
+  under emulated `prefers-reduced-motion`; 390px shows no page-level horizontal
+  overflow; zero page errors.
+- Note: scroll *speed* (magnitude) drives the boost while signed velocity drives
+  the skew, so rapid direction changes still accelerate the strip instead of
+  cancelling out.
+
 ## 2026-09-27 - Feature 6: Cursor context states
 
 **Added**

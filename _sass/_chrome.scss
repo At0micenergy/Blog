@@ -108,6 +108,7 @@ main { display: block; }
     i { color: var(--accent); font-style: normal; padding-right: 56px; }
   }
   &:hover .ticker-track { animation-play-state: paused; }
+  .ticker-track.is-live { animation: none; }
 }
 @keyframes ticker { to { transform: translateX(-50%); } }
 

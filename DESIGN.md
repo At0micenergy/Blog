@@ -66,7 +66,9 @@ sandbox." Never address the reader as a security professional; conditional branc
   via `pointer: fine` match); dot → ring on links → filled
   disc with `READ` on post cards → `COPY` disc on code copy buttons; hidden with
   native I-beam over text inputs. Touch devices never see it and lose nothing.
-- **Ticker**: pure-CSS marquee of top tags, pauses on hover, `aria-hidden`.
+- **Ticker**: pure-CSS marquee of top tags, pauses on hover, `aria-hidden`. With JS
+  (`ticker.js`) it becomes scroll-velocity reactive: drifts at rest, accelerates
+  up to 5x with scroll speed, skews into the motion, still pauses on hover.
 - **Post cards** (`post-card.html`): bento spans by position, red edge-rule grows on
   hover, mono numeral + date, hook (front-matter `hook:` or excerpt fallback).
   Numerals run oldest-first: the oldest post is №1, the newest is №N (computed
