@@ -31,8 +31,8 @@ stock illustrations, abstract blobs, emoji as icons.
 
 | Role | Stack | Usage |
 |------|-------|-------|
-| Display | **Instrument Serif** 400 (+ italic) | Hero, post titles, pull quotes, footer sign-off, big numerals. Serif *italic* in accent color = the editorial voice. |
-| Body / UI | **Space Grotesk** (variable 400–700) | Everything structural: section heads, cards, body copy, nav. Section heads use the variable weight driven by scroll velocity. |
+| Display | **Space Grotesk Variable** 300–700 | Hero, post titles, pull quotes, footer sign-off, big numerals. Accent words in accent color (synthesized oblique where italic is set — no true italic in this face). |
+| Body / UI | **Inter Variable** 100–900 (+ opsz) | Everything structural: section heads, cards, body copy, nav. |
 | Labels / code | **JetBrains Mono** (variable + italic) | Eyebrows, metadata, buttons, code, terminal chrome, captions. |
 
 Type scale: display `clamp(4rem, 14vw, 15rem)` hero → `clamp(2.4rem, 5.5vw, 4.6rem)`

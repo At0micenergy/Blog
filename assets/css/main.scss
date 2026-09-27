@@ -1,25 +1,23 @@
 ---
 ---
 // Redline Editorial — main stylesheet
+// Pairing A "Terminal Editorial": Space Grotesk Variable (display),
+// Inter Variable (body), JetBrains Mono Variable (mono). Self-hosted.
 @font-face {
-  font-family: 'Instrument Serif'; font-style: normal; font-weight: 400; font-display: swap;
-  src: url('../fonts/instrument-serif-400.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Instrument Serif'; font-style: italic; font-weight: 400; font-display: swap;
-  src: url('../fonts/instrument-serif-italic-400.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Space Grotesk'; font-style: normal; font-weight: 400 700; font-display: swap;
+  font-family: 'Space Grotesk'; font-style: normal; font-weight: 300 700; font-display: swap;
   src: url('../fonts/space-grotesk-var.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 700; font-display: swap;
+  font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap;
+  src: url('../fonts/inter-var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono'; font-style: normal; font-weight: 100 800; font-display: swap;
   src: url('../fonts/jetbrains-mono-var.woff2') format('woff2');
 }
 @font-face {
-  font-family: 'JetBrains Mono'; font-style: italic; font-weight: 400; font-display: swap;
-  src: url('../fonts/jetbrains-mono-italic-400.woff2') format('woff2');
+  font-family: 'JetBrains Mono'; font-style: italic; font-weight: 100 800; font-display: swap;
+  src: url('../fonts/jetbrains-mono-italic-var.woff2') format('woff2');
 }
 
 @import "tokens";
