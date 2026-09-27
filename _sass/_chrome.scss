@@ -41,10 +41,14 @@
   &.is-link .cur-dot { width: 44px; height: 44px; background: transparent; border: 1.5px solid var(--accent); }
   &.is-read .cur-dot { width: 76px; height: 76px; background: var(--accent); }
   &.is-read .cur-label { opacity: 1; }
+  &.is-copy .cur-dot { width: 64px; height: 64px; background: var(--accent); }
+  &.is-copy .cur-label { opacity: 1; }
 }
 html.has-cursor {
   #cursor { display: block; }
+  #cursor.is-type { display: none; }
   a, button { cursor: none; }
+  input[type="text"], input:not([type]), textarea { cursor: text; }
 }
 
 // Header

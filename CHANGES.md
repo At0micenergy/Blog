@@ -2,6 +2,30 @@
 
 One entry per feature: what was added, what was verified.
 
+## 2026-09-27 - Feature 6: Cursor context states
+
+**Added**
+- `assets/js/cursor.js`: two new states. `is-copy` on `.copy-btn` (code copy
+  buttons) - 64px red disc with a live "COPY" label; `is-type` on text inputs
+  and textareas - hides the custom cursor and restores the native I-beam
+  (previously the red dot overlapped the caret in the footer terminal and the
+  palette search box). The label span is now set by JS per state.
+- `_sass/_chrome.scss`: styles for both states; `html.has-cursor
+  #cursor.is-type { display: none; }` and `cursor: text` on inputs.
+
+**Fixed**
+- The custom cursor was dead code: nothing ever added `has-cursor` to `<html>`,
+  so no visitor had ever seen it. `cursor.js` now adds the class itself when
+  `matchMedia('(pointer: fine)')` matches. Touch devices remain unaffected.
+
+**Verified**
+- Chromium QA (desktop-class pointer simulated, since headless reports
+  `pointer: none`): post card -> `is-read` 76px "READ"; nav link -> `is-link`
+  44px ring; injected `.copy-btn` -> `is-copy` 64px "COPY"; footer terminal
+  input -> `is-type`, `#cursor` hidden; moving away restores the 10px dot.
+  Touch emulation: no `has-cursor`, cursor inert. Zero page errors.
+- Screenshots: `qa-shots/cursor-copy.png`, `qa-shots/cursor-read.png`.
+
 ## 2026-09-27 - Feature 5: View Transitions API (cross-document page wipes)
 
 **Added**

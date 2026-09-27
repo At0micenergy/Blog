@@ -62,8 +62,10 @@ sandbox." Never address the reader as a security professional; conditional branc
 - **Preloader** (`_includes/preloader.html`, `assets/js/preloader.js`): terminal boot,
   <2s, skippable (click/key), once per session (`sessionStorage`), instant-skip for
   repeat visits and `prefers-reduced-motion`.
-- **Custom cursor** (`cursor.js`): fine pointers only; dot → ring on links → filled
-  disc with `READ` on post cards. Touch devices never see it and lose nothing.
+- **Custom cursor** (`cursor.js`): fine pointers only (JS adds `has-cursor` itself
+  via `pointer: fine` match); dot → ring on links → filled
+  disc with `READ` on post cards → `COPY` disc on code copy buttons; hidden with
+  native I-beam over text inputs. Touch devices never see it and lose nothing.
 - **Ticker**: pure-CSS marquee of top tags, pauses on hover, `aria-hidden`.
 - **Post cards** (`post-card.html`): bento spans by position, red edge-rule grows on
   hover, mono numeral + date, hook (front-matter `hook:` or excerpt fallback).
