@@ -16,8 +16,15 @@ One entry per feature: what was added, what was verified.
   the same partial.
 
 **Verified**
-- libsass compiles the partial cleanly (including the reduced-motion override).
-- Chromium 152 QA against production: [result pending].
+- libsass compiles the partial cleanly (including the reduced-motion override);
+  CSS confirmed live in production (`vt-in 0.55s` present).
+- Chromium 152 QA (same-document VT, same pseudo-element keyframes; the
+  sandbox blocks the browser's direct network, so cross-document capture was
+  done this way): mid-transition screenshot shows the hard left-to-right wipe
+  with the outgoing page lifting away; `finished` resolved in 1537ms normal
+  motion vs 333ms under emulated `prefers-reduced-motion` (keyframes
+  neutralized); zero page errors.
+- Screenshots: `qa-shots/vt-mid1.png`, `qa-shots/vt-mid2.png`.
 
 ## 2026-09-27 - Feature 3: Footer terminal easter egg
 
