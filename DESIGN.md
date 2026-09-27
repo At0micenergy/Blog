@@ -89,7 +89,12 @@ sandbox." Never address the reader as a security professional; conditional branc
 - **Theme toggle** (`theme.js`): `data-theme="ink|paper"` on `<html>`, persisted to
   `localStorage`, instant (no transition flash on load).
 - **404**: giant accent `404` with scramble effect, terminal error line, two exits.
-- **Footer**: RSS link. No colophon line (removed 2026-09-27).
+- **Footer**: RSS link. No colophon line (removed 2026-09-27). **Terminal easter egg**
+  (`footer.html` + `assets/js/terminal.js`): a working fake shell
+  (`visitor@saiprasad:~$`) with `help`, `whoami`, `ls`, `sudo`, `rm*`, `paranoid`,
+  `hello`, `clear`, `exit`, and a `command not found` fallback; up/down history,
+  `aria-live` output, textContent-only rendering. Static `stay paranoid` line
+  without JS.
 - **Diagram system** (`_includes/diagram.html`, `_data/diagrams/*.yml`, `_sass/_diagrams.scss`):
   data-driven inline SVG workflow diagrams. Strictly the site palette: near-black
   panel, 1px cream strokes, red accent, JetBrains Mono labels; red accent on entry

@@ -2,6 +2,27 @@
 
 One entry per feature: what was added, what was verified.
 
+## 2026-09-27 - Feature 3: Footer terminal easter egg
+
+**Added**
+- `assets/js/terminal.js`: a working fake shell in the footer (`visitor@saiprasad:~$`).
+  Commands: `help`, `whoami`, `ls`, `sudo` ("nice try."), `rm*` ("this is a static
+  site. there is nothing to delete."), `paranoid` ("always."), `hello`, `clear`,
+  `exit`/`quit`, `vim`/`emacs`/`nano` ("no."), plus `command not found` fallback.
+  Up/down arrows cycle history; output capped at 24 lines; `aria-live="polite"`;
+  all output built with textContent (XSS-safe).
+- `_includes/footer.html`: terminal block between the link grid and the colophon.
+  Without JS a static `visitor@saiprasad:~$ stay paranoid` line shows instead.
+- `_sass/_chrome.scss`: theme-token terminal styles; 16px input (no iOS zoom);
+  prompt turns accent on focus-within as the focus indicator.
+
+**Verified**
+- Chromium mirror QA: help/sudo/rm/whoami/unknown/clear all respond correctly;
+  history recall works; `<img onerror>` payload rendered as inert text (zero
+  `img` elements); no-JS shows the static fallback; 390px has no horizontal
+  scroll with a 16px input; zero page errors.
+- Screenshots: `qa-shots/foot-terminal.png`, `qa-shots/foot-terminal-390.png`.
+
 ## 2026-09-27 - Fix: post numbering runs oldest-first
 
 **Changed**
