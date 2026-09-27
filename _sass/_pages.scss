@@ -22,18 +22,9 @@
 .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: cl(32px, 6vw, 88px);
   padding: 24px var(--pad) var(--section-gap); align-items: start;
   @media (max-width: $bp-md) { grid-template-columns: minmax(0, 1fr); } }
-.about-photo {
+.about-id {
   position: sticky; top: 110px;
   @media (max-width: $bp-md) { position: static; max-width: 420px; }
-  .photo-frame {
-    border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
-    background: var(--bg-raise); aspect-ratio: 4/5; position: relative;
-    clip-path: inset(0 0 0 0);
-    .placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.2em;
-      color: var(--ink-faint); text-transform: uppercase; text-align: center; padding: 24px; line-height: 2.2; }
-    img { width: 100%; height: 100%; object-fit: cover; }
-  }
   .photo-cap { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em;
     color: var(--ink-faint); margin-top: 12px; }
 }

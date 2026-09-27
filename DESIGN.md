@@ -144,9 +144,9 @@ feed.xml / search.json # Jekyll templates (kept from original)
   note), `series_part:` (series prev/next + chapter numeral).
 - **New series part**: edit `_data/series.yml` - set `status: published` and `url:`
   when the post lands.
-- **Author photo**: add `img/author.jpg`, set `author-avatar: author.jpg` in
-  `_config.yml`. The about page and home teaser pick it up; until then a labeled
-  placeholder frame renders (never an illustrated avatar).
+- **Author identity**: no author photo anywhere, by design. The about page and home
+  teaser render a typographic `$ whoami` identity card (`_sass/_identity.scss`) -
+  never a photo frame or illustrated avatar.
 - **Callouts in posts**: `<div class="callout"><span class="callout-tag">Lab note</span><p>…</p></div>`
   (add `warn` / `tip` class for the variants).
 

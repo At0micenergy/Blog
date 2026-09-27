@@ -28,7 +28,7 @@ The site check verifies that every post appears in the search index, the RSS fee
 - Writeups live in `_posts/`. Preserve their existing URLs when editing.
 - The home page lists the posts automatically using Jekyll pagination.
 - `tags.html` generates topic lists. Tag IDs preserve the existing CGI-encoded names; links encode those IDs for URL fragments, including tags with spaces or `&`.
-- Pages can omit `image` to display without a banner. An optional author avatar must name an existing file in `img/`.
+- Pages can omit `image` to display without a banner. The site carries no author photo by design; identity is typographic (the `$ whoami` identity card).
 - The newsletter form is displayed only when `mailchimp` has a form endpoint in `_config.yml`. No newsletter service is configured by default.
 - `feed.xml` publishes the latest 20 posts as RSS.
 - Search and menu controls support keyboard focus, Escape and focus return. Images and article content remain visible without waiting for JavaScript or every image download.

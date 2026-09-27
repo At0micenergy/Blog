@@ -10,15 +10,19 @@ permalink: /about/
 </header>
 
 <div class="about-grid">
-  <div class="about-photo">
-    <div class="photo-frame" data-curtain>
-      {% if site.author-avatar and site.author-avatar != "" %}
-      <img src="{{ '/img/' | append: site.author-avatar | relative_url }}" alt="Portrait of Saiprasad">
-      {% else %}
-      <div class="placeholder">author photo<br>goes here<br><br>[ img/author.jpg ]<br>set author-avatar<br>in _config.yml</div>
-      {% endif %}
+  <div class="about-id">
+    <div class="id-card" data-curtain>
+      <p class="id-prompt"><span>$</span> whoami</p>
+      <p class="id-name">At0mic&shy;energy</p>
+      <dl class="id-meta">
+        <div><dt>human</dt><dd>Saiprasad</dd></div>
+        <div><dt>day job</dt><dd>security operations</dd></div>
+        <div><dt>after hours</dt><dd>breaking AI agents</dd></div>
+        <div><dt>method</dt><dd>break it, write it down</dd></div>
+      </dl>
+      <p class="id-mark" aria-hidden="true">&gt;_</p>
     </div>
-    <p class="photo-cap">fig. 01 - the human behind the handle</p>
+    <p class="photo-cap">fig. 01 - the operator, typeset</p>
   </div>
 
   <div class="about-copy">
