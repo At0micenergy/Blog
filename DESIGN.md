@@ -83,10 +83,10 @@ sandbox." Never address the reader as a security professional; conditional branc
 - **404**: giant accent `404` with scramble effect, terminal error line, two exits.
 - **Footer**: RSS link. No colophon line (removed 2026-09-27).
 - **Diagram system** (`_includes/diagram.html`, `_data/diagrams/*.yml`, `_sass/_diagrams.scss`):
-  data-driven inline SVG workflow diagrams. Near-black panel, 1px green strokes,
-  JetBrains Mono labels; green accent on entry nodes (`kind: entry`), amber dashed
-  gates (`kind: gate`), red/amber dashed trust-boundary overlays (`bounds:` with
-  `kind: danger|warn`). SVG scales to 100% of the column (`width:100%; height:auto`)
+  data-driven inline SVG workflow diagrams. Strictly the site palette: near-black
+  panel, 1px cream strokes, red accent, JetBrains Mono labels; red accent on entry
+  nodes (`kind: entry`), red dashed gates (`kind: gate`), red/amber dashed
+  trust-boundary overlays (`bounds:` with `kind: danger|warn`). SVG scales to 100% of the column (`width:100%; height:auto`)
   - never fixed pixel widths, never horizontal scroll at any viewport.
   Accessibility: every diagram renders `<title>` + `<desc>` (from the data file) and
   keeps the original ASCII inside a collapsed `<details>` "view as text" block.
@@ -129,7 +129,7 @@ sandbox." Never address the reader as a security professional; conditional branc
     ```
     Coordinate freely per diagram (viewBox units); keep labels short and
     `width` <= 800 so text stays legible when the SVG scales down on phones.
-  - Wide tables become `table.spec-table`: mono uppercase green header row,
+  - Wide tables become `table.spec-table`: mono uppercase red header row,
     `<th scope="col">` headers and `<th scope="row">` row labels; below 640px rows
     reflow into stacked labeled cards (`td::before` from `data-label`) so the page
     never scrolls sideways.
