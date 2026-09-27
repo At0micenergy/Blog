@@ -39,18 +39,38 @@
 
 .post-article {
   min-width: 0; max-width: 65ch; font-size: 1.075rem; line-height: 1.78; color: var(--ink);
+  counter-reset: chapter;
   > p:first-of-type::first-letter {
     font-family: var(--font-display); font-size: 3.4em; float: left;
     line-height: 0.82; padding-right: 0.12em; color: var(--accent);
   }
+  // Chapter treatment: CSS-counter kicker (TOC script no longer numbers -
+  // see toc.js), Space Grotesk heading, generous top break.
   h2 {
-    font-family: var(--font-body); font-weight: 600; letter-spacing: -0.01em;
-    font-size: var(--h3); line-height: 1.15; margin: 2.6em 0 1em;
-    padding-top: 1.2em; border-top: 1px solid var(--line);
-    .h2-no { font-family: var(--font-mono); font-weight: 400; font-size: 0.55em;
-      color: var(--accent); letter-spacing: 0.2em; display: block; margin-bottom: 0.6em; }
+    counter-increment: chapter;
+    font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em;
+    font-size: cl(1.7rem, 3vw, 1.95rem); line-height: 1.12; color: var(--ink);
+    margin: cl(2.5rem, 5vw, 3.75rem) 0 1rem;
+    &::before {
+      content: counter(chapter, decimal-leading-zero);
+      display: block;
+      font-family: var(--font-mono); font-weight: 400; font-size: 0.8125rem;
+      letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.9em;
+      // 24px hairline rule trailing the number (mono digits = fixed 2ch advance)
+      background: linear-gradient(var(--line), var(--line)) no-repeat;
+      background-size: 24px 1px;
+      background-position: calc(2ch + 1.1em) 50%;
+    }
   }
-  h3 { font-size: 1.3rem; font-weight: 600; margin: 2em 0 0.8em; }
+  h3 {
+    font-family: var(--font-display); font-weight: 500; font-size: 1.3rem;
+    line-height: 1.25; color: var(--ink); margin: 2em 0 0.8em;
+    &::before {
+      content: ""; display: inline-block; width: 16px; height: 2px;
+      background: var(--accent); margin-right: 12px; vertical-align: middle;
+    }
+  }
   h4 { font-family: var(--font-mono); font-size: 0.95rem; letter-spacing: 0.06em; margin: 1.8em 0 0.6em; }
   p { margin: 0 0 1.4em; }
   ul, ol { margin: 0 0 1.4em; padding-left: 1.4em; }

@@ -2,6 +2,41 @@
 
 One entry per feature: what was added, what was verified.
 
+## 2026-09-27 - Post H2/H3 chapter treatment
+
+**Added**
+- `_sass/_post.scss`: every article H2 is now a "chapter" block - a kicker
+  (`01`, `02`, ...) in 13px JetBrains Mono, red, letter-spaced, with a 24px
+  hairline rule trailing it, rendered by a CSS `::before` using
+  `counter(chapter, decimal-leading-zero)`. The counter is reset on
+  `.post-article` and incremented per H2, so numbering is automatic and always
+  matches document order. The heading itself moved from Inter 600 to
+  Space Grotesk 600 at `cl(1.7rem, 3vw, 1.95rem)` with 60px top / 16px bottom
+  margins (40px top at 390px). The old `border-top` divider is gone.
+- H3s: Space Grotesk 500 at 1.3rem with a 16px red tick (`::before`) before
+  the text. H4+ untouched.
+- `assets/js/toc.js`: removed the JS-injected `.h2-no` `§NN` spans - numbering
+  is now pure CSS, so kickers render even without JS. The script still assigns
+  heading ids (unchanged slugs), builds the TOC, strips author hand-numbering
+  ("1. ..."), and runs scrollspy. Pseudo-element kickers never enter
+  `textContent`, so no TOC-text stripping is needed anymore.
+- `_layouts/post.html`: post-foot tag links now point at the `/tags/<slug>/`
+  archive pages instead of the removed `#slug` anchors on `/tags/`.
+
+**Verified**
+- Rendered the real `/ai-agent-architecture-basics/` post (14 H2s, 38 H3s)
+  through the actual post layout: kickers render `01`-`14` in order; CSS
+  counter order exactly matches TOC H2 order; all 14 heading ids unique and
+  unchanged in form; author "N." prefixes stripped with no doubling.
+- Chromium QA: scrollspy highlights the correct TOC link for H2s 1, 7 and 14;
+  ink theme (cream Space Grotesk on #0E0B0B) and paper theme (ink on #EFE8DC)
+  both legible, kicker stays #FF4D2E; 390px has zero horizontal overflow;
+  zero page JS errors. Before/after screenshots at
+  `~/workspace/blog-redesign/qa-shots/chapter-{before,after}-{ink,paper,390}.png`.
+- Genuine `bundle exec jekyll serve` unavailable in this environment (no
+  ruby); full `main.scss` compiles clean via libsass and `toc.js` passes
+  `node --check`.
+
 ## 2026-09-27 - Feature 9: Tag archive pages
 
 **Added**

@@ -57,7 +57,7 @@ layout: default
 
       <div class="post-foot">
         <div class="post-tags">
-          {% for t in page.tags %}<a class="tag" href="{{ '/tags/' | relative_url }}#{{ t | slugify }}">#{{ t }}</a>{% endfor %}
+          {% for t in page.tags %}<a class="tag" href="{{ t | slugify | prepend: '/tags/' | append: '/' | relative_url }}">#{{ t }}</a>{% endfor %}
         </div>
         <button class="btn copy-link" data-url="{{ page.url | absolute_url }}" type="button">Copy link</button>
       </div>
