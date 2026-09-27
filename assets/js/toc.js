@@ -1,4 +1,4 @@
-/* Redline — post TOC: numbers h2s, builds sticky nav, scrollspy. */
+/* Redline - post TOC: numbers h2s, builds sticky nav, scrollspy. */
 (function () {
   function slug(s) {
     return s.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').slice(0, 64) || 'section';
@@ -18,7 +18,7 @@
       seen[id] = true;
       h.id = id;
       if (h.tagName === 'H2') {
-        // If the author already numbered the heading ("1. ..."), drop it —
+        // If the author already numbered the heading ("1. ..."), drop it -
         // the §NN kicker replaces it so numbers never double up.
         var first = h.firstChild;
         if (first && first.nodeType === 3) first.nodeValue = first.nodeValue.replace(/^\d+[.)]\s*/, '');
@@ -31,7 +31,7 @@
       if (h.tagName === 'H3') li.className = 'toc-h3';
       var a = document.createElement('a');
       a.href = '#' + id;
-      // strip the §NN kicker text (exact match — never a greedy digit run)
+      // strip the §NN kicker text (exact match - never a greedy digit run)
       var marker = h.querySelector('.h2-no');
       a.textContent = (marker ? h.textContent.replace(marker.textContent, '') : h.textContent).trim();
       li.appendChild(a);

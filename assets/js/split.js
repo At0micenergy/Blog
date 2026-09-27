@@ -1,4 +1,4 @@
-/* Redline — split [data-split] headings into words for masked line reveals. */
+/* Redline - split [data-split] headings into words for masked line reveals. */
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

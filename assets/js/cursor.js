@@ -1,4 +1,4 @@
-/* Redline — custom cursor. Fine pointers only; expands on links, says READ on cards. */
+/* Redline - custom cursor. Fine pointers only; expands on links, says READ on cards. */
 (function () {
   function init() {
     if (!document.documentElement.classList.contains('has-cursor')) return;

@@ -1,14 +1,14 @@
-# 7-part AI agent security series — progress tracker data
+# 7-part AI agent security series - progress tracker data
 # status: published | draft | planned
 - part: 1
   title: "Agent architecture basics"
   status: published
   url: /ai-agent-architecture-basics/
-  hook: "What an agent actually is — taxonomy, the execution loop, tools, memory, and the trust boundaries that matter."
+  hook: "What an agent actually is - taxonomy, the execution loop, tools, memory, and the trust boundaries that matter."
 - part: 2
   title: "Before OWASP: Learn the Agent by Building It"
   status: draft
-  hook: "Seven hands-on lab steps that teach you the agent by building one — before the frameworks arrive."
+  hook: "Seven hands-on lab steps that teach you the agent by building one - before the frameworks arrive."
 - part: 3
   title: "OWASP systematization"
   status: planned
@@ -24,7 +24,7 @@
 - part: 6
   title: "Governing agents"
   status: planned
-  hook: "NIST AI RMF, ISO/IEC 42001, the EU AI Act — risk registers and control mapping."
+  hook: "NIST AI RMF, ISO/IEC 42001, the EU AI Act - risk registers and control mapping."
 - part: 7
   title: "Assuring agents"
   status: planned

@@ -1,4 +1,4 @@
-/* Redline — scroll-velocity reactive variable type for [data-velocity] titles. */
+/* Redline - scroll-velocity reactive variable type for [data-velocity] titles. */
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function init() {

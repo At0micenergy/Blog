@@ -1,6 +1,6 @@
 // ─── site chrome: preloader / cursor / header / ticker / footer ────
 
-// Preloader — terminal boot, wipes away
+// Preloader - terminal boot, wipes away
 #boot {
   position: fixed; inset: 0; background: var(--bg); z-index: 300;
   display: flex; align-items: center; justify-content: center;
@@ -23,7 +23,7 @@
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-// Custom cursor — fine pointers only, JS adds .has-cursor to html
+// Custom cursor - fine pointers only, JS adds .has-cursor to html
 #cursor {
   position: fixed; top: 0; left: 0; z-index: 350; pointer-events: none;
   display: none;
@@ -89,7 +89,7 @@ html.has-cursor {
 body { padding-top: 0; }
 main { display: block; }
 
-// Ticker — pure CSS marquee
+// Ticker - pure CSS marquee
 .ticker {
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   overflow: hidden; white-space: nowrap; background: var(--bg-deep);

@@ -15,8 +15,8 @@ $paper-ink: #16110C;
 
 // libsass-safe cl(): emits a raw CSS clamp() without Sass unit math,
 // so mixed units like cl(4rem, 14vw, 15rem) compile under libsass.
-// NOTE: inside :root custom properties the call MUST be interpolated —
-// --x: #{cl(...)} — or Sass passes cl() through literally.
+// NOTE: inside :root custom properties the call MUST be interpolated -
+// --x: #{cl(...)} - or Sass passes cl() through literally.
 @function cl($min, $val, $max) {
   @return unquote("clamp(#{$min}, #{$val}, #{$max})");
 }
@@ -50,7 +50,7 @@ $paper-ink: #16110C;
   --ease-snap: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-// Paper (light) theme — same accent, inverted surfaces
+// Paper (light) theme - same accent, inverted surfaces
 [data-theme="paper"] {
   --bg: #{$paper-bg};
   --bg-raise: #E6DCC9;

@@ -1,4 +1,4 @@
-/* Redline — theme toggle (ink <-> paper), persisted. */
+/* Redline - theme toggle (ink <-> paper), persisted. */
 (function () {
   function init() {
     var root = document.documentElement;

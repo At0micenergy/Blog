@@ -1,4 +1,4 @@
-/* Redline — terminal chrome + copy buttons for code blocks; copy-link buttons. */
+/* Redline - terminal chrome + copy buttons for code blocks; copy-link buttons. */
 (function () {
   function init() {
     // Wrap post code blocks in terminal chrome
@@ -15,7 +15,7 @@
       var bar = document.createElement('div');
       bar.className = 'codeblock-bar';
       bar.innerHTML = '<span class="cdot r"></span><span class="cdot"></span><span class="cdot"></span>' +
-        '<span>' + (lang ? lang + ' — ' : '') + 'lab terminal</span>';
+        '<span>' + (lang ? lang + ' - ' : '') + 'lab terminal</span>';
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'copy-btn';

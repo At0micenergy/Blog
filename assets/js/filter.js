@@ -1,4 +1,4 @@
-/* Redline — tag filter for the posts index, with animated transitions. */
+/* Redline - tag filter for the posts index, with animated transitions. */
 (function () {
   function init() {
     var bar = document.getElementById('filter-bar');
@@ -9,7 +9,7 @@
     var total = cards.length;
 
     function paintCount(n, label) {
-      if (count) count.textContent = n + ' / ' + total + ' — #' + label;
+      if (count) count.textContent = n + ' / ' + total + ' - #' + label;
     }
     paintCount(total, 'all');
 

@@ -1,4 +1,4 @@
-/* Redline — scramble/decode text effect. Hero decodes on boot; [data-scramble-onview] on scroll. */
+/* Redline - scramble/decode text effect. Hero decodes on boot; [data-scramble-onview] on scroll. */
 (function () {
   var GLYPHS = '!<>-_/[]{}=+*^?#@$%&';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

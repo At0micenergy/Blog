@@ -1,6 +1,6 @@
 // ─── home: hero / bento / series / about-teaser ────────────────────
 
-// Hero — oversized serif, left-aligned, terminal eyebrow
+// Hero - oversized serif, left-aligned, terminal eyebrow
 .hero {
   min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end;
   padding: calc(90px + 4vh) var(--pad) 6vh;
@@ -42,7 +42,7 @@
   }
 }
 
-// Latest — asymmetric bento grid
+// Latest - asymmetric bento grid
 .bento {
   display: grid; grid-template-columns: repeat(12, 1fr);
   gap: 22px; margin-top: 56px;
@@ -90,7 +90,7 @@
   }
 }
 
-// Series tracker — pinned, horizontal stepper
+// Series tracker - pinned, horizontal stepper
 .series { position: relative; background: var(--bg-deep); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .series-pin { overflow: hidden; }
 .series-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }

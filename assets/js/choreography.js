@@ -1,4 +1,4 @@
-/* Redline — scroll choreography (GSAP ScrollTrigger). Progressive enhancement only:
+/* Redline - scroll choreography (GSAP ScrollTrigger). Progressive enhancement only:
    everything is visible by default; this layer only adds motion. */
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -8,7 +8,7 @@
     if (!window.gsap || !window.ScrollTrigger) return;
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero parallax — title drifts slower than the scroll
+    // Hero parallax - title drifts slower than the scroll
     var heroTitle = document.querySelector('.hero-title');
     if (heroTitle) {
       gsap.to(heroTitle, {

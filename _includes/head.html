@@ -1,7 +1,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if page.title %}{{ page.title | escape }} — {% endif %}{{ site.title | escape }}</title>
+<title>{% if page.title %}{{ page.title | escape }} - {% endif %}{{ site.title | escape }}</title>
 <meta name="description" content="{{ page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 160 | escape }}">
 <meta name="theme-color" content="#0E0B0B">
 <link rel="preload" href="{{ '/assets/fonts/instrument-serif-400.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>

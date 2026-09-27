@@ -110,7 +110,7 @@
 .post-article pre .s, .post-article pre .s1, .post-article pre .s2 { color: #E8B44A; }
 .post-article pre .nf, .post-article pre .nc { color: var(--ink); font-weight: 700; }
 
-// Callouts — lab note / warning / tip, hand-annotated feel
+// Callouts - lab note / warning / tip, hand-annotated feel
 .callout {
   border: 1px solid var(--line); border-left: 3px solid var(--accent);
   background: var(--bg-raise); border-radius: var(--radius);
@@ -125,7 +125,7 @@
   &.tip { border-left-color: var(--ink); .callout-tag { color: var(--ink); } }
 }
 
-// Author note — "why I wrote this"
+// Author note - "why I wrote this"
 .why-note {
   margin: 3.5em 0 0; padding: 32px 0 0; border-top: 2px solid var(--accent);
   .why-head { display: flex; align-items: center; gap: 16px; margin-bottom: 16px;

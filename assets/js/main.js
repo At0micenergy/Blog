@@ -1,4 +1,4 @@
-/* Redline — main init: smooth scroll (Lenis) wired to ScrollTrigger. */
+/* Redline - main init: smooth scroll (Lenis) wired to ScrollTrigger. */
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

@@ -14,7 +14,7 @@ fullwidth: true
   </div>
   {% for tag in site.tags %}
   <div class="tag-block" id="{{ tag[0] | slugify }}">
-    <h2>#{{ tag[0] }} — {{ tag[1] | size }}</h2>
+    <h2>#{{ tag[0] }} - {{ tag[1] | size }}</h2>
     <ul>
       {% for post in tag[1] %}
       <li><a href="{{ post.url | relative_url }}"><span>{{ post.title }}</span><time>{{ post.date | date: "%Y-%m-%d" }}</time></a></li>

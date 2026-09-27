@@ -8,7 +8,7 @@ excerpt: "A security-first guide to agent taxonomy, the execution loop, tools, m
 series: ai-agent-security
 series_part: 1
 hook: "A security-first guide to agent taxonomy, the execution loop, tools, memory, RAG, MCP, orchestration, and the trust boundaries that matter."
-why: "Everyone is calling everything an agent now — chatbots, scripts, five LLMs in a trench coat. I wrote this to pin down what the thing actually is before we try to secure it, because you can't threat-model a buzzword."
+why: "Everyone is calling everything an agent now - chatbots, scripts, five LLMs in a trench coat. I wrote this to pin down what the thing actually is before we try to secure it, because you can't threat-model a buzzword."
 ---
 
 *Part 1 of the Building and Securing AI Agents series*
@@ -489,7 +489,7 @@ Only if the human sees enough information and has a real choice. Approval fatigu
 
 ## 10. What this series will teach next
 
-The steps below are not a separate checklist the reader is expected to complete alone. They are a preview of the hands-on path we will explain in the next article, **Before OWASP — Learn the Agent by Building It**. That article will walk through each step in order, show what to build, explain what to observe, and connect each exercise to its security purpose.
+The steps below are not a separate checklist the reader is expected to complete alone. They are a preview of the hands-on path we will explain in the next article, **Before OWASP - Learn the Agent by Building It**. That article will walk through each step in order, show what to build, explain what to observe, and connect each exercise to its security purpose.
 
 Readers can start from the foundation that matches their background. If trust boundaries, least privilege, authentication, authorization, or threat modeling are new concepts, the article will explain why they matter as they appear. Readers who already know them can move directly into the agent-specific work.
 
@@ -563,7 +563,7 @@ If those answers are visible in your diagram, you have moved from “AI vocabula
 This series is designed to teach and learn in public, with each article building on the previous one:
 
 1. **Agent architecture basics:** Build the mental model in this article.
-2. **Before OWASP — learn the agent by building it:** Work through all seven steps previewed above: draw the loop, build a raw agent, add retrieval, threat-model it, attack it, add controls, and then explore orchestration.
+2. **Before OWASP - learn the agent by building it:** Work through all seven steps previewed above: draw the loop, build a raw agent, add retrieval, threat-model it, attack it, add controls, and then explore orchestration.
 3. **The OWASP systematization pass:** Map the failures observed in the lab to formal LLM and agentic-risk categories, find gaps, and create a repeatable review method.
 4. **Defending agents in production:** Turn the lab controls into a practical defense strategy for identity, tools, data, approvals, isolation, monitoring, and incident response.
 5. **MCP security deep dive:** Examine how MCP connects agents to tools and data, where its trust boundaries sit, and how to reduce the resulting attack surface.

@@ -1,4 +1,4 @@
-/* Redline — terminal boot preloader. Once per session, skippable, <2s. */
+/* Redline - terminal boot preloader. Once per session, skippable, <2s. */
 (function () {
   var el = document.getElementById('boot');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
