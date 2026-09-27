@@ -1,0 +1,133 @@
+// Command palette + /search/ page - terminal-styled site search.
+// Strictly theme tokens: panel --bg-raise, hairline --line, text --ink,
+// dim --ink-dim, accent --accent, mono --font-mono, radius --radius.
+// Works in ink and paper; reduced-motion handled by the global kill-switch.
+.palette-backdrop {
+  position: fixed; inset: 0; z-index: 90;
+  background: rgba(0, 0, 0, 0.62);
+  display: flex; justify-content: center; align-items: flex-start;
+  padding: 12vh 20px 20px;
+}
+.palette-backdrop[hidden] { display: none; }
+.palette {
+  width: #{unquote("min(640px, 100%)")};
+  background: var(--bg-raise);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.palette-line {
+  display: flex; align-items: center; gap: 10px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.palette-prompt {
+  font-family: var(--font-mono); font-weight: 700;
+  color: var(--accent); font-size: 1.05rem; line-height: 1;
+}
+.palette-input {
+  flex: 1; min-width: 0;
+  background: transparent; border: 0; outline: 0;
+  font-family: var(--font-mono); font-size: 1rem; color: var(--ink);
+  caret-color: var(--accent); padding: 0;
+  &::placeholder { color: var(--ink-faint); }
+}
+.palette-esc {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-faint);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 3px 8px; line-height: 1.4;
+}
+.palette-results {
+  list-style: none; margin: 0; padding: 8px;
+  max-height: 46vh; overflow-y: auto;
+}
+.palette-result { border-radius: var(--radius); }
+.palette-result a {
+  display: block; padding: 10px 12px;
+  text-decoration: none; color: var(--ink);
+  border-left: 3px solid transparent;
+}
+.palette-result .r-title {
+  font-family: var(--font-mono); font-size: 0.92rem; font-weight: 600;
+  display: block; margin-bottom: 3px;
+}
+.palette-result .r-tags {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 3px;
+}
+.palette-result .r-excerpt {
+  font-size: 0.85rem; color: var(--ink-dim); display: block;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.palette-result.active a, .palette-result a:hover {
+  background: var(--bg-deep); border-left-color: var(--accent);
+}
+.palette-empty, .palette-hint {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em;
+}
+.palette-empty { color: var(--ink-dim); padding: 18px; margin: 0; }
+.palette-hint {
+  color: var(--ink-faint); text-transform: uppercase;
+  border-top: 1px solid var(--line); padding: 10px 18px; margin: 0;
+  span { color: var(--ink-dim); }
+}
+
+// /search/ page - same terminal voice, static-first
+.search-page-form {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--bg-raise); padding: 14px 18px; margin-bottom: 8px;
+}
+.search-page-label {
+  font-family: var(--font-mono); font-weight: 700; color: var(--accent);
+  .search-page-cursor { color: var(--ink-faint); font-weight: 400; }
+}
+.search-page-input {
+  flex: 1; min-width: 200px;
+  background: transparent; border: 0; outline: 0;
+  font-family: var(--font-mono); font-size: 1rem; color: var(--ink);
+  caret-color: var(--accent);
+}
+.search-page-run {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink); background: transparent;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 8px 16px; cursor: pointer;
+  &:hover { border-color: var(--accent); color: var(--accent); }
+}
+.search-page-count {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-faint); margin: 18px 0 6px;
+}
+.search-page-list { list-style: none; margin: 0; padding: 0; }
+.search-page-item {
+  border-bottom: 1px solid var(--line); padding: 16px 0;
+  &[hidden] { display: none; }
+}
+.search-page-title {
+  font-family: var(--font-mono); font-weight: 600; font-size: 1rem;
+  color: var(--ink); text-decoration: none;
+  &:hover { color: var(--accent); }
+}
+.search-page-tags {
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); margin: 6px 0 0;
+}
+.search-page-excerpt { color: var(--ink-dim); margin: 6px 0 0; font-size: 0.92rem; }
+.search-page-note { color: var(--ink-dim); font-size: 0.9rem; }
+// Header trigger - inherits .nav-link; kbd hint for the shortcut
+.search-trigger kbd {
+  font-family: inherit; font-size: 0.85em; color: var(--ink-faint);
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 1px 5px;
+  letter-spacing: 0.1em;
+}
+.st-glyph { color: var(--accent); font-weight: 700; }
+
+@media (max-width: 640px) {
+  .palette-backdrop { padding: 8vh 12px 12px; }
+  // compact terminal trigger on small screens: ">_" + tighter nav gap
+  .search-trigger .st-label, .search-trigger kbd { display: none; }
+  .site-header nav { gap: 16px; }
+}

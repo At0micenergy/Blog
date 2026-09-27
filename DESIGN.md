@@ -133,6 +133,18 @@ sandbox." Never address the reader as a security professional; conditional branc
     `<th scope="col">` headers and `<th scope="row">` row labels; below 640px rows
     reflow into stacked labeled cards (`td::before` from `data-label`) so the page
     never scrolls sideways.
+- **Command palette** (`_includes/palette.html`, `assets/js/palette.js`,
+  `_sass/_palette.scss`, `search.json`, `search.md`): terminal-styled site search.
+  `Cmd/Ctrl+K` or the header `>_` trigger opens a `role="dialog"` palette with an
+  accent `>` prompt, mono input (accent caret), and ranked results (title >
+  tags > excerpt > body, word-prefix bonus on titles). `↑/↓` navigates
+  (`aria-activedescendant`), `↵` opens, `esc`/backdrop closes, focus is restored.
+  The index is built by Jekyll at build time (`search.json`, no plugins) and
+  fetched lazily on first open - zero cost to initial load/LCP. Without JS the
+  header trigger is a plain link to `/search/`, a static full index that also
+  filters client-side when JS is present. Strictly theme tokens; legible in ink
+  and paper. Mobile: trigger collapses to `>_` and the nav gap tightens
+  (20px -> 16px) at ≤640px so the 5th nav item fits without overflow.
 
 ## Motion rules
 
