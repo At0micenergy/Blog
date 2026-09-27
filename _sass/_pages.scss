@@ -77,6 +77,16 @@
   position: sticky; top: 64px; z-index: 50;
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   backdrop-filter: blur(12px); padding: 14px 0;
+  @media (max-width: $bp-md) {
+    // With ~40 tags the wrapped bar is a full screen tall on phones —
+    // don't pin it over the posts; let it scroll away as a compact strip.
+    position: static;
+    flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+    margin: 24px calc(var(--pad) * -1) 8px; padding: 14px var(--pad);
+    .filter-btn { flex-shrink: 0; }
+  }
 }
 .filter-btn {
   background: none; border: 1px solid var(--line); border-radius: 99px;
