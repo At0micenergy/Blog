@@ -2,6 +2,20 @@
 
 One entry per feature: what was added, what was verified.
 
+## 2026-09-27 - Fix: post numbering runs oldest-first
+
+**Changed**
+- `_includes/post-card.html`: card numerals were `forloop.index` over the
+  newest-first `site.posts`, so the newest post was №1 and the oldest №38.
+  Now `№{{ site.posts | size | minus: forloop.index | plus: 1 }}` - the oldest
+  post is №1 and the newest is №38. Computed against the full post count so the
+  homepage (limit 6) and `/posts/` agree.
+
+**Verified**
+- Chromium mirror QA: `/posts/` shows №38 down to №1, strictly sequential across
+  all 38 cards; homepage shows №38 to №33. Screenshot
+  `qa-shots/post-numbering.png`.
+
 ## 2026-09-27 - Feature 2: Series reading progress
 
 **Added**

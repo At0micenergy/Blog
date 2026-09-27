@@ -67,6 +67,8 @@ sandbox." Never address the reader as a security professional; conditional branc
 - **Ticker**: pure-CSS marquee of top tags, pauses on hover, `aria-hidden`.
 - **Post cards** (`post-card.html`): bento spans by position, red edge-rule grows on
   hover, mono numeral + date, hook (front-matter `hook:` or excerpt fallback).
+  Numerals run oldest-first: the oldest post is №1, the newest is №N (computed
+  against the full post count so home and `/posts/` agree).
 - **Series tracker** (`series-tracker.html`, `_data/series.yml`): 7 steps with
   `published/draft/planned` states; progress bar; pinned horizontal scroll on desktop,
   vertical stack on mobile. Add parts by editing the YAML - no code changes.
