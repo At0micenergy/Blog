@@ -40,3 +40,33 @@ One entry per feature: what was added, what was verified.
   mobile header overflow caused by the 5th nav item found and fixed.
 - Not verifiable locally: `bundle exec jekyll serve` (apt locked, no Ruby) -
   will confirm via the GitHub Pages build after push.
+
+## 2026-09-27 - Feature 1 follow-up: palette device-compatibility pass
+
+**Fixed**
+- The palette's input row was hidden under the fixed header on phones and
+  short landscape viewports. Backdrop top padding now always clears the
+  header: `max(12vh, 96px)` desktop, `max(8vh, 160px)` under 640px.
+- Mobile search trigger was a 17x26px tap target. Now 45x42px via padding
+  with compensating negative margin - no nav layout shift at 320px.
+- `Escape` now closes the palette document-wide (previously only when the
+  input had focus).
+- Touch devices: decorative `esc` pill hidden; kbd hint swapped for
+  "tap a result to open - tap outside to dismiss" via
+  `(hover: none) and (pointer: coarse)`.
+
+**Verified**
+- 9-device Chromium sweep (320/360/390/428px phones, 844x390 landscape,
+  768/834px tablets, 1024px laptop, 1440px desktop): no horizontal page
+  scroll; trigger visible; palette opens (tap / Cmd+K); dialog fits;
+  input 16px (no iOS auto-zoom); query `agent` returns 5 ranked results;
+  tap result opens link; `esc`/backdrop close; ink + paper themes legible.
+- `/search/` page at 390px and 1440px: 38 items, live filter
+  ("5 of 38 posts"), no horizontal scroll, 16px input.
+- Screenshots: palette open with results at 390px (input row visible,
+  touch hint shown), `/search/` at 390px.
+- LCP (local mirror, 1440px, 5 runs): 276ms median post-fix vs 436ms
+  pre-fix median - no regression (high run-to-run variance both ways).
+- Zero console/page errors attributable to the palette on any device.
+- Pushed via Git Data API as remote `fdd43c2b`; verified live in production
+  CSS/JS/HTML.
