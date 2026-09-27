@@ -4,7 +4,6 @@
 <title>{% if page.title %}{{ page.title | escape }} - {% endif %}{{ site.title | escape }}</title>
 <meta name="description" content="{{ page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 160 | escape }}">
 <meta name="theme-color" content="#0E0B0B">
-<link rel="preload" href="{{ '/assets/fonts/instrument-serif-400.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/space-grotesk-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/jetbrains-mono-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
