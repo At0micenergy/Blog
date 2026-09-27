@@ -152,6 +152,9 @@
         ev.preventDefault();
         if (backdrop.hidden) open(); else close();
       }
+      // Escape closes from anywhere while the palette is open - not only
+      // when the input has focus (focus may sit on a result link)
+      if (ev.key === 'Escape' && !backdrop.hidden) { ev.preventDefault(); close(); }
     });
 
     backdrop.addEventListener('click', function (ev) {
@@ -164,7 +167,6 @@
       else if (ev.key === 'Enter') {
         if (current[activeIdx]) window.location.href = current[activeIdx].post.url;
       }
-      else if (ev.key === 'Escape') { ev.preventDefault(); close(); }
     });
 
     input.addEventListener('input', function () {

@@ -6,7 +6,8 @@
   position: fixed; inset: 0; z-index: 90;
   background: rgba(0, 0, 0, 0.62);
   display: flex; justify-content: center; align-items: flex-start;
-  padding: 12vh 20px 20px;
+  // top pad always clears the fixed header: 78px desktop, ~134px two-row mobile
+  padding: #{unquote("max(12vh, 96px)")} 20px 20px;
 }
 .palette-backdrop[hidden] { display: none; }
 .palette {
@@ -126,8 +127,23 @@
 .st-glyph { color: var(--accent); font-weight: 700; }
 
 @media (max-width: 640px) {
-  .palette-backdrop { padding: 8vh 12px 12px; }
-  // compact terminal trigger on small screens: ">_" + tighter nav gap
+  // clear the taller two-row fixed header on phones
+  .palette-backdrop { padding: #{unquote("max(8vh, 160px)")} 12px 12px; }
+  // compact terminal trigger on small screens: ">_" + tighter nav gap.
+  // the collapsed glyph is a small visual - expand its tap target with
+  // padding, using negative margin so the nav layout does not shift.
   .search-trigger .st-label, .search-trigger kbd { display: none; }
+  // beat .site-header .nav-link specificity so the collapsed glyph keeps a
+  // proper touch target
+  .site-header .search-trigger { padding: 12px 14px; margin: -8px -14px; }
   .site-header nav { gap: 16px; }
+}
+
+// touch-first devices: no esc key on virtual keyboards - hide the decorative
+// esc pill and swap the kbd hint for tap instructions
+.palette-hint.hint-touch { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  .palette-esc { display: none; }
+  .palette-hint.hint-kbd { display: none; }
+  .palette-hint.hint-touch { display: block; }
 }
