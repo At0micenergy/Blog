@@ -34,11 +34,11 @@
   gap: cl(40px, 6vw, 96px);
   padding: 64px var(--pad) var(--section-gap);
   max-width: 1440px; margin: 0 auto;
-  @media (max-width: $bp-md) { grid-template-columns: 1fr; }
+  @media (max-width: $bp-md) { grid-template-columns: minmax(0, 1fr); }
 }
 
 .post-article {
-  max-width: 65ch; font-size: 1.075rem; line-height: 1.78; color: var(--ink);
+  min-width: 0; max-width: 65ch; font-size: 1.075rem; line-height: 1.78; color: var(--ink);
   > p:first-of-type::first-letter {
     font-family: var(--font-display); font-size: 3.4em; float: left;
     line-height: 0.82; padding-right: 0.12em; color: var(--accent);
@@ -156,7 +156,7 @@
 .series-nav {
   display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
   margin: 64px 0 0; padding-top: 40px; border-top: 1px solid var(--line);
-  @media (max-width: $bp-sm) { grid-template-columns: 1fr; }
+  @media (max-width: $bp-sm) { grid-template-columns: minmax(0, 1fr); }
   a {
     border: 1px solid var(--line); border-radius: var(--radius); padding: 24px;
     text-decoration: none; transition: border-color 0.3s, transform 0.3s var(--ease-out);

@@ -115,7 +115,7 @@ main { display: block; }
     display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px;
     margin-bottom: 64px;
     @media (max-width: $bp-md) { grid-template-columns: 1fr 1fr; }
-    @media (max-width: $bp-sm) { grid-template-columns: 1fr; }
+    @media (max-width: $bp-sm) { grid-template-columns: minmax(0, 1fr); }
   }
   .foot-word {
     font-family: var(--font-display); font-size: cl(2.4rem, 5vw, 4rem);

@@ -21,7 +21,7 @@
 // About
 .about-grid { display: grid; grid-template-columns: 5fr 7fr; gap: cl(32px, 6vw, 88px);
   padding: 24px var(--pad) var(--section-gap); align-items: start;
-  @media (max-width: $bp-md) { grid-template-columns: 1fr; } }
+  @media (max-width: $bp-md) { grid-template-columns: minmax(0, 1fr); } }
 .about-photo {
   position: sticky; top: 110px;
   @media (max-width: $bp-md) { position: static; max-width: 420px; }
