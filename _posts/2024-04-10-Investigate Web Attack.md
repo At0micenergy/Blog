@@ -14,19 +14,19 @@ In this walkthrough, we will delve into investigating web application logs using
 
 The network team was able to provide the log data from the incident. Now, we need to ingest the log file into our SIEM tool for better triaging.
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Input data.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Input data.png){: width="779" height="612" loading="lazy"}
 
 Navigating to settings and importing the log file, we'll also set up the index, source, host, and sourcetype. It's crucial to specify the correct source when parsing data into Splunk. This ensures that the data is categorized appropriately based on the source data using built-in data parsing plugins. 
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Sourcing.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Sourcing.png){: width="1916" height="717" loading="lazy"}
 
 Previewing the dataset allows us to inspect the data before ingesting it fully into the system. This step helps ensure that the data is correctly formatted and that any necessary adjustments can be made before further processing.
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/review.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/review.png){: width="1397" height="477" loading="lazy"}
 
 Verfiying the Evenets by index & host 
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Total Events.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Total Events.png){: width="1914" height="263" loading="lazy"}
 
 ## Indetification 
 
@@ -35,11 +35,11 @@ Verfiying the Evenets by index & host
 
 When it comes to web applications, each client sends its own set of headers and body when communicating with the application. This includes information such as the request method, user agent, cookie values, and the host, among others. For instance, when an attacker sends a malicious packet using a tool, the user agent field may represent the name of the tool being used. This information can be crucial for detecting and mitigating attacks in the web application environment.
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Input data.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Input data.png){: width="779" height="612" loading="lazy"}
 
 if we observe the User-Agent field in the HTTP requests and find that it contains the tool name "Nikto," it suggests that the attacker used the Nikto tool to send the malicious packets. This information is valuable for triaging the incident as it helps us identify the specific tool or technique used by the attacker. 
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/1.0 Answer.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/1.0 Answer.png){: width="1848" height="704" loading="lazy"}
 
 [More about Nikto ](https://github.com/sullo/nikto)
 
@@ -50,7 +50,7 @@ index=main host="Client-Server"
 
 ### So that Answer for the tool is "Nikto" 
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/1.1 Answer.png) 
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/1.1 Answer.png){: width="1920" height="685" loading="lazy"} 
 
 Can see here that there are hunders of request for with this user agent! 
 
@@ -65,11 +65,11 @@ index="main" host="Client-Server"
 
 These SPL command will query the list of client ip's and their number of request preformed by each clientIp
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Get-Request.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Get-Request.png){: width="1920" height="463" loading="lazy"}
 
 When facing dictionary-type attacks, the system will query every possible directory from a wordlist. Not all requests can yield a successful "200 OK" response; the majority of them will result in a "404 Not Found" error. 
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/404-Requests.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/404-Requests.png){: width="1061" height="750" loading="lazy"}
 
 ```
 index="main" host="Client-Server"  clientip="192.168.199.2" status=404
@@ -80,7 +80,7 @@ This will query the all 404 request made by 192.168.199.2
 
 ### So that Answer for the attack performed after reconnaissance is "Directory Brute Force" 
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Confirming the Directory Bruteforce.png) 
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Confirming the Directory Bruteforce.png){: width="1920" height="765" loading="lazy"} 
 
 these are dictoryies attacker sucessfully managed to gather working 
 
@@ -88,20 +88,20 @@ these are dictoryies attacker sucessfully managed to gather working
 
 we can see that the attacker performed brute force attack on login.php 
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Password Bruteforce.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Password Bruteforce.png){: width="1920" height="539" loading="lazy"}
 
 ### Q4.Is the third attack successful?
 
 yes , After a long brute attack on login.php attacker finaly able to login.
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Postmethod.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Postmethod.png){: width="1920" height="388" loading="lazy"}
 
 ### Q5.What is the name of fourth attack?
 
 
 Based on the above tracing, we have obtained the attacker's IP address and status codes. Additionally, we've identified that "/login.php" is being targeted for login brute-force attacks. Now, let's list the other directories that are potentially vulnerable:
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/1.0Uri-paths-for-Q5.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/1.0Uri-paths-for-Q5.png){: width="1914" height="403" loading="lazy"}
 
 /bwapp/phpi.php	
 /bwapp/admin/	
@@ -119,13 +119,13 @@ index="main" host="Client-Server" uri_path="/bWAPP/phpi.php"
 
 ### Name of the forth attack is "Code Injection"
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/1.1 Command Injection-for-Q5.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/1.1 Command Injection-for-Q5.png){: width="1920" height="458" loading="lazy"}
 
 ### Q6.What is the first payload for 4th attack?
 
 The "whoami" payload was the first executed by the attacker. When executed, it simply prints the username of the current user logged into the terminal session. This command is helpful for quickly identifying the user context within a terminal session and operating system. Since the status code was "200 OK," we can conclude that the command was executed successfully.
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Code injection.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/Code injection.png){: width="1917" height="443" loading="lazy"}
 
 ### Q7. Is there any persistency clue for the victim machine in the log file ? If yes, what is the related payload?
 
@@ -140,7 +140,7 @@ Here is the decoded code that attacker used
 ""; system('net user hacker Asd123!! /add')
 ```
 
-![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/persistency.png)
+![]({{site.baseurl}}/img/Letsdefence/Investigate web attack/persistency.png){: width="1916" height="142" loading="lazy"}
 
 ### Answer for this question is 
 

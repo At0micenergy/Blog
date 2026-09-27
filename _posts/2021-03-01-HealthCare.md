@@ -25,7 +25,7 @@ Service Info: OS: Unix
 
 <h3>Gobuster</h3>
 
-![]({{site.baseurl}}/img/vulnhub/EVM1/gobutser.png)
+![]({{site.baseurl}}/img/vulnhub/EVM1/gobutser.png){: width="1187" height="711" loading="lazy"}
 
 found openemr // lead to sql injection at login page 
 
@@ -36,7 +36,7 @@ sqlmap -u http://10.0.2.37/openemr/interface/login/validateUser.php?u=admin -D o
 
 ```
 
-![]({{site.baseurl}}/img/vulnhub/EVM1/sqlmap.png)
+![]({{site.baseurl}}/img/vulnhub/EVM1/sqlmap.png){: width="702" height="61" loading="lazy"}
 
 from `sql creds` , logged into `ftp`
 
@@ -45,7 +45,7 @@ medical : medical
 ackbar : admin 
 ```
 
-![]({{site.baseurl}}/img/vulnhub/EVM1/ftp.png)
+![]({{site.baseurl}}/img/vulnhub/EVM1/ftp.png){: width="857" height="419" loading="lazy"}
 
 uploaded php shell into `var/www/` folder 
 
@@ -55,7 +55,7 @@ got reverseShell
 
 from suid , healthChecker is executing the fdisk , ipconfig without path 
 
-![]({{site.baseurl}}/img/vulnhub/EVM1/suid.png)
+![]({{site.baseurl}}/img/vulnhub/EVM1/suid.png){: width="1247" height="305" loading="lazy"}
 
 can override the  `ifconfig` , path 
 
@@ -78,4 +78,4 @@ export PATH=/tmp:$PATH
 
 
 
-![]({{site.baseurl}}/img/vulnhub/EVM1/root.png)
+![]({{site.baseurl}}/img/vulnhub/EVM1/root.png){: width="553" height="109" loading="lazy"}

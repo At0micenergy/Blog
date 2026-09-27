@@ -84,34 +84,34 @@ Session completed
 ```
 `jonah:spiderman123`
 
-![]({{site.baseurl}}/img/tryhackme/dailyBugle/login.png)
+![]({{site.baseurl}}/img/tryhackme/dailyBugle/login.png){: width="1576" height="847" loading="lazy"}
 
 Gaining ReverseShell
 
-![]({{site.baseurl}}/img/tryhackme/dailyBugle/processn.png)
+![]({{site.baseurl}}/img/tryhackme/dailyBugle/processn.png){: width="767" height="320" loading="lazy"}
 
 lets replace the index.php code with [PHPReverseShell](https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php): code 
 
-![]({{site.baseurl}}/img/tryhackme/dailyBugle/edit.png)
+![]({{site.baseurl}}/img/tryhackme/dailyBugle/edit.png){: width="769" height="298" loading="lazy"}
 
-![]({{site.baseurl}}/img/tryhackme/dailyBugle/revshell.png)
+![]({{site.baseurl}}/img/tryhackme/dailyBugle/revshell.png){: width="941" height="367" loading="lazy"}
 
 got the revershell
 
-![]({{site.baseurl}}/img/tryhackme/dailyBugle/gotshell.png)
+![]({{site.baseurl}}/img/tryhackme/dailyBugle/gotshell.png){: width="1273" height="249" loading="lazy"}
 
 
 # PrivilageEsclation
 
 from linpeasout put at `/var/www/html/configuration.php`
 
-![]({{site.baseurl}}/img/tryhackme/dailyBugle/config.php.png)
+![]({{site.baseurl}}/img/tryhackme/dailyBugle/config.php.png){: width="1355" height="152" loading="lazy"}
 
 got password `jjameson:nv5uz9r3ZEDzVjNu`
 
 user jjameson can rum yum as root without passwd 
 
-![]({{site.baseurl}}/img/tryhackme/dailyBugle/sudo.png)
+![]({{site.baseurl}}/img/tryhackme/dailyBugle/sudo.png){: width="959" height="262" loading="lazy"}
 
 ```
 [jjameson@dailybugle tmp]$ TF=$(mktemp -d)

@@ -11,4 +11,4 @@ tags: [Applications and Services Logs, Incident Response, HTB]
 
 Writeup will release soon , because the machine is still active, Stay Tuned !! 
 
-![]({{site.baseurl}}/img/HackTheBox/JingelBell/JingelBell.png)
+![]({{site.baseurl}}/img/HackTheBox/JingelBell/JingelBell.png){: width="684" height="520" loading="lazy"}

@@ -74,7 +74,7 @@ Nmap done: 1 IP address (1 host up) scanned in 27.43 seconds
 # Enumeration 
 /passwords/password.html user commented out the password 
 
-![]({{site.baseurl}}/img/vulnhub/Rickduculously/idk.png)
+![]({{site.baseurl}}/img/vulnhub/Rickduculously/idk.png){: width="861" height="282" loading="lazy"}
 
 # Enumeration 
 
@@ -86,9 +86,9 @@ hydra -T 200 -L users.txt -P pass.txt -vV ssh://10.0.2.15:22222
 ```
 dont forword files , likE FILES CONTINING dATA INSIDE A FILE
 
-![]({{site.baseurl}}/img/vulnhub/Rickduculously/lfi.png)
+![]({{site.baseurl}}/img/vulnhub/Rickduculously/lfi.png){: width="900" height="496" loading="lazy"}
 
 # privilageEsclation 
 
-![]({{site.baseurl}}/img/vulnhub/Rickduculously/gtfobinsudo.png)
+![]({{site.baseurl}}/img/vulnhub/Rickduculously/gtfobinsudo.png){: width="1837" height="190" loading="lazy"}
 

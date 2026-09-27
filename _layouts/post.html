@@ -33,16 +33,22 @@ layout: default
       {% if page.series_part %}
       {% assign prev_part = page.series_part | minus: 1 %}
       {% assign next_part = page.series_part | plus: 1 %}
+      {% capture series_nav_links %}
+      {% for s in site.data.series %}
+        {% if s.part == prev_part and s.url %}
+        <a href="{{ s.url | relative_url }}"><span class="sn-label">← Part {{ s.part }}</span><span class="sn-title">{{ s.title }}</span></a>
+        {% endif %}
+        {% if s.part == next_part and s.url %}
+        <a class="next" href="{{ s.url | relative_url }}"><span class="sn-label">Part {{ s.part }} →</span><span class="sn-title">{{ s.title }}</span></a>
+        {% endif %}
+      {% endfor %}
+      {% endcapture %}
+      {% assign series_nav_links = series_nav_links | strip %}
+      {% if series_nav_links != "" %}
       <nav class="series-nav" aria-label="Series navigation">
-        {% for s in site.data.series %}
-          {% if s.part == prev_part and s.url %}
-          <a href="{{ s.url | relative_url }}"><span class="sn-label">← Part {{ s.part }}</span><span class="sn-title">{{ s.title }}</span></a>
-          {% endif %}
-          {% if s.part == next_part and s.url %}
-          <a class="next" href="{{ s.url | relative_url }}"><span class="sn-label">Part {{ s.part }} →</span><span class="sn-title">{{ s.title }}</span></a>
-          {% endif %}
-        {% endfor %}
+        {{ series_nav_links }}
       </nav>
+      {% endif %}
       {% endif %}
 
       {% if page.series_part %}

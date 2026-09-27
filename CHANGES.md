@@ -288,3 +288,53 @@ One entry per feature: what was added, what was verified.
 - Zero console/page errors attributable to the palette on any device.
 - Pushed via Git Data API as remote `fdd43c2b`; verified live in production
   CSS/JS/HTML.
+
+## QA audit fixes (2026-09-27)
+
+Five issues from the 2026-09-27 site QA audit, fixed together.
+
+**Fixed**
+- DevGuru code fence (#1, high): added the missing blank line between
+  `# Nmap` and the opening fence in `_posts/2021-04-14-DevGuru.md` -
+  the raw nmap dump no longer renders inside the "Why read this" hook,
+  no more 3899px horizontal overflow, meta description clean.
+- Post images (#2, medium): all 150 markdown images across 31 posts now
+  carry kramdown IALs with real pixel dimensions and `loading="lazy"`
+  (e.g. `{: width="1282" height="601" loading="lazy"}`), injected by
+  `~/workspace/blog-redesign/inject_img_dims.py` (idempotent; merges into
+  existing IALs like `{: .normal}`; skips fenced code blocks). The four
+  690KB+ PNGs were recompressed in place as 256-color palettes
+  (MEDIANCUT, no dither): Wp-Scan.png 935->350KB, Creds.png 894->385KB,
+  Venom/domain.png 704->288KB, alfa.png 691->264KB. Dimensions unchanged,
+  so injected width/height stay valid. Spot-checked quantized output
+  against the original - visually indistinguishable on screenshots.
+- Hero scribble (#3, medium): path `stroke-width` 5 -> 2.5 with
+  `vector-effect="non-scaling-stroke"` (uniform 2.5px under the
+  non-uniform `preserveAspectRatio="none"` scale), `bottom` -0.12em ->
+  -0.02em so the line hugs "advisories" instead of floating below it.
+- Series nav (#4, low): `_layouts/post.html` now captures the prev/next
+  links and only renders `<nav class="series-nav">` when non-empty -
+  no more empty navigation landmark on part 1 of 7.
+- Tag typos (#5, low): `SMPT LogFile Posining` -> `SMTP LogFile
+  Poisoning`, `SSHLog file Posioning` -> `SSHLog file Poisoning`,
+  `SSH/SOCAT PortForwording` -> `PortForwarding` (5 posts); regenerated
+  tag archives (4 stale pages removed, 69 pages total; typo tags merged
+  into the pre-existing correct `SSH PortForwarding`). Note: the audit's
+  other two items (`SeImpersonatePrivilege`, `Deobfuscate`) are already
+  spelled correctly in front matter - no change made. Body-text
+  `PortForwording` headings left as author prose.
+
+**Verified**
+- QA renders (real layouts): nmap dump inside `<pre>` on DevGuru;
+  `series-nav` absent from the architecture post; all 150 post images
+  render with `width`/`height`/`loading="lazy"`; zero leaked `{:` literals;
+  full SCSS compiles (compressed).
+- Hero scribble at 390px: computed stroke 2.5px, `vector-effect`
+  present, svg sits 1.3px below the word - thin underline hugging
+  "advisories". Screenshot: `qa-shots/scribble-after-390.png`.
+  (QA note: full-page screenshots taken after `scrollIntoView` showed a
+  spurious "betore" - the hero scrolling under the fixed blurred header
+  in headless Chromium. DOM, element screenshots, and unscrolled
+  full-page shots all render "before" correctly; not a site bug.)
+- `bundle exec jekyll serve` not run (Ruby/Jekyll unavailable in this
+  environment); substituted libsass compile + real-layout renders.

@@ -19,8 +19,8 @@
     margin: 0 0 3vh; max-width: 12ch;
     .it { font-style: italic; color: var(--accent); }
     .u-scribble { position: relative; white-space: nowrap;
-      svg { position: absolute; left: -2%; bottom: -0.12em; width: 104%; height: 0.32em; overflow: visible;
-        path { stroke: var(--accent); stroke-width: 5; fill: none; stroke-linecap: round; } } }
+      svg { position: absolute; left: -2%; bottom: -0.02em; width: 104%; height: 0.32em; overflow: visible;
+        path { stroke: var(--accent); stroke-width: 2.5; fill: none; stroke-linecap: round; } } }
   }
 
   .hero-foot {
