@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<header class="page-hero">
+  <p class="eyebrow">// The archive</p>
+  <h1 data-split>Every <span class="it">transmission</span>.</h1>
+  <p class="standfirst">{{ site.posts | size }} notes on breaking and building — filter by tag, or just scroll the whole mess.</p>
+</header>
+<div class="wrap" style="padding-bottom: var(--section-gap);">
+  <div class="filter-bar" id="filter-bar" role="group" aria-label="Filter posts by tag">
+    <button class="filter-btn active" data-filter="all" type="button">all <span class="count">{{ site.posts | size }}</span></button>
+    {% for t in site.tags %}
+    <button class="filter-btn" data-filter="{{ t[0] | slugify }}" type="button">{{ t[0] }} <span class="count">{{ t[1] | size }}</span></button>
+    {% endfor %}
+  </div>
+  <div class="posts-grid" id="posts-grid">
+    {% for post in site.posts %}{% include post-card.html %}{% endfor %}
+  </div>
+  <p class="posts-count" id="posts-count"></p>
+</div>

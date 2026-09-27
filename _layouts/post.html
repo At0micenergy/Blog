@@ -1,111 +1,60 @@
 ---
 layout: default
 ---
-{% if page.image and page.image != empty %}
-<div class="container">
-	<div class="row">
-		<div class="col col-12">
-			<div class="post-image-box">
-				<div class="post-image" style="background-image: url({{"/img/" | prepend: site.baseurl | append : page.image}})"></div>
-			</div>
-		</div>
-	</div>
-</div>
-{% endif %}
+<article>
+  <header class="post-hero">
+    <div class="chapter">
+      <span class="chapter-no">{% if page.series_part %}{{ page.series_part | prepend: '0' }}{% else %}№{% endif %}</span>
+      <span class="chapter-label">{% if page.series_part %}Building &amp; securing AI agents · part {{ page.series_part }}{% else %}Field note{% endif %}</span>
+    </div>
+    <h1 class="post-title" data-split>{{ page.title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+      <span>{{ content | number_of_words | divided_by: 180 | plus: 1 }} min read</span>
+      {% if page.tags %}<span class="m-accent">{{ page.tags | join: ' · ' }}</span>{% endif %}
+    </div>
+    {% assign hook_text = page.hook | default: page.excerpt %}
+    {% if hook_text %}
+    <p class="post-hook"><strong>Why read this:</strong> {{ hook_text | strip_html }}</p>
+    {% endif %}
+  </header>
 
-<div class="container">
-	<div class="row">
-		<article class="col col-12 col-t-8 post">
-			<div class="post-content">
+  <div class="post-body">
+    <div class="post-article" id="article">
+      {{ content }}
 
-				<div class="post-head">
-					{% if page.tags.size >= 1 %}
-					<div class="post-tag">
-						{% for tag in page.tags %}
-						<a href="{{ site.baseurl }}/tags/#{{ tag | cgi_escape | cgi_escape }}" class="tag">{{ tag | escape }}</a>
-						{% endfor %}
-					</div>
-					{% endif %}
-					<h1 class="post-title">{{ page.title | escape }}</h1>
-					<div class="post-info">
-						<div class="post-info-author">
-							{% if site.author-avatar and site.author-avatar != empty %}
-							<div class="info-author-avatar" style="background-image: url({{"/img/" | prepend: site.baseurl | append : site.author-avatar}})"></div>
-							{% endif %}
-							<span>by</span>
-							<span class="info-author-name">{{site.author-name}}</span>
-						</div>
-						<div class="post-date">
-							<span>
-								<time datetime="{{ page.date | date_to_xmlschema }}">{{page.date | date: '%b %d, %Y'}}</time>
-							</span>
-						</div>
-					</div>
-				</div>
+      {% if page.why %}
+      <aside class="why-note">
+        <div class="why-head"><span class="why-avatar">S</span><span class="why-who">Why I wrote this · Saiprasad</span></div>
+        <p>{{ page.why }}</p>
+      </aside>
+      {% endif %}
 
-				<div class="post-body">
-					{{ content }}
+      {% if page.series_part %}
+      {% assign prev_part = page.series_part | minus: 1 %}
+      {% assign next_part = page.series_part | plus: 1 %}
+      <nav class="series-nav" aria-label="Series navigation">
+        {% for s in site.data.series %}
+          {% if s.part == prev_part and s.url %}
+          <a href="{{ s.url | relative_url }}"><span class="sn-label">← Part {{ s.part }}</span><span class="sn-title">{{ s.title }}</span></a>
+          {% endif %}
+          {% if s.part == next_part and s.url %}
+          <a class="next" href="{{ s.url | relative_url }}"><span class="sn-label">Part {{ s.part }} →</span><span class="sn-title">{{ s.title }}</span></a>
+          {% endif %}
+        {% endfor %}
+      </nav>
+      {% endif %}
 
-					<div class="post-share">
-						<ul class="share-list list-reset">
-							<li class="share-item">
-								<a class="share-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ site.baseurl }}{{ page.url }}"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on Facebook" rel="nofollow">
-									<i class="ion ion-logo-facebook"></i>
-								</a>
-							</li>
-					
-							<li class="share-item">
-								<a class="share-twitter" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ site.url }}{{ site.baseurl }}{{ page.url }}"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on Twitter" rel="nofollow">
-									<i class="ion ion-logo-twitter"></i>
-								</a>
-							</li>
-					
-							<li class="share-item">
-								<a class="share-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ site.baseurl }}{{ page.url }}&title={{ page.title | uri_escape }}&summary={{ page.description | uri_escape }}&source={{ site.title | uri_escape }}"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on LinkedIn" rel="nofollow">
-									<i class="ion ion-logo-linkedin"></i>
-								</a>
-							</li>
-					
-							<li class="share-item">
-								<a class="share-pinterest" href="http://pinterest.com/pin/create/button/?url={{ site.url }}{{ page.url }}&amp;media={{ site.url }}{{ site.baseurl }}/img/{{ page.image }}&amp;description={{ page.title | uri_escape }}"
-								onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
-								title="Share on Pinterest" rel="nofollow">
-									<i class="ion ion-logo-pinterest"></i>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="post-navigation">
-					{% if page.previous.url %}
-					<a href="{{ site.baseurl }}{{page.previous.url}}" class="prev">
-						<div class="post-nav-arrow"><i class="ion ion-ios-arrow-round-back"></i> Previous Article</div>
-						<h2 class="post-nav-title">{{page.previous.title}}</h2>
-					</a>
-					{% endif %} {% if page.next.url %}
-					<a href="{{ site.baseurl }}{{page.next.url}}" class="next">
-						<div class="post-nav-arrow">Next Article <i class="ion ion-ios-arrow-round-forward"></i></div>
-						<h2 class="post-nav-title">{{page.next.title}}</h2>
-					</a>
-					{% endif %}
-				</div>
-
-			</div>
-			{% if site.disqus-identifier %}
-				{% include disqus-comments.html %}
-			{% endif %}
-	</article> <!-- /.post -->
-
-	<div class="col col-12 col-t-4">
-		{% include sidebar.html %}
-	</div>
-
-	</div>
-</div>
+      <div class="post-foot">
+        <div class="post-tags">
+          {% for t in page.tags %}<a class="tag" href="{{ '/tags/' | relative_url }}#{{ t | slugify }}">#{{ t }}</a>{% endfor %}
+        </div>
+        <button class="btn copy-link" data-url="{{ page.url | absolute_url }}" type="button">Copy link</button>
+      </div>
+    </div>
+    <aside class="post-toc" aria-label="Table of contents">
+      <p class="toc-title">On this page</p>
+      <ul id="toc-list"></ul>
+    </aside>
+  </div>
+</article>

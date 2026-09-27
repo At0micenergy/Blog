@@ -2,7 +2,7 @@
 # General Site Settings
 
 title: At0micenergy
-description: Here we are in new world of Exploitation  # this means to ignore newlines until "baseurl:"
+description: Security research notes, HTB writeups, and building AI agents securely  # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://saiprasad-cybsec.com"
 image: At0micenergy.jpg
@@ -48,11 +48,7 @@ twitter:   https://twitter.com/At0micenergy # Add your Facebook handle
 markdown: kramdown
 permalink: ':title/'
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
-
-paginate: 7
-paginate_path: "/page/:num"
 
 include:
   - _pages
@@ -68,6 +64,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - DESIGN.md
   - scripts
   - node_modules
   - vendor

@@ -1,0 +1,139 @@
+// ─── site chrome: preloader / cursor / header / ticker / footer ────
+
+// Preloader — terminal boot, wipes away
+#boot {
+  position: fixed; inset: 0; background: var(--bg); z-index: 300;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 0.95rem; line-height: 2;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.7s var(--ease-snap);
+  &.done { clip-path: inset(0 0 100% 0); }
+  .term { width: #{unquote("min(560px, 86vw)")}; }
+  .bl { color: var(--ink-dim); }
+  .ok { color: var(--accent); font-weight: 700; }
+  .cursor-block {
+    display: inline-block; width: 0.6em; height: 1.1em;
+    background: var(--accent); vertical-align: -0.15em;
+    animation: blink 1s steps(1) infinite;
+  }
+  .skip {
+    position: absolute; bottom: 28px; right: 32px;
+    color: var(--ink-faint); font-size: 0.72rem; letter-spacing: 0.18em;
+  }
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+// Custom cursor — fine pointers only, JS adds .has-cursor to html
+#cursor {
+  position: fixed; top: 0; left: 0; z-index: 350; pointer-events: none;
+  display: none;
+  .cur-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent);
+    transform: translate(-50%, -50%);
+    transition: width 0.25s var(--ease-out), height 0.25s var(--ease-out), background 0.25s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cur-label {
+    font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.2em;
+    color: #0E0B0B; opacity: 0; transition: opacity 0.2s; font-weight: 700;
+  }
+  &.is-link .cur-dot { width: 44px; height: 44px; background: transparent; border: 1.5px solid var(--accent); }
+  &.is-read .cur-dot { width: 76px; height: 76px; background: var(--accent); }
+  &.is-read .cur-label { opacity: 1; }
+}
+html.has-cursor {
+  #cursor { display: block; }
+  a, button { cursor: none; }
+}
+
+// Header
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 150;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px var(--pad);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  .wordmark {
+    font-family: var(--font-display); font-size: 1.5rem; text-decoration: none;
+    .at { color: var(--accent); font-family: var(--font-mono); font-size: 1.1rem; }
+  }
+  nav { display: flex; align-items: center; gap: cl(14px, 2.4vw, 34px); }
+  .nav-link {
+    font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.16em;
+    text-decoration: none; color: var(--ink-dim); text-transform: uppercase;
+    position: relative; padding: 4px 0;
+    &::after {
+      content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
+      background: var(--accent); transform: scaleX(0); transform-origin: right;
+      transition: transform 0.35s var(--ease-out);
+    }
+    &:hover { color: var(--ink); }
+    &:hover::after { transform: scaleX(1); transform-origin: left; }
+  }
+  .theme-toggle {
+    background: none; border: 1px solid var(--line); border-radius: 99px;
+    color: var(--ink-dim); font-family: var(--font-mono); font-size: 0.72rem;
+    letter-spacing: 0.1em; padding: 7px 14px;
+    transition: border-color 0.25s, color 0.25s;
+    &:hover { border-color: var(--accent); color: var(--accent); }
+  }
+  @media (max-width: $bp-sm) {
+    // two-row header: brand + toggle on top, full nav row beneath
+    flex-wrap: wrap; row-gap: 10px;
+    nav { order: 3; width: 100%; gap: 20px; }
+    nav .nav-link { font-size: 0.68rem; }
+  }
+}
+body { padding-top: 0; }
+main { display: block; }
+
+// Ticker — pure CSS marquee
+.ticker {
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  overflow: hidden; white-space: nowrap; background: var(--bg-deep);
+  .ticker-track {
+    display: inline-flex; gap: 0; padding: 14px 0;
+    animation: ticker 36s linear infinite;
+    will-change: transform;
+  }
+  span {
+    font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.22em;
+    color: var(--ink-dim); padding: 0 28px; text-transform: uppercase;
+    i { color: var(--accent); font-style: normal; padding-right: 56px; }
+  }
+  &:hover .ticker-track { animation-play-state: paused; }
+}
+@keyframes ticker { to { transform: translateX(-50%); } }
+
+// Footer
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: var(--section-gap) var(--pad) 40px;
+  .foot-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px;
+    margin-bottom: 64px;
+    @media (max-width: $bp-md) { grid-template-columns: 1fr 1fr; }
+    @media (max-width: $bp-sm) { grid-template-columns: 1fr; }
+  }
+  .foot-word {
+    font-family: var(--font-display); font-size: cl(2.4rem, 5vw, 4rem);
+    line-height: 1; margin: 0 0 12px;
+    .it { font-style: italic; color: var(--accent); }
+  }
+  .foot-tag { color: var(--ink-dim); max-width: 34ch; margin: 0; }
+  h4 {
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.28em;
+    color: var(--accent); margin: 0 0 18px; text-transform: uppercase; font-weight: 500;
+  }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  a { color: var(--ink-dim); text-decoration: none; font-size: 0.95rem;
+    &:hover { color: var(--accent); } }
+  .colophon {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    border-top: 1px dashed var(--line); padding-top: 24px;
+    font-family: var(--font-mono); font-size: 0.72rem;
+    letter-spacing: 0.14em; color: var(--ink-faint);
+  }
+}

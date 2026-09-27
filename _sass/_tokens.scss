@@ -1,0 +1,67 @@
+// ─── Redline Editorial · design tokens ─────────────────────────────
+// Palette: near-black / warm off-white / signal red-orange. 3 colors, restraint.
+
+$bg:        #0E0B0B;
+$bg-raise:  #171212;
+$bg-deep:   #0A0808;
+$ink:       #EFE8DC;
+$ink-dim:   rgba(239, 232, 220, 0.62);
+$ink-faint: rgba(239, 232, 220, 0.38);
+$line:      rgba(239, 232, 220, 0.14);
+$accent:    #FF4D2E;
+$accent-deep: #C93318;
+$paper-bg:  #EFE8DC;
+$paper-ink: #16110C;
+
+// libsass-safe cl(): emits a raw CSS clamp() without Sass unit math,
+// so mixed units like cl(4rem, 14vw, 15rem) compile under libsass.
+// NOTE: inside :root custom properties the call MUST be interpolated —
+// --x: #{cl(...)} — or Sass passes cl() through literally.
+@function cl($min, $val, $max) {
+  @return unquote("clamp(#{$min}, #{$val}, #{$max})");
+}
+
+:root {
+  --bg: #{$bg};
+  --bg-raise: #{$bg-raise};
+  --bg-deep: #{$bg-deep};
+  --ink: #{$ink};
+  --ink-dim: #{$ink-dim};
+  --ink-faint: #{$ink-faint};
+  --line: #{$line};
+  --accent: #{$accent};
+  --accent-deep: #{$accent-deep};
+  --card: #{$bg-raise};
+
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --display-xl: #{cl(4rem, 14vw, 15rem)};
+  --display-lg: #{cl(3rem, 9vw, 8rem)};
+  --section: #{cl(2.4rem, 5.5vw, 4.6rem)};
+  --h3: #{cl(1.4rem, 2.4vw, 2rem)};
+
+  --pad: #{cl(24px, 5vw, 72px)};
+  --section-gap: #{cl(84px, 12vh, 160px)};
+  --radius: 3px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+// Paper (light) theme — same accent, inverted surfaces
+[data-theme="paper"] {
+  --bg: #{$paper-bg};
+  --bg-raise: #E6DCC9;
+  --bg-deep: #DED2B9;
+  --ink: #{$paper-ink};
+  --ink-dim: rgba(22, 17, 12, 0.64);
+  --ink-faint: rgba(22, 17, 12, 0.42);
+  --line: rgba(22, 17, 12, 0.16);
+  --card: #E6DCC9;
+}
+
+$bp-sm: 640px;
+$bp-md: 960px;
+$bp-lg: 1280px;

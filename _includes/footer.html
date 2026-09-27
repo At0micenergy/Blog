@@ -1,33 +1,29 @@
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="footer-top">
-          <h2 class="logo-title">
-            <a href="{{site.baseurl}}/" class="logo-text">At0micenergy</a>
-          </h2>
-          <button type="button" class="top icon-button" aria-label="Back to top">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6" /></svg>
-          </button>
-        </div>
-        <div class="footer-bottom">
-          <div class="copyright">
-            <p>&copy; {{site.time | date: '%Y'}} Crafted & Designed by <a href="https://github.com/At0micenergy">At0micenergy</a></p>
-          </div>
-          <div class="footer-social">
-            <ul class="list-reset">
-              <li><a href="{{ '/feed.xml' | relative_url }}">RSS</a></li>
-             
-
-              {% if site.twitter %}
-              <li><a href="{{ site.twitter }}">Twitter</a></li>
-              {% else %} {% endif %}
-              
-            
-            </ul>
-          </div>
-        </div>
-      </div>
+<footer class="site-footer">
+  <div class="foot-grid">
+    <div>
+      <p class="foot-word">Stay <span class="it">paranoid.</span></p>
+      <p class="foot-tag">Security research notes, HTB writeups, and building AI agents securely — written in public, by hand.</p>
+    </div>
+    <div>
+      <h4>Read</h4>
+      <ul>
+        <li><a href="{{ '/posts/' | relative_url }}">All posts</a></li>
+        <li><a href="{{ '/#series' | relative_url }}">AI agent security series</a></li>
+        <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
+        <li><a href="{{ '/feed.xml' | relative_url }}">RSS feed</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <ul>
+        {% if site.twitter %}<li><a href="{{ site.twitter }}">Twitter / X</a></li>{% endif %}
+        <li><a href="https://github.com/At0micenergy">GitHub</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+      </ul>
     </div>
   </div>
-</footer> <!-- /.footer -->
+  <div class="colophon">
+    <span>© {{ site.time | date: "%Y" }} At0micenergy</span>
+    <span>Built by hand with Jekyll · no trackers · no blobs</span>
+  </div>
+</footer>

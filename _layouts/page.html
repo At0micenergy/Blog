@@ -1,25 +1,13 @@
 ---
 layout: default
 ---
-<div class="container">
-	<div class="row">
-		{% if page.image and page.image != empty %}
-		<div class="col col-12">
-			<div class="page-image-box">
-				<div class="page-image" style="background-image: url({{"/img/" | prepend: site.baseurl | append : page.image}})"></div>
-			</div>
-		</div>
-		{% endif %}
-		<article class="col col-12 col-t-10 push-t-1 page">
-			<div class="page-content">
-				<div class="page-head">
-					<h1 class="page-title">{{ page.title | escape }}</h1>
-				</div>
-
-				<div class="page-body">
-					{{ content }}
-				</div>
-			</div>
-		</article> <!-- /.page -->
-	</div>
-</div>
+<header class="page-hero">
+  <p class="eyebrow">// {{ page.eyebrow | default: 'page' }}</p>
+  <h1 data-split>{{ page.title }}</h1>
+  {% if page.standfirst %}<p class="standfirst">{{ page.standfirst }}</p>{% endif %}
+</header>
+{% if page.fullwidth %}
+{{ content }}
+{% else %}
+<div class="page-body">{{ content }}</div>
+{% endif %}

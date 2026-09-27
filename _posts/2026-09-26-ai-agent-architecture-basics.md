@@ -5,6 +5,10 @@ date: 2026-09-26
 categories: [AI Security, Agentic AI]
 tags: [ai-agents, agent-security, llm-security, architecture, mcp, rag]
 excerpt: "A security-first guide to agent taxonomy, the execution loop, tools, memory, RAG, MCP, orchestration, and the trust boundaries that matter."
+series: ai-agent-security
+series_part: 1
+hook: "A security-first guide to agent taxonomy, the execution loop, tools, memory, RAG, MCP, orchestration, and the trust boundaries that matter."
+why: "Everyone is calling everything an agent now — chatbots, scripts, five LLMs in a trench coat. I wrote this to pin down what the thing actually is before we try to secure it, because you can't threat-model a buzzword."
 ---
 
 *Part 1 of the Building and Securing AI Agents series*

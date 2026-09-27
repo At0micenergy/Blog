@@ -1,15 +1,16 @@
 ---
-layout: page
-title: Page not found
+layout: default
+title: "404 — this page escaped the sandbox"
 permalink: /404.html
 ---
-
-<div class="container">
-  <div class="row">
-    <div class="col col-12" style="text-align: center">
-      <h2>404</h2>
-      <p>The requested page could not be found.</p>
-      <p><a href="{{ '/' | relative_url }}">Browse all writeups</a></p>
-    </div>
-  </div>
+<div class="err-404">
+  <p class="eyebrow">// http status</p>
+  <p class="err-code" data-scramble>404</p>
+  <h1>This page escaped the sandbox.</h1>
+  <p class="term-line"><span class="err">ERROR:</span> no route matched. The page you're looking for was either moved, deleted, or never existed — possibly it was a honeypot all along.</p>
+  <p>
+    <a class="btn btn-solid" href="{{ '/' | relative_url }}">← Back to the lab</a>
+    &nbsp;&nbsp;
+    <a class="btn" href="{{ '/posts/' | relative_url }}">Browse all posts</a>
+  </p>
 </div>

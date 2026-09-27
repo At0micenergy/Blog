@@ -1,0 +1,53 @@
+---
+layout: default
+---
+<section class="hero">
+  <p class="hero-eyebrow">Field notes · red team · AI security</p>
+  <h1 class="hero-title" data-scramble>Let's break the <em class="it">agents</em> before <span class="u-scribble">advisories<svg viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10 C 30 3, 60 12, 118 6" /></svg></span> do.</h1>
+  <div class="hero-foot">
+    <p class="lede">I'm Saiprasad — I work in security, and I'm learning AI agent security in public. These are my lab notes: HTB writeups, red-team tooling, and a seven-part field manual on breaking and defending AI agents.</p>
+    <div class="hero-meta">
+      <span><b>{{ site.posts | size }}</b> notes</span>
+      <span><b>{{ site.series_done }}</b>/7 series</span>
+      <span>est. <b>2021</b></span>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">scroll</div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    {% for t in site.tags limit:14 %}<span><i>//</i>{{ t[0] }}</span>{% endfor %}
+    {% for t in site.tags limit:14 %}<span><i>//</i>{{ t[0] }}</span>{% endfor %}
+  </div>
+</div>
+
+<section class="section wrap" id="latest">
+  <p class="eyebrow">// Latest transmissions</p>
+  <h2 class="section-head" data-velocity data-split>Fresh from the <span class="it">lab notebook</span>.</h2>
+  <p class="section-sub">The newest notes — newest first, no filler. Everything here was broken, built, or both before it was written down.</p>
+  <div class="bento">
+    {% for post in site.posts limit:6 %}{% include post-card.html %}{% endfor %}
+  </div>
+  <p style="margin-top: 52px;"><a class="btn" href="{{ '/posts/' | relative_url }}">Browse all {{ site.posts | size }} posts →</a></p>
+</section>
+
+{% include series-tracker.html %}
+
+<section class="section wrap">
+  <div class="about-teaser">
+    <div class="teaser-photo" data-curtain>
+      {% if site.author-avatar and site.author-avatar != "" %}
+      <img src="{{ '/img/' | append: site.author-avatar | relative_url }}" alt="Saiprasad">
+      {% else %}
+      <div class="placeholder">author photo<br>goes here<br><br>[ img/author.jpg ]</div>
+      {% endif %}
+    </div>
+    <div class="teaser-copy">
+      <p class="eyebrow">// Who writes this</p>
+      <p class="big">I learn by <span class="it">breaking things</span> — then writing down exactly how, so you don't have to guess.</p>
+      <p>Security practitioner by day, AI-agent tinkerer by night. This site is my public lab notebook: every writeup is something I actually ran, every series part is something I'm actively learning.</p>
+      <p style="margin-top: 2em;"><a class="btn" href="{{ '/about/' | relative_url }}">More about me →</a></p>
+    </div>
+  </div>
+</section>

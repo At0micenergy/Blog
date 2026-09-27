@@ -1,0 +1,31 @@
+# 7-part AI agent security series — progress tracker data
+# status: published | draft | planned
+- part: 1
+  title: "Agent architecture basics"
+  status: published
+  url: /ai-agent-architecture-basics/
+  hook: "What an agent actually is — taxonomy, the execution loop, tools, memory, and the trust boundaries that matter."
+- part: 2
+  title: "Before OWASP: Learn the Agent by Building It"
+  status: draft
+  hook: "Seven hands-on lab steps that teach you the agent by building one — before the frameworks arrive."
+- part: 3
+  title: "OWASP systematization"
+  status: planned
+  hook: "Mapping what you built onto the OWASP agent threat model."
+- part: 4
+  title: "Defending agents in production"
+  status: planned
+  hook: "Guardrails, evals, and the controls that survive contact with real users."
+- part: 5
+  title: "MCP security deep dive"
+  status: planned
+  hook: "The Model Context Protocol under adversarial pressure."
+- part: 6
+  title: "Governing agents"
+  status: planned
+  hook: "NIST AI RMF, ISO/IEC 42001, the EU AI Act — risk registers and control mapping."
+- part: 7
+  title: "Assuring agents"
+  status: planned
+  hook: "Control testing, continuous monitoring, cloud deployment, incident response."

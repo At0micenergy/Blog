@@ -1,0 +1,120 @@
+// ─── base ──────────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  scroll-behavior: auto;
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+::selection { background: var(--accent); color: #0E0B0B; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+// Skip link
+.skip-link {
+  position: fixed; top: -100px; left: 16px; z-index: 400;
+  background: var(--accent); color: #0E0B0B;
+  font-family: var(--font-mono); font-size: 0.8rem;
+  padding: 10px 16px; text-decoration: none;
+  transition: top 0.2s ease;
+  &:focus { top: 12px; }
+}
+
+// Film grain overlay
+.grain {
+  position: fixed; inset: -50%; width: 200%; height: 200%;
+  pointer-events: none; z-index: 200; opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 8s steps(10) infinite;
+}
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -8%); } 30% { transform: translate(3%, -12%); }
+  50% { transform: translate(8%, 4%); }   70% { transform: translate(-9%, 6%); }
+  90% { transform: translate(4%, 10%); }
+}
+
+// Shared bits
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.78rem;
+  letter-spacing: 0.32em; color: var(--accent);
+  text-transform: uppercase; margin: 0 0 1.4rem;
+}
+
+.section-head {
+  font-family: var(--font-body); font-weight: 600;
+  font-size: var(--section); line-height: 1.02;
+  letter-spacing: -0.015em; margin: 0 0 0.35em;
+  text-wrap: balance;
+  .it { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--accent); }
+}
+
+.section-sub {
+  color: var(--ink-dim); max-width: 58ch; margin: 0 0 3rem; font-size: 1.05rem;
+}
+
+.wrap { padding-left: var(--pad); padding-right: var(--pad); }
+.section { padding-top: var(--section-gap); padding-bottom: var(--section-gap); }
+
+.mono-label {
+  font-family: var(--font-mono); font-size: 0.78rem;
+  letter-spacing: 0.14em; color: var(--ink-dim);
+  .dot { color: var(--accent); }
+}
+
+// Underline link
+.u-link {
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  transition: background 0.2s ease, color 0.2s ease;
+  &:hover { background: var(--accent); color: #0E0B0B; }
+}
+
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none;
+  color: var(--ink); border: 1px solid var(--line);
+  padding: 0.85em 1.5em; border-radius: var(--radius);
+  transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.25s var(--ease-out);
+  &:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  &.btn-solid { background: var(--accent); border-color: var(--accent); color: #0E0B0B; font-weight: 700;
+    &:hover { background: transparent; color: var(--accent); } }
+}
+
+// Split-text initial states are applied by JS only (no-JS stays visible)
+[data-split] .ch { display: inline-block; will-change: transform; }
+[data-split] .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+[data-split] .w .ch { transform: translateY(110%); transition: transform 0.85s var(--ease-out); }
+[data-split].in .w .ch { transform: translateY(0); }
+
+// Scroll-velocity titles (JS animates font-weight via variable font)
+[data-velocity] { font-variation-settings: 'wght' 560; }
+
+// Reduced motion: kill the niceties, keep the content
+@media (prefers-reduced-motion: reduce) {
+  .grain { animation: none; }
+  *, *::before, *::after { animation-duration: 0.001s !important; transition-duration: 0.001s !important; }
+}

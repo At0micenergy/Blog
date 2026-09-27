@@ -1,0 +1,24 @@
+<section class="series section" id="series" aria-label="AI agent security series">
+  <div class="wrap series-pin">
+    <p class="eyebrow">// Field manual — in progress</p>
+    <div class="series-head">
+      <h2 class="section-head" data-velocity data-split>Building &amp; securing <span class="it">AI agents</span>, in public.</h2>
+      <div class="series-progress" role="status" aria-label="Series progress">
+        <span><b>{{ site.series_done }}</b> / 7 published</span>
+        <span class="bar"><i data-progress="{{ site.series_done }}"></i></span>
+      </div>
+    </div>
+    <p class="section-sub">A seven-part field manual on AI agent security — architecture, hands-on labs, threat models, defense, and governance. Written as I learn it, so you can follow along or skip ahead.</p>
+    <div class="series-track" id="series-track">
+      {% for s in site.data.series %}
+      {% if s.url %}<a class="series-step is-{{ s.status }}" href="{{ s.url | relative_url }}">{% else %}<div class="series-step is-{{ s.status }}">{% endif %}
+        <span class="step-no">{{ s.part | prepend: '0' }}</span>
+        <span class="step-status">{{ s.status }}</span>
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.hook }}</p>
+        {% if s.status == 'published' %}<span class="step-cta">Read the note →</span>{% elsif s.status == 'draft' %}<span class="step-cta">In the lab now</span>{% endif %}
+      {% if s.url %}</a>{% else %}</div>{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

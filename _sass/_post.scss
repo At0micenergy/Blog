@@ -1,0 +1,176 @@
+// ─── post: 65ch reading, chapter numeral, sticky TOC, terminal code ──
+.post-hero {
+  padding: calc(110px + 5vh) var(--pad) 48px;
+  border-bottom: 1px solid var(--line);
+  .chapter {
+    display: flex; align-items: baseline; gap: 20px; margin-bottom: 28px;
+    .chapter-no {
+      font-family: var(--font-display); font-style: italic;
+      font-size: cl(3.4rem, 7vw, 6rem); color: var(--accent); line-height: 1;
+    }
+    .chapter-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.28em;
+      color: var(--ink-dim); text-transform: uppercase; }
+  }
+  h1.post-title {
+    font-family: var(--font-display); font-weight: 400;
+    font-size: cl(2.6rem, 6.4vw, 5.6rem); line-height: 1.02; letter-spacing: -0.01em;
+    margin: 0 0 28px; max-width: 16ch; text-wrap: balance;
+    .it { font-style: italic; color: var(--accent); }
+  }
+  .post-meta {
+    display: flex; flex-wrap: wrap; gap: 12px 28px;
+    font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.14em;
+    color: var(--ink-dim); text-transform: uppercase;
+    .m-accent { color: var(--accent); }
+  }
+  .post-hook {
+    margin-top: 28px; max-width: 62ch; color: var(--ink-dim); font-size: 1.08rem;
+    border-left: 3px solid var(--accent); padding-left: 22px; font-style: italic;
+  }
+}
+
+.post-body {
+  display: grid; grid-template-columns: minmax(0, 1fr) 300px;
+  gap: cl(40px, 6vw, 96px);
+  padding: 64px var(--pad) var(--section-gap);
+  max-width: 1440px; margin: 0 auto;
+  @media (max-width: $bp-md) { grid-template-columns: 1fr; }
+}
+
+.post-article {
+  max-width: 65ch; font-size: 1.075rem; line-height: 1.78; color: var(--ink);
+  > p:first-of-type::first-letter {
+    font-family: var(--font-display); font-size: 3.4em; float: left;
+    line-height: 0.82; padding-right: 0.12em; color: var(--accent);
+  }
+  h2 {
+    font-family: var(--font-body); font-weight: 600; letter-spacing: -0.01em;
+    font-size: var(--h3); line-height: 1.15; margin: 2.6em 0 1em;
+    padding-top: 1.2em; border-top: 1px solid var(--line);
+    .h2-no { font-family: var(--font-mono); font-weight: 400; font-size: 0.55em;
+      color: var(--accent); letter-spacing: 0.2em; display: block; margin-bottom: 0.6em; }
+  }
+  h3 { font-size: 1.3rem; font-weight: 600; margin: 2em 0 0.8em; }
+  h4 { font-family: var(--font-mono); font-size: 0.95rem; letter-spacing: 0.06em; margin: 1.8em 0 0.6em; }
+  p { margin: 0 0 1.4em; }
+  ul, ol { margin: 0 0 1.4em; padding-left: 1.4em; }
+  li { margin-bottom: 0.5em; }
+  li::marker { color: var(--accent); }
+  a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent);
+    &:hover { background: var(--accent); color: #0E0B0B; } }
+  strong { font-weight: 700; }
+  blockquote {
+    margin: 2em 0; padding: 4px 0 4px 26px; border-left: 3px solid var(--accent);
+    font-family: var(--font-display); font-style: italic; font-size: 1.35rem; line-height: 1.5;
+    color: var(--ink);
+  }
+  img { border: 1px solid var(--line); border-radius: var(--radius); margin: 2em 0; }
+  table { width: 100%; border-collapse: collapse; margin: 2em 0; font-size: 0.92rem;
+    th, td { border: 1px solid var(--line); padding: 10px 14px; text-align: left; }
+    th { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); background: var(--bg-raise); } }
+  hr { border: 0; border-top: 1px dashed var(--line); margin: 3em 0; }
+}
+
+// Terminal-style code blocks
+.post-article div.highlight, .post-article pre {
+  margin: 2em 0; border-radius: var(--radius); overflow: hidden;
+}
+.codeblock { border: 1px solid var(--line); background: var(--bg-deep); }
+.codeblock-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em;
+  color: var(--ink-faint); text-transform: uppercase;
+  .cdot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+  .cdot.r { background: var(--accent); }
+  .copy-btn {
+    margin-left: auto; background: none; border: 1px solid var(--line);
+    color: var(--ink-dim); font-family: var(--font-mono); font-size: 0.68rem;
+    letter-spacing: 0.14em; padding: 5px 12px; border-radius: 3px;
+    transition: border-color 0.2s, color 0.2s;
+    &:hover { border-color: var(--accent); color: var(--accent); }
+    &.copied { border-color: var(--accent); color: var(--accent); }
+  }
+}
+.codeblock pre, .post-article pre {
+  margin: 0; padding: 20px 22px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.86rem; line-height: 1.65;
+  background: var(--bg-deep); color: var(--ink);
+}
+.post-article code {
+  font-family: var(--font-mono); font-size: 0.86em;
+  background: var(--bg-raise); border: 1px solid var(--line);
+  border-radius: 3px; padding: 0.15em 0.45em; color: var(--accent);
+}
+.post-article pre code { background: none; border: 0; padding: 0; color: inherit; }
+// basic token tinting (works without a highlighter)
+.post-article pre .c, .post-article pre .cm { color: var(--ink-faint); font-style: italic; }
+.post-article pre .k, .post-article pre .kn { color: var(--accent); }
+.post-article pre .s, .post-article pre .s1, .post-article pre .s2 { color: #E8B44A; }
+.post-article pre .nf, .post-article pre .nc { color: var(--ink); font-weight: 700; }
+
+// Callouts — lab note / warning / tip, hand-annotated feel
+.callout {
+  border: 1px solid var(--line); border-left: 3px solid var(--accent);
+  background: var(--bg-raise); border-radius: var(--radius);
+  padding: 20px 24px; margin: 2em 0; position: relative;
+  .callout-tag {
+    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.28em;
+    color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 10px;
+  }
+  p { margin: 0; font-size: 0.98rem; }
+  p + p { margin-top: 0.8em; }
+  &.warn { border-left-color: #E8B44A; .callout-tag { color: #E8B44A; } }
+  &.tip { border-left-color: var(--ink); .callout-tag { color: var(--ink); } }
+}
+
+// Author note — "why I wrote this"
+.why-note {
+  margin: 3.5em 0 0; padding: 32px 0 0; border-top: 2px solid var(--accent);
+  .why-head { display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+    .why-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--accent);
+      color: #0E0B0B; font-family: var(--font-display); font-style: italic; font-size: 1.4rem;
+      display: flex; align-items: center; justify-content: center; }
+    .why-who { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.2em;
+      color: var(--ink-dim); text-transform: uppercase; } }
+  p { font-style: italic; font-family: var(--font-display); font-size: 1.25rem; line-height: 1.55; color: var(--ink); }
+}
+
+// Sticky TOC
+.post-toc {
+  position: sticky; top: 110px; align-self: start;
+  border-left: 1px solid var(--line); padding-left: 22px;
+  font-size: 0.88rem; max-height: calc(100vh - 140px); overflow: auto;
+  @media (max-width: $bp-md) { display: none; }
+  .toc-title { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.28em;
+    color: var(--accent); text-transform: uppercase; margin: 0 0 14px; }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  a { color: var(--ink-faint); text-decoration: none; line-height: 1.45;
+    transition: color 0.2s; display: block;
+    &:hover { color: var(--ink); } &.active { color: var(--accent); } }
+  .toc-h3 { padding-left: 14px; font-size: 0.82rem; }
+}
+
+// Series prev/next
+.series-nav {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 22px;
+  margin: 64px 0 0; padding-top: 40px; border-top: 1px solid var(--line);
+  @media (max-width: $bp-sm) { grid-template-columns: 1fr; }
+  a {
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 24px;
+    text-decoration: none; transition: border-color 0.3s, transform 0.3s var(--ease-out);
+    &:hover { border-color: var(--accent); transform: translateY(-3px); }
+    &.next { text-align: right; }
+    .sn-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.24em;
+      color: var(--accent); text-transform: uppercase; display: block; margin-bottom: 10px; }
+    .sn-title { font-weight: 600; font-size: 1.05rem; line-height: 1.35; }
+  }
+}
+
+// Post footer meta
+.post-foot {
+  margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  .post-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+}

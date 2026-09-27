@@ -1,0 +1,9 @@
+{% assign bi = forloop.index0 | modulo: 6 %}<a class="post-card b{{ bi }} card-read" href="{{ post.url | relative_url }}" data-tags="{% for t in post.tags %}{{ t | slugify }} {% endfor %}">
+  <div class="card-meta">
+    <span class="card-num">№{{ forloop.index }}</span>
+    <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+  </div>
+  <h3 class="card-title">{{ post.title }}</h3>
+  <p class="card-hook">{{ post.hook | default: post.excerpt | strip_html | strip_newlines | truncate: 140 }}</p>
+  <div class="card-tags">{% for t in post.tags limit:3 %}<span class="tag">#{{ t }}</span>{% endfor %}</div>
+</a>

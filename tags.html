@@ -1,27 +1,25 @@
 ---
 layout: page
-title: Tags in Blog
+title: Tags
 permalink: /tags/
+eyebrow: taxonomy
+standfirst: Every label I've filed a note under. Pick one and fall down the rabbit hole.
+fullwidth: true
 ---
-{% assign sorted_tags = site.tags | sort %}
-<div class="tags">
-  <ul class="tags-list">
-    {% for tag in sorted_tags %}
-    <li class="tags-item"><a href="#{{ tag[0] | cgi_escape | cgi_escape }}" class="tags-link">{{ tag[0] | escape }} <span>{{ tag[1].size }}</span></a></li>
+<div class="wrap" style="padding-bottom: var(--section-gap);">
+  <div class="tag-cloud">
+    {% for tag in site.tags %}
+    <a class="filter-btn" href="#{{ tag[0] | slugify }}">{{ tag[0] }} <span class="count">{{ tag[1] | size }}</span></a>
     {% endfor %}
-  </ul>
-  <hr>
-  {% for tag in sorted_tags %}
-  <section class="tags-group" aria-labelledby="{{ tag[0] | cgi_escape | escape }}">
-    <h2 class="tags-title" id="{{ tag[0] | cgi_escape | escape }}">{{ tag[0] | escape }}</h2>
-    {% for post in tag[1] %}
-    <div class="tag-item">
-      <div class="tag-text">
-        <a class="tag-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        <time class="tag-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time>
-      </div>
-    </div>
-    {% endfor %}
-  </section>
+  </div>
+  {% for tag in site.tags %}
+  <div class="tag-block" id="{{ tag[0] | slugify }}">
+    <h2>#{{ tag[0] }} — {{ tag[1] | size }}</h2>
+    <ul>
+      {% for post in tag[1] %}
+      <li><a href="{{ post.url | relative_url }}"><span>{{ post.title }}</span><time>{{ post.date | date: "%Y-%m-%d" }}</time></a></li>
+      {% endfor %}
+    </ul>
+  </div>
   {% endfor %}
 </div>
