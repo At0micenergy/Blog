@@ -3,16 +3,20 @@
     <p class="eyebrow">// Field manual - in progress</p>
     <div class="series-head">
       <h2 class="section-head" data-velocity data-split>Building &amp; securing <span class="it">AI agents</span>, in public.</h2>
+      {% assign series_done = site.data.series | where: "status", "published" | size %}
       <div class="series-progress" role="status" aria-label="Series progress">
-        <span><b>{{ site.series_done }}</b> / 7 published</span>
-        <span class="bar"><i data-progress="{{ site.series_done }}"></i></span>
+        <span><b>{{ series_done }}</b> / 7 published</span>
+        <span class="bar"><i data-progress="{{ series_done }}"></i></span>
+        <span class="read-line"><b data-series-read-count>0</b> / 7 read</span>
+        <span class="bar read-bar"><i data-series-read-bar></i></span>
       </div>
     </div>
     <p class="section-sub">A seven-part field manual on AI agent security - architecture, hands-on labs, threat models, defense, and governance. Written as I learn it, so you can follow along or skip ahead.</p>
     <div class="series-track" id="series-track">
       {% for s in site.data.series %}
-      {% if s.url %}<a class="series-step is-{{ s.status }}" href="{{ s.url | relative_url }}">{% else %}<div class="series-step is-{{ s.status }}">{% endif %}
+      {% if s.url %}<a class="series-step is-{{ s.status }}" data-part="{{ s.part }}" href="{{ s.url | relative_url }}">{% else %}<div class="series-step is-{{ s.status }}" data-part="{{ s.part }}">{% endif %}
         <span class="step-no">{{ s.part | prepend: '0' }}</span>
+        <span class="step-read" aria-hidden="true"></span>
         <span class="step-status">{{ s.status }}</span>
         <h3>{{ s.title }}</h3>
         <p>{{ s.hook }}</p>

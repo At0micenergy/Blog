@@ -8,7 +8,9 @@ layout: default
     <p class="lede">I'm Saiprasad - I work in security, and I'm learning AI agent security in public. These are my lab notes: HTB writeups, red-team tooling, and a seven-part field manual on breaking and defending AI agents.</p>
     <div class="hero-meta">
       <span><b>{{ site.posts | size }}</b> notes</span>
-      <span><b>{{ site.series_done }}</b>/7 series</span>
+      {% assign series_done = site.data.series | where: "status", "published" | size %}
+      <span><b>{{ series_done }}</b>/7 published</span>
+      <span><b data-series-read-count>0</b>/7 read</span>
       <span>est. <b>2021</b></span>
     </div>
   </div>

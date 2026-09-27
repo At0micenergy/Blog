@@ -45,6 +45,16 @@ layout: default
       </nav>
       {% endif %}
 
+      {% if page.series_part %}
+      <div class="series-check" data-series-check="{{ page.series_part }}" hidden>
+        <button type="button" class="series-check-btn" aria-pressed="false">
+          <span class="sc-box" aria-hidden="true"></span>
+          <span class="sc-label">Mark part {{ page.series_part }} complete</span>
+        </button>
+        <p class="sc-note">Saved in this browser only.</p>
+      </div>
+      {% endif %}
+
       <div class="post-foot">
         <div class="post-tags">
           {% for t in page.tags %}<a class="tag" href="{{ '/tags/' | relative_url }}#{{ t | slugify }}">#{{ t }}</a>{% endfor %}

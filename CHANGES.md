@@ -2,6 +2,39 @@
 
 One entry per feature: what was added, what was verified.
 
+## 2026-09-27 - Feature 2: Series reading progress
+
+**Added**
+- `assets/js/series.js`: localStorage-backed reading progress (`redline.series.read.v1`
+  holds completed part numbers; no network, no cookies). Marks `.series-step`
+  cards read (filled accent marker + "· read" status suffix), updates every
+  `[data-series-read-count]` and the read-progress bar. Toggle control on series
+  post pages (`_layouts/post.html`, `[data-series-check]`, `hidden` until JS runs):
+  "Mark part N complete" <-> "Part N complete - tap to undo", `aria-pressed`,
+  persists across reloads. Published count now computed in Liquid
+  (`site.data.series | where: "status", "published" | size`) - the old
+  `site.series_done` key never existed, so the live site showed an empty count.
+- `_includes/series-tracker.html`: `data-part` on each step, `.step-read` marker,
+  "X / 7 read" line + read bar under the published progress.
+- `_layouts/home.html`: hero meta now shows "N/7 published" and "N/7 read"
+  (both live counts).
+- `_sass/_home.scss` / `_sass/_post.scss`: read markers, read bar (ink-colored,
+  distinct from the red published bar), and the dashed `.series-check` control -
+  strictly theme tokens; bar animation covered by the global reduced-motion
+  kill-switch.
+
+**Verified**
+- Chromium mirror QA: fresh load shows "1 / 7 published" (fix confirmed) and
+  "0 / 7 read"; with `[1]` in storage shows "1 / 7 read", filled red marker on
+  step 01, "published · read" status, 14.3% read bar; control toggles, untoggles,
+  and persists across reload; zero page errors.
+- 390px: no horizontal scroll; hero meta wraps to 4 clean items.
+- Ink + paper themes legible; reduced-motion emulation clean.
+- Screenshots: `qa-shots/series-tracker-read.png`, `qa-shots/series-check-done.png`,
+  `qa-shots/series-390.png`.
+- Local-mirror LCP median 328ms over three runs vs 276ms pre-feature - within
+  run-to-run noise, no meaningful regression (deferred 2.7KB script).
+
 ## 2026-09-27 - Diagram recolor (final): cream/red per user decision
 
 **Changed**

@@ -174,3 +174,25 @@
   display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;
   .post-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 }
+
+// Series "mark complete" control - JS-revealed, stays hidden without JS
+.series-check {
+  margin-top: 40px; padding: 22px 24px; border: 1px dashed var(--line);
+  border-radius: var(--radius); display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 12px 20px;
+}
+.series-check-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink);
+  &:hover .sc-label { color: var(--accent); }
+  &:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+}
+.sc-box {
+  width: 16px; height: 16px; border: 1px solid var(--ink-dim);
+  border-radius: var(--radius); transition: background 0.25s, border-color 0.25s;
+}
+.series-check.is-done .sc-box { background: var(--accent); border-color: var(--accent); }
+.series-check.is-done .sc-label { color: var(--accent); }
+.sc-note { margin: 0; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faint); letter-spacing: 0.08em; }
