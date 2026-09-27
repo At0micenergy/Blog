@@ -2,6 +2,22 @@
 
 One entry per feature: what was added, what was verified.
 
+## 2026-09-27 - Diagram recolor (final): cream/red per user decision
+
+**Changed**
+- Re-applied the cream/red diagram recolor (supersedes the 2026-09-27 revert that
+  had restored terminal green). Diagrams now use strictly the site palette:
+  near-black `#0E0B0B` panels, 1px cream `#EFE8DC` strokes/labels, red `#FF4D2E`
+  entry nodes and danger boundaries, red dashed gates, amber kept only on
+  warn-level trust markers. `table.spec-table` headers back to site red.
+- Green `#4ADE80` is no longer used anywhere on the site (verified: zero matches
+  in `_sass/`, `_includes/`, `_data/`).
+
+**Verified**
+- Diagram SCSS compiles clean (libsass); zero `4ade80` references in output CSS.
+- Rendered the `agent-loop` diagram in Chromium: red entry node, cream edges and
+  labels, amber-free in this diagram; screenshot `qa-shots/diagram-recolor.png`.
+
 ## 2026-09-27 - Feature 1: Terminal command palette
 
 **Added**
