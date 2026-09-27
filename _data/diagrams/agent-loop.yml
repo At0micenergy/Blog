@@ -1,0 +1,49 @@
+title: "The agent execution loop"
+desc: "The smallest possible agent: a goal enters, the model chooses an action, the application executes it, the result returns, and the loop repeats with the new observation in context."
+width: 740
+height: 230
+nodes:
+  - id: goal
+    x: 34
+    y: 40
+    w: 150
+    h: 56
+    label: "Goal"
+    kind: entry
+  - id: model
+    x: 208
+    y: 40
+    w: 150
+    h: 56
+    label: "model chooses"
+    sub: "action"
+  - id: app
+    x: 382
+    y: 40
+    w: 150
+    h: 56
+    label: "application"
+    sub: "executes"
+  - id: result
+    x: 556
+    y: 40
+    w: 150
+    h: 56
+    label: "result"
+    sub: "returns"
+edges:
+  - from: goal
+    to: model
+  - from: model
+    to: app
+  - from: app
+    to: result
+  - from: result
+    to: goal
+    kind: go
+    d: "M 631 100 L 631 190 L 109 190 L 109 102"
+    label: "repeat"
+    label_x: 370
+    label_y: 182
+ascii: |
+  Goal -> model chooses action -> application executes -> result returns -> repeat

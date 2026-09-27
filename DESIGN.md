@@ -81,7 +81,58 @@ sandbox." Never address the reader as a security professional; conditional branc
 - **Theme toggle** (`theme.js`): `data-theme="ink|paper"` on `<html>`, persisted to
   `localStorage`, instant (no transition flash on load).
 - **404**: giant accent `404` with scramble effect, terminal error line, two exits.
-- **Footer**: RSS link, "Built by hand with Jekyll · no trackers · no blobs" colophon.
+- **Footer**: RSS link. No colophon line (removed 2026-09-27).
+- **Diagram system** (`_includes/diagram.html`, `_data/diagrams/*.yml`, `_sass/_diagrams.scss`):
+  data-driven inline SVG workflow diagrams. Near-black panel, 1px green strokes,
+  JetBrains Mono labels; green accent on entry nodes (`kind: entry`), amber dashed
+  gates (`kind: gate`), red/amber dashed trust-boundary overlays (`bounds:` with
+  `kind: danger|warn`). SVG scales to 100% of the column (`width:100%; height:auto`)
+  - never fixed pixel widths, never horizontal scroll at any viewport.
+  Accessibility: every diagram renders `<title>` + `<desc>` (from the data file) and
+  keeps the original ASCII inside a collapsed `<details>` "view as text" block.
+  - Usage: `{% include diagram.html id="<name>" %}` with `_data/diagrams/<name>.yml`:
+    ```yaml
+    # _data/diagrams/agent-loop.yml (reference example)
+    title: "The agent execution loop"   # -> <title>
+    desc: "One sentence of what the diagram shows."  # -> <desc>
+    width: 740
+    height: 230
+    # direction: vertical   # default is horizontal (left-to-right edges)
+    nodes:
+      - id: goal
+        x: 34
+        y: 40
+        w: 150
+        h: 56
+        label: "Goal"          # centered; optional `sub:` adds a second faint line
+        kind: entry            # entry | node (default) | gate
+    edges:
+      - from: goal
+        to: model              # straight arrow; auto-routed by `direction`
+        # label: "repeat"      # optional edge label (paint-order halo for legibility)
+        # kind: warn           # amber edge (default go = green)
+        # d: "M 631 100 ..."   # explicit path override for loops/detours,
+                               # with label_x / label_y / label_anchor
+    bounds:                    # trust-boundary overlays, drawn behind nodes
+      - x: 78
+        y: 14
+        w: 284
+        h: 240
+        label: "attacker-influenced"
+        kind: danger            # danger (red) | warn (amber)
+    labels:                    # free mono annotations, e.g. lane names
+      - x: 12
+        y: 66
+        text: "RAG"
+    ascii: |2                  # original ASCII, shown in <details>; keep the
+      Goal -> model chooses action -> application executes -> result returns -> repeat
+    ```
+    Coordinate freely per diagram (viewBox units); keep labels short and
+    `width` <= 800 so text stays legible when the SVG scales down on phones.
+  - Wide tables become `table.spec-table`: mono uppercase green header row,
+    `<th scope="col">` headers and `<th scope="row">` row labels; below 640px rows
+    reflow into stacked labeled cards (`td::before` from `data-label`) so the page
+    never scrolls sideways.
 
 ## Motion rules
 
@@ -168,6 +219,9 @@ feed.xml / search.json # Jekyll templates (kept from original)
 - [x] Genuine `jekyll build` clean - verified 2026-09-27 (Jekyll 4.3.2, system gems;
       repo Gemfile pins 3.10 for local dev; GitHub Pages builds with its own gemset):
       43 pages, zero errors, zero raw Liquid tags, zero broken `cl(` tokens in CSS
+- [x] Agent-series ASCII diagrams converted to the SVG diagram system (13 diagrams +
+      1 wide table -> spec-table on the architecture post; verified 1440/768/390px,
+      zero horizontal page scroll, <title>/<desc> + "view as text" on every diagram)
 - [ ] LCP <1.5s on production - to verify after deploy
 
 ### Bugs found and fixed during QA (2026-09-27)

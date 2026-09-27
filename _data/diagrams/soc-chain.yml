@@ -1,0 +1,47 @@
+title: "SOC alert pipeline"
+desc: "A fixed five-step workflow: an alert is received, the IP is enriched, the asset is checked, severity is assigned, and a case is created. No model decisions anywhere in the chain."
+width: 740
+height: 150
+nodes:
+  - id: receive
+    x: 5
+    y: 48
+    w: 130
+    h: 54
+    label: "Receive alert"
+    kind: entry
+  - id: enrich
+    x: 155
+    y: 48
+    w: 130
+    h: 54
+    label: "enrich IP"
+  - id: asset
+    x: 305
+    y: 48
+    w: 130
+    h: 54
+    label: "check asset"
+  - id: severity
+    x: 455
+    y: 48
+    w: 130
+    h: 54
+    label: "assign severity"
+  - id: kase
+    x: 605
+    y: 48
+    w: 130
+    h: 54
+    label: "create case"
+edges:
+  - from: receive
+    to: enrich
+  - from: enrich
+    to: asset
+  - from: asset
+    to: severity
+  - from: severity
+    to: kase
+ascii: |
+  Receive alert -> enrich IP -> check asset -> assign severity -> create case

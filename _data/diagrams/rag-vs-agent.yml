@@ -1,0 +1,55 @@
+title: "RAG vs agent: grounded answer vs chosen actions"
+desc: "Two lanes compared. RAG finds context and generates one grounded answer. An agent chooses an action, observes the result, and chooses again - the loop is the difference."
+width: 740
+height: 210
+labels:
+  - x: 12
+    y: 66
+    text: "RAG"
+  - x: 12
+    y: 156
+    text: "AGENT"
+nodes:
+  - id: find
+    x: 96
+    y: 34
+    w: 150
+    h: 54
+    label: "find context"
+    kind: entry
+  - id: generate
+    x: 276
+    y: 34
+    w: 170
+    h: 54
+    label: "generate"
+    sub: "grounded answer"
+  - id: choose
+    x: 96
+    y: 124
+    w: 150
+    h: 54
+    label: "choose action"
+    kind: entry
+  - id: observe
+    x: 276
+    y: 124
+    w: 150
+    h: 54
+    label: "observe result"
+  - id: again
+    x: 456
+    y: 124
+    w: 150
+    h: 54
+    label: "choose again"
+edges:
+  - from: find
+    to: generate
+  - from: choose
+    to: observe
+  - from: observe
+    to: again
+ascii: |
+  RAG:   find context -> generate grounded answer
+  Agent: choose action -> observe result -> choose again

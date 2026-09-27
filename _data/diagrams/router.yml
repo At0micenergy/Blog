@@ -1,0 +1,71 @@
+title: "Router pattern: one request, four destinations"
+desc: "A router triages an incoming request and fans out to exactly one destination: billing, technical, security, or a human. The routing decision is the whole pattern."
+width: 740
+height: 320
+nodes:
+  - id: request
+    x: 20
+    y: 133
+    w: 130
+    h: 54
+    label: "Request"
+    kind: entry
+  - id: router
+    x: 210
+    y: 133
+    w: 130
+    h: 54
+    label: "router"
+  - id: billing
+    x: 430
+    y: 20
+    w: 170
+    h: 54
+    label: "billing"
+  - id: technical
+    x: 430
+    y: 95
+    w: 170
+    h: 54
+    label: "technical"
+  - id: security
+    x: 430
+    y: 170
+    w: 170
+    h: 54
+    label: "security"
+  - id: human
+    x: 430
+    y: 245
+    w: 170
+    h: 54
+    label: "human"
+edges:
+  - from: request
+    to: router
+  - from: router
+    to: billing
+    x1: 342
+    y1: 150
+    x2: 427
+    y2: 50
+  - from: router
+    to: technical
+    x1: 342
+    y1: 155
+    x2: 427
+    y2: 125
+  - from: router
+    to: security
+    x1: 342
+    y1: 165
+    x2: 427
+    y2: 195
+  - from: router
+    to: human
+    x1: 342
+    y1: 170
+    x2: 427
+    y2: 270
+ascii: |
+  Request -> router -> billing | technical | security | human

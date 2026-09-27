@@ -1,0 +1,87 @@
+title: "Architecture exercise: draw the authority path"
+desc: "The five-minute exercise from section 11: draw this system without looking back. A user reaches the orchestrator, the model proposes a tool call, the policy gate rules on it, the tool runs, the observation lands in state and memory, and the loop continues or stops."
+width: 460
+height: 680
+direction: vertical
+nodes:
+  - id: user
+    x: 110
+    y: 20
+    w: 240
+    h: 48
+    label: "User"
+    kind: entry
+  - id: orch
+    x: 110
+    y: 90
+    w: 240
+    h: 48
+    label: "orchestrator"
+  - id: model
+    x: 110
+    y: 160
+    w: 240
+    h: 48
+    label: "model"
+  - id: proposed
+    x: 110
+    y: 230
+    w: 240
+    h: 48
+    label: "proposed tool call"
+  - id: gate
+    x: 110
+    y: 300
+    w: 240
+    h: 48
+    label: "policy gate"
+    kind: gate
+  - id: impl
+    x: 110
+    y: 370
+    w: 240
+    h: 48
+    label: "tool implementation"
+  - id: obs
+    x: 110
+    y: 440
+    w: 240
+    h: 48
+    label: "observation"
+  - id: state
+    x: 110
+    y: 510
+    w: 240
+    h: 48
+    label: "state / memory"
+  - id: next
+    x: 110
+    y: 580
+    w: 240
+    h: 48
+    label: "next model call"
+    sub: "or stop"
+edges:
+  - from: user
+    to: orch
+  - from: orch
+    to: model
+  - from: model
+    to: proposed
+  - from: proposed
+    to: gate
+  - from: gate
+    to: impl
+  - from: impl
+    to: obs
+  - from: obs
+    to: state
+  - from: state
+    to: next
+ascii: |
+  User -> orchestrator -> model -> proposed tool call
+                                -> policy gate
+                                -> tool implementation
+                                -> observation
+                                -> state/memory
+                                -> next model call or stop

@@ -1,0 +1,40 @@
+title: "MCP chain: host to capability"
+desc: "How a capability reaches the model over MCP: the agent host talks to an MCP client, which talks to an MCP server, which fronts APIs, files, databases, or services. Each hop is a trust decision."
+width: 720
+height: 150
+nodes:
+  - id: host
+    x: 30
+    y: 48
+    w: 130
+    h: 54
+    label: "Agent host"
+    kind: entry
+  - id: client
+    x: 194
+    y: 48
+    w: 130
+    h: 54
+    label: "MCP client"
+  - id: server
+    x: 358
+    y: 48
+    w: 130
+    h: 54
+    label: "MCP server"
+  - id: caps
+    x: 522
+    y: 48
+    w: 168
+    h: 54
+    label: "APIs, files,"
+    sub: "databases, services"
+edges:
+  - from: host
+    to: client
+  - from: client
+    to: server
+  - from: server
+    to: caps
+ascii: |
+  Agent host -> MCP client -> MCP server -> API, files, database, or service

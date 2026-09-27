@@ -1,0 +1,85 @@
+title: "Multi-agent pattern: coordinator, workers, reviewer"
+desc: "The coordinator fans a goal out to three specialist workers - researcher, analyst, writer - whose outputs converge on a reviewer that produces the final result."
+width: 800
+height: 280
+nodes:
+  - id: goal
+    x: 10
+    y: 114
+    w: 100
+    h: 52
+    label: "Goal"
+    kind: entry
+  - id: coord
+    x: 150
+    y: 114
+    w: 120
+    h: 52
+    label: "coordinator"
+  - id: researcher
+    x: 320
+    y: 24
+    w: 130
+    h: 52
+    label: "researcher"
+  - id: analyst
+    x: 320
+    y: 114
+    w: 130
+    h: 52
+    label: "analyst"
+  - id: writer
+    x: 320
+    y: 204
+    w: 130
+    h: 52
+    label: "writer"
+  - id: reviewer
+    x: 510
+    y: 114
+    w: 120
+    h: 52
+    label: "reviewer"
+  - id: result
+    x: 680
+    y: 114
+    w: 110
+    h: 52
+    label: "result"
+edges:
+  - from: goal
+    to: coord
+  - from: coord
+    to: researcher
+    x1: 272
+    y1: 130
+    x2: 317
+    y2: 53
+  - from: coord
+    to: analyst
+  - from: coord
+    to: writer
+    x1: 272
+    y1: 150
+    x2: 317
+    y2: 227
+  - from: researcher
+    to: reviewer
+    x1: 452
+    y1: 53
+    x2: 507
+    y2: 130
+  - from: analyst
+    to: reviewer
+  - from: writer
+    to: reviewer
+    x1: 452
+    y1: 227
+    x2: 507
+    y2: 150
+  - from: reviewer
+    to: result
+ascii: |2
+                       +-> researcher --+
+  Goal -> coordinator -+-> analyst ------+-> reviewer -> result
+                       +-> writer -------+

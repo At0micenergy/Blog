@@ -1,0 +1,84 @@
+{%- comment -%}
+  Diagram component: data-driven SVG workflow diagrams.
+  Usage: {% include diagram.html id="agent-loop" %}
+  Data: _data/diagrams/<id>.yml — see DESIGN.md "Diagram system".
+{%- endcomment -%}
+{%- assign d = site.data.diagrams[include.id] -%}
+{%- assign dir = d.direction | default: "horizontal" -%}
+<figure class="diagram" id="dg-{{ include.id }}">
+<svg viewBox="0 0 {{ d.width }} {{ d.height }}" role="img" aria-labelledby="dg-{{ include.id }}-title dg-{{ include.id }}-desc">
+<title id="dg-{{ include.id }}-title">{{ d.title }}</title>
+<desc id="dg-{{ include.id }}-desc">{{ d.desc }}</desc>
+<defs>
+<marker id="dg-arr-{{ include.id }}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0.5,1 L8.5,5 L0.5,9" fill="none" stroke="#4ade80" stroke-width="1.6"/>
+</marker>
+<marker id="dg-arr-warn-{{ include.id }}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+<path d="M0.5,1 L8.5,5 L0.5,9" fill="none" stroke="#ffb224" stroke-width="1.6"/>
+</marker>
+</defs>
+<rect class="dg-panel" x="1" y="1" width="{{ d.width | minus: 2 }}" height="{{ d.height | minus: 2 }}" rx="10"/>
+{%- for b in d.bounds -%}
+{%- assign blx = b.x | plus: 14 -%}
+{%- assign bly = b.y | plus: 24 -%}
+<g class="dg-bound dg-bound-{{ b.kind | default: 'warn' }}">
+<rect x="{{ b.x }}" y="{{ b.y }}" width="{{ b.w }}" height="{{ b.h }}" rx="8"/>
+<text class="dg-bound-label" x="{{ blx }}" y="{{ bly }}">{{ b.label }}</text>
+</g>
+{%- endfor -%}
+{%- for e in d.edges -%}
+{%- assign a = d.nodes | where: "id", e.from | first -%}
+{%- assign z = d.nodes | where: "id", e.to | first -%}
+{%- assign ekind = e.kind | default: "go" -%}
+{%- if ekind == "warn" -%}{%- assign arr = "dg-arr-warn-" | append: include.id -%}{%- else -%}{%- assign arr = "dg-arr-" | append: include.id -%}{%- endif -%}
+{%- if e.d -%}
+<path class="dg-edge dg-edge-{{ ekind }}" d="{{ e.d }}" marker-end="url(#{{ arr }})"/>
+{%- if e.label -%}
+<text class="dg-edge-label" x="{{ e.label_x }}" y="{{ e.label_y }}" text-anchor="{{ e.label_anchor | default: 'middle' }}">{{ e.label }}</text>
+{%- endif -%}
+{%- else -%}
+{%- if dir == "vertical" -%}
+{%- assign hw = a.w | divided_by: 2 -%}{%- assign x1 = a.x | plus: hw -%}
+{%- assign hw2 = z.w | divided_by: 2 -%}{%- assign x2 = z.x | plus: hw2 -%}
+{%- assign y1 = a.y | plus: a.h -%}{%- assign y2 = z.y | minus: 2 -%}
+{%- assign mx = x1 | plus: x2 | divided_by: 2 -%}{%- assign my = y1 | plus: y2 | divided_by: 2 -%}
+{%- else -%}
+{%- assign hh = a.h | divided_by: 2 -%}{%- assign y1 = a.y | plus: hh -%}
+{%- assign hh2 = z.h | divided_by: 2 -%}{%- assign y2 = z.y | plus: hh2 -%}
+{%- assign x1 = a.x | plus: a.w | plus: 2 -%}{%- assign x2 = z.x | minus: 3 -%}
+{%- assign mx = x1 | plus: x2 | divided_by: 2 -%}{%- assign my = y1 | plus: y2 | divided_by: 2 | minus: 8 -%}
+{%- endif -%}
+{%- if e.x1 -%}{%- assign x1 = e.x1 -%}{%- assign y1 = e.y1 -%}{%- assign x2 = e.x2 -%}{%- assign y2 = e.y2 -%}
+{%- assign mx = x1 | plus: x2 | divided_by: 2 -%}{%- assign my = y1 | plus: y2 | divided_by: 2 | minus: 8 -%}{%- endif -%}
+<line class="dg-edge dg-edge-{{ ekind }}" x1="{{ x1 }}" y1="{{ y1 }}" x2="{{ x2 }}" y2="{{ y2 }}" marker-end="url(#{{ arr }})"/>
+{%- if e.label -%}
+<text class="dg-edge-label" x="{{ mx }}" y="{{ my }}">{{ e.label }}</text>
+{%- endif -%}
+{%- endif -%}
+{%- endfor -%}
+{%- for n in d.nodes -%}
+{%- assign hw = n.w | divided_by: 2 -%}{%- assign cx = n.x | plus: hw -%}
+{%- assign hh = n.h | divided_by: 2 -%}{%- assign cy = n.y | plus: hh -%}
+<g class="dg-node dg-{{ n.kind | default: 'node' }}">
+<rect x="{{ n.x }}" y="{{ n.y }}" width="{{ n.w }}" height="{{ n.h }}" rx="5"/>
+{%- if n.sub -%}
+{%- assign ly = cy | minus: 9 -%}{%- assign sy = cy | plus: 13 -%}
+<text class="dg-label" x="{{ cx }}" y="{{ ly }}" text-anchor="middle">{{ n.label }}</text>
+<text class="dg-sub" x="{{ cx }}" y="{{ sy }}" text-anchor="middle">{{ n.sub }}</text>
+{%- else -%}
+{%- assign ly = cy | plus: 5 -%}
+<text class="dg-label" x="{{ cx }}" y="{{ ly }}" text-anchor="middle">{{ n.label }}</text>
+{%- endif -%}
+</g>
+{%- endfor -%}
+{%- for t in d.labels -%}
+<text class="dg-lane" x="{{ t.x }}" y="{{ t.y }}">{{ t.text }}</text>
+{%- endfor -%}
+</svg>
+{%- if d.ascii -%}
+<details class="dg-src">
+<summary>view as text</summary>
+<pre>{{ d.ascii }}</pre>
+</details>
+{%- endif -%}
+</figure>

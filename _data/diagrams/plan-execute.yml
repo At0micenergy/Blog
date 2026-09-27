@@ -1,0 +1,48 @@
+title: "Plan-execute pattern"
+desc: "The planner produces a full plan up front, then each step is executed and verified; the agent revises the plan or continues based on what verification finds."
+width: 740
+height: 150
+nodes:
+  - id: goal
+    x: 5
+    y: 48
+    w: 130
+    h: 54
+    label: "Goal"
+    kind: entry
+  - id: plan
+    x: 155
+    y: 48
+    w: 130
+    h: 54
+    label: "plan"
+  - id: execute
+    x: 305
+    y: 48
+    w: 130
+    h: 54
+    label: "execute step"
+  - id: verify
+    x: 455
+    y: 48
+    w: 130
+    h: 54
+    label: "verify"
+  - id: revise
+    x: 605
+    y: 48
+    w: 130
+    h: 54
+    label: "revise or"
+    sub: "continue"
+edges:
+  - from: goal
+    to: plan
+  - from: plan
+    to: execute
+  - from: execute
+    to: verify
+  - from: verify
+    to: revise
+ascii: |
+  Goal -> plan -> execute step -> verify -> revise or continue

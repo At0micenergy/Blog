@@ -1,0 +1,100 @@
+title: "Agent architecture: orchestrator, model, tools"
+desc: "The full agent architecture from section 3. A user goal reaches the orchestrator runtime, which drives the model with current context and tool specs. The model either answers directly or passes a policy and approval gate before a tool implementation runs; the observation returns to context and the loop continues."
+width: 760
+height: 600
+nodes:
+  - id: goal
+    x: 20
+    y: 24
+    w: 150
+    h: 56
+    label: "User goal"
+    kind: entry
+  - id: orch
+    x: 250
+    y: 24
+    w: 190
+    h: 56
+    label: "Orchestrator"
+    sub: "runtime"
+  - id: model
+    x: 250
+    y: 140
+    w: 190
+    h: 70
+    label: "Model + current"
+    sub: "context + tool specs"
+  - id: final
+    x: 60
+    y: 290
+    w: 180
+    h: 56
+    label: "Final response"
+  - id: gate
+    x: 420
+    y: 290
+    w: 190
+    h: 56
+    label: "Policy / approval"
+    sub: "gate"
+    kind: gate
+  - id: tool
+    x: 420
+    y: 430
+    w: 190
+    h: 56
+    label: "Tool"
+    sub: "implementation"
+edges:
+  - from: goal
+    to: orch
+  - from: orch
+    to: model
+  - from: model
+    to: final
+    x1: 300
+    y1: 210
+    x2: 152
+    y2: 287
+  - from: model
+    to: gate
+    x1: 390
+    y1: 210
+    x2: 508
+    y2: 287
+    label: "text or tool request"
+  - from: gate
+    to: tool
+    label: "allowed action"
+  - from: tool
+    to: model
+    d: "M 612 458 L 700 458 L 700 175 L 444 175"
+    label: "back to context"
+    label_x: 572
+    label_y: 167
+ascii: |2
+                    +----------------------+
+    User goal ------> | Orchestrator/runtime |
+                    +----------+-----------+
+                                 |
+                                 v
+                    +----------------------+
+                    | Model + current      |
+                    | context + tool specs |
+                    +----------+-----------+
+                                 |
+                        text or tool request
+                                 |
+                  +--------------+--------------+
+                  |                             |
+                  v                             v
+            Final response              Policy/approval gate
+                                                |
+                                          allowed action
+                                                |
+                                                v
+                                        Tool implementation
+                                                |
+                                          observation/result
+                                                |
+                                                +----> back to context

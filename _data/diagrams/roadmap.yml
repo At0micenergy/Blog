@@ -1,0 +1,63 @@
+title: "Series roadmap: the seven-part field manual"
+desc: "The order this series follows: understand the agent, build one, break it, defend it, connect it via MCP, govern it, then assure it. Each part builds on the previous."
+width: 720
+height: 150
+nodes:
+  - id: understand
+    x: 6
+    y: 48
+    w: 90
+    h: 54
+    label: "understand"
+    kind: entry
+  - id: build
+    x: 109
+    y: 48
+    w: 90
+    h: 54
+    label: "build"
+  - id: brk
+    x: 212
+    y: 48
+    w: 90
+    h: 54
+    label: "break"
+  - id: defend
+    x: 315
+    y: 48
+    w: 90
+    h: 54
+    label: "defend"
+  - id: connect
+    x: 418
+    y: 48
+    w: 90
+    h: 54
+    label: "connect"
+  - id: govern
+    x: 521
+    y: 48
+    w: 90
+    h: 54
+    label: "govern"
+  - id: assure
+    x: 624
+    y: 48
+    w: 90
+    h: 54
+    label: "assure"
+edges:
+  - from: understand
+    to: build
+  - from: build
+    to: brk
+  - from: brk
+    to: defend
+  - from: defend
+    to: connect
+  - from: connect
+    to: govern
+  - from: govern
+    to: assure
+ascii: |
+  Understand -> build -> break -> defend -> connect -> govern -> assure

@@ -1,0 +1,47 @@
+title: "Fixed workflow: input to output"
+desc: "A deterministic pipeline with no agentic behavior: input is classified, a fixed lookup runs, the result is summarized, and output is produced. Every step is preordained."
+width: 740
+height: 150
+nodes:
+  - id: input
+    x: 5
+    y: 48
+    w: 130
+    h: 54
+    label: "Input"
+    kind: entry
+  - id: classify
+    x: 155
+    y: 48
+    w: 130
+    h: 54
+    label: "classify"
+  - id: lookup
+    x: 305
+    y: 48
+    w: 130
+    h: 54
+    label: "fixed lookup"
+  - id: summarize
+    x: 455
+    y: 48
+    w: 130
+    h: 54
+    label: "summarize"
+  - id: output
+    x: 605
+    y: 48
+    w: 130
+    h: 54
+    label: "output"
+edges:
+  - from: input
+    to: classify
+  - from: classify
+    to: lookup
+  - from: lookup
+    to: summarize
+  - from: summarize
+    to: output
+ascii: |
+  Input -> classify -> fixed lookup -> summarize -> output

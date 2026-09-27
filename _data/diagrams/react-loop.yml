@@ -1,0 +1,55 @@
+title: "ReAct loop: choose, observe, repeat"
+desc: "The ReAct pattern from section 5: the agent chooses a tool, observes the result, and chooses again until it can answer. The model decides every step."
+width: 720
+height: 150
+nodes:
+  - id: goal
+    x: 13
+    y: 48
+    w: 104
+    h: 54
+    label: "Goal"
+    kind: entry
+  - id: choose1
+    x: 131
+    y: 48
+    w: 104
+    h: 54
+    label: "choose tool"
+  - id: observe1
+    x: 249
+    y: 48
+    w: 104
+    h: 54
+    label: "observe"
+  - id: choose2
+    x: 367
+    y: 48
+    w: 104
+    h: 54
+    label: "choose tool"
+  - id: observe2
+    x: 485
+    y: 48
+    w: 104
+    h: 54
+    label: "observe"
+  - id: answer
+    x: 603
+    y: 48
+    w: 104
+    h: 54
+    label: "answer"
+edges:
+  - from: goal
+    to: choose1
+  - from: choose1
+    to: observe1
+  - from: observe1
+    to: choose2
+  - from: choose2
+    to: observe2
+  - from: observe2
+    to: answer
+ascii: |
+  Goal -> choose tool -> observe -> choose tool -> observe -> answer

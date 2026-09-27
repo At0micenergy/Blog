@@ -46,9 +46,7 @@ A chatbot wraps the model in a conversation interface. It may maintain chat hist
 
 A workflow follows a path defined mainly by code:
 
-```text
-Receive alert -> enrich IP -> check asset -> assign severity -> create case
-```
+{% include diagram.html id="soc-chain" %}
 
 A model may classify or summarize at one step, but software still determines the sequence. This is predictable and easier to test.
 
@@ -56,9 +54,7 @@ A model may classify or summarize at one step, but software still determines the
 
 An agent gives the model some control over the next step. The model can select a tool, provide arguments, inspect the result, and decide what to do next within limits imposed by the application.
 
-```text
-Goal -> model chooses action -> application executes -> result returns -> repeat
-```
+{% include diagram.html id="agent-loop" %}
 
 ### Multi-agent system
 
@@ -72,33 +68,7 @@ A multi-agent system separates work among multiple agent instances or roles. A c
 
 Most tool-using agents reduce to the same control loop:
 
-```text
-                  +----------------------+
-User goal ------> | Orchestrator/runtime |
-                  +----------+-----------+
-                             |
-                             v
-                  +----------------------+
-                  | Model + current      |
-                  | context + tool specs |
-                  +----------+-----------+
-                             |
-                    text or tool request
-                             |
-              +--------------+--------------+
-              |                             |
-              v                             v
-        Final response              Policy/approval gate
-                                            |
-                                      allowed action
-                                            |
-                                            v
-                                    Tool implementation
-                                            |
-                                      observation/result
-                                            |
-                                            +----> back to context
-```
+{% include diagram.html id="orchestrator" %}
 
 A single run usually looks like this:
 
@@ -192,10 +162,7 @@ Retrieval-augmented generation, or RAG, searches an external corpus and places r
 
 A read-only question-answering application can use RAG without tools. An agent can use retrieval as one tool among many. Keep these concepts separate:
 
-```text
-RAG:   find context -> generate grounded answer
-Agent: choose action -> observe result -> choose again
-```
+{% include diagram.html id="rag-vs-agent" %}
 
 ### Policy and approval gate
 
@@ -225,9 +192,7 @@ Without limits, an agent can loop, amplify errors, consume resources, or repeate
 
 Code decides the path. A model performs bounded tasks inside it.
 
-```text
-Input -> classify -> fixed lookup -> summarize -> output
-```
+{% include diagram.html id="fixed-workflow" %}
 
 **Use it when:** The process is known, repeatability matters, and exceptions are limited.
 
@@ -241,9 +206,7 @@ Input -> classify -> fixed lookup -> summarize -> output
 
 A model or rule chooses one of several predefined destinations.
 
-```text
-Request -> router -> billing | technical | security | human
-```
+{% include diagram.html id="router" %}
 
 **Use it when:** Work belongs to recognizable categories with different tools or policies.
 
@@ -255,9 +218,7 @@ Request -> router -> billing | technical | security | human
 
 The model alternates between reasoning about the task, selecting an action, and observing the result.
 
-```text
-Goal -> choose tool -> observe -> choose tool -> observe -> answer
-```
+{% include diagram.html id="react-loop" %}
 
 **Use it when:** The next useful action depends on the previous result.
 
@@ -269,9 +230,7 @@ Goal -> choose tool -> observe -> choose tool -> observe -> answer
 
 A planner decomposes a goal into steps. An executor runs them, sometimes asking the planner to revise the plan.
 
-```text
-Goal -> plan -> execute step -> verify -> revise or continue
-```
+{% include diagram.html id="plan-execute" %}
 
 **Use it when:** A task is long, dependencies matter, and progress should be inspectable.
 
@@ -303,11 +262,7 @@ The model writes or selects code, and a separate executor runs it.
 
 A coordinator delegates to specialist agents, or peers communicate according to an orchestration policy.
 
-```text
-                     +-> researcher --+
-Goal -> coordinator -+-> analyst ------+-> reviewer -> result
-                     +-> writer -------+
-```
+{% include diagram.html id="multi-agent" %}
 
 **Use it when:** Roles need distinct context, tools, identities, or parallel work, and the decomposition provides measurable value.
 
@@ -325,15 +280,20 @@ Human approval is an execution pattern layered onto any architecture. The system
 
 ## 5. Compare the patterns side by side
 
-| Pattern | Path chosen by | Best fit | Main risk |
-|---|---|---|---|
-| Fixed workflow | Code | Known process | Logic flaw |
-| Router | Rule or model | Triage | Misrouting |
-| ReAct loop | Model, stepwise | Exploration | Tool misuse |
-| Plan-execute | Planner | Long tasks | Plan drift |
-| RAG-enabled | Model + search | Private knowledge | Poisoned context |
-| Code agent | Model + runtime | Dev/data work | Code execution |
-| Multi-agent | Coordinator | Specialization | Failure cascade |
+<table class="spec-table">
+<thead>
+<tr><th scope="col">Pattern</th><th scope="col">Path chosen by</th><th scope="col">Best fit</th><th scope="col">Main risk</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Fixed workflow</th><td data-label="Path chosen by">Code</td><td data-label="Best fit">Known process</td><td data-label="Main risk">Logic flaw</td></tr>
+<tr><th scope="row">Router</th><td data-label="Path chosen by">Rule or model</td><td data-label="Best fit">Triage</td><td data-label="Main risk">Misrouting</td></tr>
+<tr><th scope="row">ReAct loop</th><td data-label="Path chosen by">Model, stepwise</td><td data-label="Best fit">Exploration</td><td data-label="Main risk">Tool misuse</td></tr>
+<tr><th scope="row">Plan-execute</th><td data-label="Path chosen by">Planner</td><td data-label="Best fit">Long tasks</td><td data-label="Main risk">Plan drift</td></tr>
+<tr><th scope="row">RAG-enabled</th><td data-label="Path chosen by">Model + search</td><td data-label="Best fit">Private knowledge</td><td data-label="Main risk">Poisoned context</td></tr>
+<tr><th scope="row">Code agent</th><td data-label="Path chosen by">Model + runtime</td><td data-label="Best fit">Dev/data work</td><td data-label="Main risk">Code execution</td></tr>
+<tr><th scope="row">Multi-agent</th><td data-label="Path chosen by">Coordinator</td><td data-label="Best fit">Specialization</td><td data-label="Main risk">Failure cascade</td></tr>
+</tbody>
+</table>
 
 The same task makes the differences clearer. Imagine a suspicious-login alert:
 
@@ -380,9 +340,7 @@ The Model Context Protocol, or MCP, standardizes how an AI application connects 
 
 A simplified view is:
 
-```text
-Agent host -> MCP client -> MCP server -> API, files, database, or service
-```
+{% include diagram.html id="mcp-chain" %}
 
 MCP does not decide the agent's goal, planning style, or approval policy. It is not a replacement for the orchestrator. It is a protocol layer through which tools and context can be exposed.
 
@@ -408,15 +366,7 @@ A read-only agent that summarizes public documentation has a limited blast radiu
 
 Use this chain when threat-modeling:
 
-```text
-Untrusted input
-    -> model-visible context
-    -> model-generated decision
-    -> policy decision
-    -> credentialed tool
-    -> external effect
-    -> stored observation or memory
-```
+{% include diagram.html id="trust-chain" %}
 
 At every arrow, ask:
 
@@ -529,14 +479,7 @@ The article after that will use the OWASP LLM and Agentic AI materials to organi
 
 Before reading the next article, draw this system without looking back:
 
-```text
-User -> orchestrator -> model -> proposed tool call
-                              -> policy gate
-                              -> tool implementation
-                              -> observation
-                              -> state/memory
-                              -> next model call or stop
-```
+{% include diagram.html id="authority-trace" %}
 
 Then annotate it with four colors or labels:
 
@@ -572,9 +515,7 @@ This series is designed to teach and learn in public, with each article building
 
 The full arc is:
 
-```text
-Understand -> build -> break -> defend -> connect -> govern -> assure
-```
+{% include diagram.html id="roadmap" %}
 
 ---
 
