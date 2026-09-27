@@ -3,7 +3,7 @@ layout : post
 title: Investigate Web Attack
 image : Investigate_Web_Attack.png
 date: 2024-04-10 10:18 +0530
-tags: [OWASP ,SIEM , Incident Response , Splunk ] 
+tags: [OWASP, SIEM, Incident Response, Splunk]
 ---
 
 In this walkthrough, we will delve into investigating web application logs using Splunk. We'll explore a scenario where an attacker successfully compromised the system through web application hacking techniques. They achieved this by executing a code injection attack, manipulating the URL parameters. Additionally, the application exhibited numerous vulnerabilities, including file inclusion, Cross-Site Scripting (XSS), and successful privilege escalation, wherein the attacker added a remote user for persistence.  

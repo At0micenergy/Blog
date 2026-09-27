@@ -9,17 +9,7 @@ fullwidth: true
 <div class="wrap" style="padding-bottom: var(--section-gap);">
   <div class="tag-cloud">
     {% for tag in site.tags %}
-    <a class="filter-btn" href="#{{ tag[0] | slugify }}">{{ tag[0] }} <span class="count">{{ tag[1] | size }}</span></a>
+    <a class="filter-btn" href="{{ tag[0] | slugify | prepend: '/tags/' | append: '/' | relative_url }}">{{ tag[0] }} <span class="count">{{ tag[1] | size }}</span></a>
     {% endfor %}
   </div>
-  {% for tag in site.tags %}
-  <div class="tag-block" id="{{ tag[0] | slugify }}">
-    <h2>#{{ tag[0] }} - {{ tag[1] | size }}</h2>
-    <ul>
-      {% for post in tag[1] %}
-      <li><a href="{{ post.url | relative_url }}"><span>{{ post.title }}</span><time>{{ post.date | date: "%Y-%m-%d" }}</time></a></li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endfor %}
 </div>

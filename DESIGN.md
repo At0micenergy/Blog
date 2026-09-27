@@ -69,6 +69,10 @@ sandbox." Never address the reader as a security professional; conditional branc
 - **Ticker**: pure-CSS marquee of top tags, pauses on hover, `aria-hidden`. With JS
   (`ticker.js`) it becomes scroll-velocity reactive: drifts at rest, accelerates
   up to 5x with scroll speed, skews into the motion, still pauses on hover.
+- **Tag archives**: `/tags/<slug>/` pages (layout `tag`), generated at author
+  time by `~/workspace/blog-redesign/gen_tag_pages.py` because GitHub Pages
+  safe mode forbids custom Jekyll plugins. Re-run the script after tag changes.
+  Cards keep their global № from `/posts/`; `/tags/` is the index linking out.
 - **Post cards** (`post-card.html`): bento spans by position, red edge-rule grows on
   hover, mono numeral + date, hook (front-matter `hook:` or excerpt fallback).
   Numerals run oldest-first: the oldest post is №1, the newest is №N (computed

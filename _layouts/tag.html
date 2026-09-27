@@ -1,0 +1,21 @@
+---
+layout: default
+---
+{% assign tag_posts = site.tags[page.tag] %}
+<header class="page-hero">
+  <p class="eyebrow">// Tag archive</p>
+  <h1 data-split>#{{ page.tag }}</h1>
+  <p class="standfirst">{{ tag_posts | size }} transmission{% if tag_posts.size != 1 %}s{% endif %} filed under this label.</p>
+</header>
+<div class="wrap" style="padding-bottom: var(--section-gap);">
+  <div class="posts-grid">
+    {% for post in tag_posts %}
+      {% assign card_no = 0 %}
+      {% for p in site.posts %}
+        {% if p.url == post.url %}{% assign card_no = site.posts | size | minus: forloop.index | plus: 1 %}{% endif %}
+      {% endfor %}
+      {% include post-card.html card_no=card_no %}
+    {% endfor %}
+  </div>
+  <p class="back-link"><a href="{{ '/tags/' | relative_url }}">&larr; all tags</a></p>
+</div>

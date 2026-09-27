@@ -2,6 +2,33 @@
 
 One entry per feature: what was added, what was verified.
 
+## 2026-09-27 - Feature 9: Tag archive pages
+
+**Added**
+- `_layouts/tag.html`: `/tags/<slug>/` archive pages - page-hero with `#tag`
+  headline, post count, the shared post-card grid, and a back-to-all-tags link.
+- `post-card.html` now accepts an optional `card_no` include param; the tag
+  layout resolves each post's global number (oldest = №1) so archive cards show
+  the exact № they carry on `/posts/`.
+- `tags.html` is now an index: the tag cloud links out to the archive pages
+  (the old inline per-tag anchor blocks were removed as redundant).
+- `_sass/_pages.scss`: `.tag-block` styles replaced with `.back-link`.
+- `~/workspace/blog-redesign/gen_tag_pages.py` (author-time generator, since
+  GitHub Pages safe mode forbids custom plugins): normalizes post front-matter
+  tags (strips stray whitespace, merges the `php File Upload`/`PHP File Upload`
+  case duplicate), asserts zero slug collisions, and writes 70 `tags/*.md`
+  files. Re-run after adding or removing tags.
+- Tag hygiene fixed as a side effect: 32 posts had tags with leading/trailing
+  spaces that created near-duplicate tag keys (`LFI` vs `LFI `).
+
+**Verified**
+- Genuine Jekyll unavailable in this environment (no ruby), so verified with the
+  extended QA Liquid renderer: all 96 tag cards across 70 pages carry the exact
+  № from `/posts/`; `/tags/` exposes 70 archive links.
+- Chromium QA: `/tags/lfi/` renders the hero, 7 cards, back link; ink and paper
+  themes legible; 390px shows no page-level horizontal overflow; zero page
+  errors.
+
 ## 2026-09-27 - Feature 7: Scroll-velocity ticker
 
 **Added**

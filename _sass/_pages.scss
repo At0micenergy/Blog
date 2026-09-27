@@ -96,11 +96,7 @@
 
 // Tags page
 .tag-cloud { display: flex; flex-wrap: wrap; gap: 12px; margin: 32px 0 64px; }
-.tag-block { margin-bottom: 56px;
-  h2 { font-family: var(--font-mono); font-size: 1rem; letter-spacing: 0.1em; color: var(--accent);
-    border-bottom: 1px solid var(--line); padding-bottom: 12px; margin: 0 0 20px; }
-  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-  li a { text-decoration: none; color: var(--ink-dim); display: flex; justify-content: space-between; gap: 16px;
-    padding: 8px 0; border-bottom: 1px dashed transparent;
-    &:hover { color: var(--accent); }
-    time { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faint); white-space: nowrap; } } }
+.back-link { margin-top: 48px;
+  a { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-dim); text-decoration: none;
+    &:hover { color: var(--accent); } } }

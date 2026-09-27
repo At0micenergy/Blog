@@ -4,7 +4,7 @@ title: dailybungle
 image : dailybuglepng.png
 date: 2021-04-25 01:43 +0530
 
-tags: [John TheRipper ,  gtfobin yum]
+tags: [John TheRipper, gtfobin yum]
 ---
 
 # Nmap

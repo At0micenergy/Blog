@@ -1,4 +1,4 @@
-{% assign bi = forloop.index0 | modulo: 6 %}{% assign total = site.posts | size %}{% assign card_no = total | minus: forloop.index | plus: 1 %}<a class="post-card b{{ bi }} card-read" href="{{ post.url | relative_url }}" data-tags="{% for t in post.tags %}{{ t | slugify }} {% endfor %}">
+{% assign bi = forloop.index0 | modulo: 6 %}{% assign total = site.posts | size %}{% if include.card_no %}{% assign card_no = include.card_no %}{% else %}{% assign card_no = total | minus: forloop.index | plus: 1 %}{% endif %}<a class="post-card b{{ bi }} card-read" href="{{ post.url | relative_url }}" data-tags="{% for t in post.tags %}{{ t | slugify }} {% endfor %}">
   <div class="card-meta">
     <span class="card-num">№{{ card_no }}</span>
     <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
