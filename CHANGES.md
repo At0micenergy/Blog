@@ -2,6 +2,23 @@
 
 One entry per feature: what was added, what was verified.
 
+## 2026-09-27 - Feature 5: View Transitions API (cross-document page wipes)
+
+**Added**
+- `_sass/_transitions.scss` (imported in `main.scss`): `@view-transition
+  { navigation: auto; }` opts every same-origin navigation into a transition.
+  Outgoing page lifts and fades in 0.3s; incoming page cuts in with a hard
+  left-to-right clip-path wipe in 0.55s, both on the theme's ease-out curve.
+  `::view-transition` background matches `--bg` so mid-transition is never white.
+  Pure CSS progressive enhancement: unsupported browsers ignore the block.
+- Reduced motion: `_base.scss`'s global kill-switch uses `*`, which does not
+  match view-transition pseudo-elements, so they are neutralized explicitly in
+  the same partial.
+
+**Verified**
+- libsass compiles the partial cleanly (including the reduced-motion override).
+- Chromium 152 QA against production: [result pending].
+
 ## 2026-09-27 - Feature 3: Footer terminal easter egg
 
 **Added**

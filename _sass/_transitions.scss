@@ -1,0 +1,49 @@
+// ─── View Transitions: cross-document page wipes ────────────────────────────
+// Opts every same-origin navigation into a transition. Browsers without support
+// ignore the whole block (progressive enhancement, no JS needed).
+// Choreography: the outgoing page lifts and fades fast; the incoming page cuts
+// in with a hard left-to-right wipe, editorial style.
+
+@view-transition {
+  navigation: auto;
+}
+
+// Match the canvas to the theme so mid-transition is never white.
+::view-transition {
+  background: var(--bg);
+}
+
+// Outgoing snapshot: quick lift + fade.
+::view-transition-old(root) {
+  animation: vt-out 0.3s var(--ease-out) both;
+}
+
+// Incoming snapshot: hard wipe from the left edge.
+::view-transition-new(root) {
+  animation: vt-in 0.55s var(--ease-out) both;
+}
+
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+}
+
+@keyframes vt-in {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+// Reduced motion: the global kill-switch in _base.scss uses `*`, which does not
+// match view-transition pseudo-elements, so neutralize them explicitly here.
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

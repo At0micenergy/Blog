@@ -95,6 +95,11 @@ sandbox." Never address the reader as a security professional; conditional branc
   `hello`, `clear`, `exit`, and a `command not found` fallback; up/down history,
   `aria-live` output, textContent-only rendering. Static `stay paranoid` line
   without JS.
+- **Page transitions** (`_sass/_transitions.scss`): cross-document View
+  Transitions on every same-origin navigation - outgoing page lifts/fades
+  (0.3s), incoming page wipes in left-to-right via clip-path (0.55s), theme
+  ease-out, canvas matched to `--bg`. Pure CSS; ignored by unsupported browsers;
+  explicitly neutralized under `prefers-reduced-motion`.
 - **Diagram system** (`_includes/diagram.html`, `_data/diagrams/*.yml`, `_sass/_diagrams.scss`):
   data-driven inline SVG workflow diagrams. Strictly the site palette: near-black
   panel, 1px cream strokes, red accent, JetBrains Mono labels; red accent on entry
