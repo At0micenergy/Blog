@@ -7,7 +7,8 @@
   hook: "What an agent actually is - taxonomy, the execution loop, tools, memory, and the trust boundaries that matter."
 - part: 2
   title: "Before OWASP: Learn the Agent by Building It"
-  status: draft
+  status: published
+  url: /before-owasp-learn-the-agent-by-building-it/
   hook: "Seven hands-on lab steps that teach you the agent by building one - before the frameworks arrive."
 - part: 3
   title: "OWASP systematization"
