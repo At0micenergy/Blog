@@ -1,0 +1,103 @@
+title: "Tool-calling sequence"
+desc: "One tool call, step by step: the application sends context and schemas, the model proposes a structured call, the policy gate authorizes it, the application executes, and the result returns as an observation. The model never touches the tool."
+width: 960
+height: 600
+nodes:
+  - id: app
+    x: 80
+    y: 60
+    w: 150
+    h: 48
+    label: "Application"
+    kind: entry
+  - id: model
+    x: 310
+    y: 60
+    w: 150
+    h: 48
+    label: "Model"
+  - id: policy
+    x: 540
+    y: 60
+    w: 150
+    h: 48
+    label: "Policy gate"
+    kind: gate
+  - id: tool
+    x: 770
+    y: 60
+    w: 150
+    h: 48
+    label: "Tool"
+  - id: app-lane
+    x: 154
+    y: 120
+    w: 2
+    h: 420
+    label: ""
+  - id: model-lane
+    x: 384
+    y: 120
+    w: 2
+    h: 420
+    label: ""
+  - id: policy-lane
+    x: 614
+    y: 120
+    w: 2
+    h: 420
+    label: ""
+  - id: tool-lane
+    x: 844
+    y: 120
+    w: 2
+    h: 420
+    label: ""
+edges:
+  - x1: 232
+    y1: 170
+    x2: 307
+    y2: 170
+    label: "context + schemas"
+  - x1: 308
+    y1: 230
+    x2: 232
+    y2: 230
+    label: "tool_call {name, args}"
+  - x1: 232
+    y1: 290
+    x2: 537
+    y2: 290
+    label: "authorize(call)"
+  - x1: 538
+    y1: 350
+    x2: 232
+    y2: 350
+    label: "allow / deny + reason"
+  - x1: 232
+    y1: 410
+    x2: 767
+    y2: 410
+    label: "execute(validated args)"
+  - x1: 768
+    y1: 470
+    x2: 232
+    y2: 470
+    label: "result"
+  - x1: 232
+    y1: 530
+    x2: 307
+    y2: 530
+    label: "observation"
+labels:
+  - x: 270
+    y: 582
+    text: "The model never touches the tool. The application executes."
+ascii: |
+  Application -> Model:  system prompt + history + tool schemas
+  Model -> Application:  tool_call { name, args }
+  Application -> Policy: authorize(call)
+  Policy -> Application: allow / deny + reason
+  Application -> Tool:   execute(validated args)   [only if allowed]
+  Tool -> Application:   result
+  Application -> Model:  observation -> next loop
