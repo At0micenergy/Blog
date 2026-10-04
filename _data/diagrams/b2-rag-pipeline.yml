@@ -1,0 +1,138 @@
+title: "Retrieval pipeline"
+desc: "Documents are parsed, chunked, embedded, and indexed offline; at query time the top matches are retrieved, injected into context, and answered with passage-level citations. The corpus is untrusted until proven otherwise, and permission filters run before retrieval."
+width: 960
+height: 600
+nodes:
+  - id: docs
+    x: 80
+    y: 118
+    w: 130
+    h: 60
+    label: "Documents"
+    kind: entry
+  - id: parse
+    x: 240
+    y: 118
+    w: 110
+    h: 60
+    label: "Parse"
+  - id: chunk
+    x: 380
+    y: 118
+    w: 150
+    h: 60
+    label: "Chunk"
+    sub: "~512 tokens"
+  - id: embed
+    x: 560
+    y: 118
+    w: 110
+    h: 60
+    label: "Embed"
+  - id: index
+    x: 700
+    y: 118
+    w: 180
+    h: 60
+    label: "Vector index"
+  - id: query
+    x: 80
+    y: 266
+    w: 140
+    h: 60
+    label: "User query"
+    kind: entry
+  - id: retrieve
+    x: 250
+    y: 266
+    w: 140
+    h: 60
+    label: "Retrieve"
+    sub: "top-k = 3"
+  - id: passages
+    x: 420
+    y: 266
+    w: 140
+    h: 60
+    label: "Passages"
+  - id: inject
+    x: 590
+    y: 266
+    w: 140
+    h: 60
+    label: "Inject"
+    sub: "into context"
+  - id: answer
+    x: 760
+    y: 266
+    w: 140
+    h: 60
+    label: "Answer +"
+    sub: "citations"
+edges:
+  - x1: 212
+    y1: 148
+    x2: 237
+    y2: 148
+  - x1: 352
+    y1: 148
+    x2: 377
+    y2: 148
+  - x1: 532
+    y1: 148
+    x2: 557
+    y2: 148
+  - x1: 672
+    y1: 148
+    x2: 697
+    y2: 148
+  - x1: 222
+    y1: 296
+    x2: 247
+    y2: 296
+  - x1: 392
+    y1: 296
+    x2: 417
+    y2: 296
+  - x1: 562
+    y1: 296
+    x2: 587
+    y2: 296
+  - x1: 732
+    y1: 296
+    x2: 757
+    y2: 296
+  - d: "M 790 178 V 236 H 320 V 264"
+    label: "similarity search"
+    label_x: 555
+    label_y: 228
+bounds:
+  - x: 60
+    y: 104
+    w: 840
+    h: 88
+    label: "untrusted corpus"
+    kind: danger
+labels:
+  - x: 80
+    y: 92
+    text: "// INDEXING - offline"
+  - x: 80
+    y: 252
+    text: "// QUERY - online"
+  - x: 320
+    y: 352
+    text: "apply the user's permission filter BEFORE retrieval, not after"
+  - x: 80
+    y: 420
+    text: "Citation integrity: every claim points to the exact passage it came from."
+  - x: 80
+    y: 444
+    text: "If retrieval finds nothing relevant, the agent says so - never fills the gap from memory."
+  - x: 80
+    y: 468
+    text: "Retrieved text is DATA. It never becomes instruction, no matter how it is phrased."
+ascii: |
+  [offline] Documents -> Parse -> Chunk (~512 tokens) -> Embed -> Vector index
+  [online]  User query -> Retrieve (top-k=3, permission filter FIRST)
+          -> Passages -> Inject into context -> Answer + citations
