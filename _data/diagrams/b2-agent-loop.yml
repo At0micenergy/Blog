@@ -1,0 +1,147 @@
+title: "The agent control loop"
+desc: "The model proposes an answer or a tool call; the application enforces policy, executes tools, and feeds observations back into context. State, stop conditions, and audit live in the app, not the model."
+width: 960
+height: 700
+nodes:
+  - id: goal
+    x: 380
+    y: 64
+    w: 200
+    h: 52
+    label: "User goal"
+    kind: entry
+  - id: orchestrator
+    x: 370
+    y: 150
+    w: 220
+    h: 58
+    label: "Orchestrator"
+    sub: "builds context"
+  - id: model
+    x: 370
+    y: 242
+    w: 220
+    h: 58
+    label: "Model"
+    sub: "answer | tool call"
+  - id: final
+    x: 80
+    y: 242
+    w: 200
+    h: 56
+    label: "Final answer"
+  - id: stop
+    x: 80
+    y: 338
+    w: 200
+    h: 52
+    label: "Stop"
+    sub: "return to user"
+  - id: policy
+    x: 680
+    y: 242
+    w: 200
+    h: 62
+    label: "Policy gate"
+    sub: "authorize this call?"
+    kind: gate
+  - id: tool
+    x: 680
+    y: 340
+    w: 200
+    h: 56
+    label: "Tool executes"
+    sub: "app code, not the model"
+  - id: observation
+    x: 680
+    y: 432
+    w: 200
+    h: 56
+    label: "Observation"
+    sub: "result to context"
+  - id: state
+    x: 60
+    y: 600
+    w: 260
+    h: 64
+    label: "State lives in the app"
+    sub: "messages - results - counters"
+  - id: stopcond
+    x: 350
+    y: 600
+    w: 260
+    h: 64
+    label: "Stop conditions"
+    sub: "step cap - timeout - budget"
+  - id: audit
+    x: 640
+    y: 600
+    w: 260
+    h: 64
+    label: "Audit log"
+    sub: "every proposal + decision"
+edges:
+  - x1: 480
+    y1: 118
+    x2: 480
+    y2: 148
+  - x1: 480
+    y1: 210
+    x2: 480
+    y2: 240
+  - x1: 368
+    y1: 271
+    x2: 283
+    y2: 271
+  - x1: 180
+    y1: 300
+    x2: 180
+    y2: 336
+  - x1: 592
+    y1: 271
+    x2: 677
+    y2: 271
+    label: "tool call"
+  - x1: 780
+    y1: 306
+    x2: 780
+    y2: 338
+    label: "yes"
+  - x1: 780
+    y1: 398
+    x2: 780
+    y2: 430
+  - d: "M 678 460 H 60 V 179 H 366"
+    label: "observation to context - next iteration"
+    label_x: 369
+    label_y: 450
+  - d: "M 700 306 C 660 348, 620 340, 575 302"
+    kind: warn
+    label: "deny - logged"
+    label_x: 630
+    label_y: 368
+bounds:
+  - x: 660
+    y: 228
+    w: 240
+    h: 180
+    label: "app-enforced boundary"
+    kind: danger
+ascii: |
+  User goal
+     |
+     v
+  Orchestrator (builds context)
+     |
+     v
+  Model (answer | tool call)
+     |                |
+     | final          | tool call
+     v                v
+  Final answer    Policy gate --deny--> logged, model retries
+     |                |
+     v               yes
+  Stop            Tool executes (app code, not the model)
+                      |
+                      v
+                  Observation --> appended to context, next iteration
