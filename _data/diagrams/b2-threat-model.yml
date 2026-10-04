@@ -1,0 +1,149 @@
+title: "Threat-model data flow"
+desc: "Every arrow crossing a zone boundary needs authentication, authorization, validation, and a log entry. Untrusted inputs stay untrusted; secrets stay where the model cannot see them; the application enforces every crossing."
+width: 960
+height: 640
+nodes:
+  - id: u-input
+    x: 70
+    y: 125
+    w: 200
+    h: 48
+    label: "User input"
+  - id: u-docs
+    x: 70
+    y: 195
+    w: 200
+    h: 48
+    label: "Retrieved documents"
+  - id: u-tools
+    x: 70
+    y: 265
+    w: 200
+    h: 48
+    label: "Tool / API outputs"
+  - id: u-web
+    x: 70
+    y: 335
+    w: 200
+    h: 48
+    label: "Web content"
+  - id: a-orch
+    x: 370
+    y: 125
+    w: 220
+    h: 48
+    label: "Orchestrator"
+  - id: a-model
+    x: 370
+    y: 195
+    w: 220
+    h: 48
+    label: "Model"
+  - id: a-policy
+    x: 370
+    y: 265
+    w: 220
+    h: 48
+    label: "Policy gate"
+    kind: gate
+  - id: a-state
+    x: 370
+    y: 335
+    w: 220
+    h: 48
+    label: "State / memory"
+  - id: a-log
+    x: 370
+    y: 405
+    w: 220
+    h: 48
+    label: "Audit log"
+  - id: p-tools
+    x: 690
+    y: 125
+    w: 200
+    h: 48
+    label: "Tools"
+  - id: p-secrets
+    x: 690
+    y: 195
+    w: 200
+    h: 48
+    label: "Secrets / credentials"
+    kind: entry
+  - id: p-side
+    x: 690
+    y: 265
+    w: 200
+    h: 48
+    label: "External side effects"
+  - id: p-write
+    x: 690
+    y: 335
+    w: 200
+    h: 48
+    label: "Write paths"
+edges:
+  - x1: 272
+    y1: 149
+    x2: 367
+    y2: 149
+    label: "identity?"
+  - x1: 272
+    y1: 219
+    x2: 367
+    y2: 219
+    label: "provenance?"
+  - x1: 272
+    y1: 289
+    x2: 367
+    y2: 229
+    kind: warn
+    label: "data != instruction"
+  - x1: 592
+    y1: 149
+    x2: 687
+    y2: 149
+    label: "scoped token"
+  - x1: 592
+    y1: 289
+    x2: 687
+    y2: 289
+    label: "allowlist"
+bounds:
+  - x: 40
+    y: 70
+    w: 260
+    h: 430
+    label: "UNTRUSTED"
+    kind: danger
+  - x: 340
+    y: 70
+    w: 280
+    h: 430
+    label: "AGENT"
+    kind: warn
+  - x: 660
+    y: 70
+    w: 260
+    h: 430
+    label: "PRIVILEGED"
+    kind: danger
+labels:
+  - x: 120
+    y: 545
+    text: "Every arrow crossing a zone boundary needs: authentication, authorization, validation, a log entry."
+  - x: 120
+    y: 575
+    text: "The model proposes. The application disposes. Nothing privileged moves on the model's word alone."
+  - x: 120
+    y: 605
+    text: "Ask per boundary: who controls this input? what authority crosses? what validates it? what proves it?"
+ascii: |
+  [UNTRUSTED] User input / Retrieved docs / Tool outputs / Web content
+        | identity?      | provenance?      | data != instruction
+        v                v                  v
+  [AGENT] Orchestrator -> Model -> Policy gate -> State/memory, Audit log
+        | scoped token        | allowlist
+        v                     v
+  [PRIVILEGED] Tools / Secrets (model never sees) / Side effects / Write paths
