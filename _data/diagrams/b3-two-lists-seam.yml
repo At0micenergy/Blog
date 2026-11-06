@@ -1,0 +1,183 @@
+title: "Two lists, one seam"
+desc: "The lab agent graded from both sides: the LLM Top 10 grades the model as a component (input, context, output), the Agentic Top 10 grades the model as an actor (tools, identity, memory, downstream effects), and the seam between them runs through the policy gate."
+width: 960
+height: 640
+nodes:
+  - id: goal
+    x: 376
+    y: 60
+    w: 208
+    h: 48
+    label: "User goal"
+    kind: entry
+  - id: orchestrator
+    x: 376
+    y: 140
+    w: 208
+    h: 58
+    label: "Orchestrator"
+    sub: "builds context"
+  - id: model
+    x: 376
+    y: 232
+    w: 208
+    h: 58
+    label: "Model"
+    sub: "answer | tool call"
+  - id: gate
+    x: 376
+    y: 324
+    w: 208
+    h: 62
+    label: "Policy gate"
+    sub: "authorize this call?"
+    kind: gate
+  - id: tool
+    x: 376
+    y: 420
+    w: 208
+    h: 56
+    label: "Tool executes"
+    sub: "app code, not the model"
+  - id: observation
+    x: 376
+    y: 510
+    w: 208
+    h: 56
+    label: "Observation"
+    sub: "result to context"
+  - id: lin
+    x: 48
+    y: 176
+    w: 224
+    h: 56
+    label: "Input"
+    sub: "injection as a text problem"
+  - id: lctx
+    x: 48
+    y: 276
+    w: 224
+    h: 56
+    label: "Context"
+    sub: "disclosure - poisoning"
+  - id: lout
+    x: 48
+    y: 376
+    w: 224
+    h: 56
+    label: "Output"
+    sub: "misinformation - leakage"
+  - id: lsum
+    x: 48
+    y: 476
+    w: 224
+    h: 56
+    label: "Model as component"
+    sub: "reads input, writes output"
+  - id: rtools
+    x: 688
+    y: 176
+    w: 224
+    h: 56
+    label: "Tools"
+    sub: "misuse - excessive agency"
+  - id: rident
+    x: 688
+    y: 256
+    w: 224
+    h: 56
+    label: "Identity"
+    sub: "privilege abuse"
+  - id: rmem
+    x: 688
+    y: 336
+    w: 224
+    h: 56
+    label: "Memory"
+    sub: "context poisoning"
+  - id: rdown
+    x: 688
+    y: 416
+    w: 224
+    h: 56
+    label: "Downstream"
+    sub: "cascading failures"
+  - id: rsum
+    x: 688
+    y: 496
+    w: 224
+    h: 56
+    label: "Model as actor"
+    sub: "acts, persists, affects"
+edges:
+  - x1: 480
+    y1: 110
+    x2: 480
+    y2: 138
+  - x1: 480
+    y1: 200
+    x2: 480
+    y2: 230
+  - x1: 480
+    y1: 292
+    x2: 480
+    y2: 322
+    label: "tool call"
+  - x1: 480
+    y1: 388
+    x2: 480
+    y2: 418
+    label: "yes"
+  - x1: 480
+    y1: 478
+    x2: 480
+    y2: 508
+  - d: "M 374 538 H 344 V 168 H 372"
+  - from: lin
+    to: model
+    label: "grades"
+  - from: lctx
+    to: model
+  - from: gate
+    to: rtools
+    label: "grades"
+  - from: tool
+    to: rdown
+  - from: observation
+    to: rmem
+bounds:
+  - x: 24
+    y: 120
+    w: 272
+    h: 470
+    label: "LLM TOP 10 2026"
+  - x: 664
+    y: 120
+    w: 272
+    h: 470
+    label: "AGENTIC TOP 10 2026"
+labels:
+  - x: 24
+    y: 100
+    text: "GRADES THE COMPONENT"
+  - x: 664
+    y: 100
+    text: "GRADES THE ACTOR"
+  - x: 318
+    y: 622
+    text: "THE SEAM RUNS THROUGH THE POLICY GATE"
+ascii: |
+  LLM TOP 10 2026 (grades the component)     AGENTIC TOP 10 2026 (grades the actor)
+
+  Input    --\
+  Context  ---+--> Model                     Tools     <-- Policy gate
+  Output   --/                               Identity
+                                             Memory    <-- Observation
+                                             Downstream <-- Tool executes
+
+  Center, the Blog 2 agent loop:
+  User goal -> Orchestrator -> Model -> Policy gate -> Tool -> Observation -> (next turn)
+
+  The seam runs through the policy gate. On one side the model is a
+  component inside an application; on the other it is an actor whose
+  calls execute. Each list grades its own side of the gate.
