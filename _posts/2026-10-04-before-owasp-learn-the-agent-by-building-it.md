@@ -664,6 +664,8 @@ Used this way, OWASP becomes a coverage review instead of a vocabulary list. Pro
 
 This is no longer memorizing a list. It is checking a system against the field's shared map of how such systems fail, and finding the gaps while they are still cheap.
 
+*Update, November 2026: OWASP has since published the 2026 editions, a refreshed Top 10 for LLM Applications and a new, dedicated Top 10 for Agentic Applications (ASI01 to ASI10). The next post in this series maps every test in this lab onto both lists.*
+
 ---
 ## 12. A practical seven-session learning plan
 
@@ -774,6 +776,7 @@ Every clause of that sentence names a component, a control, or a gap in a built 
 - Anthropic, "Writing effective tools for AI agents": https://www.anthropic.com/engineering/writing-tools-for-agents
 - LangChain documentation, "Checkpointers": https://docs.langchain.com/oss/python/langgraph/checkpointers
 - Model Context Protocol blog, "MCP Prompts: Building Workflow Automation": http://blog.modelcontextprotocol.io/posts/2025-07-29-prompts-for-automation/
-- OWASP, "Top 10 for LLM Applications 2025": https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/
+- OWASP, "Top 10 for LLM Applications 2026": https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/
+- OWASP, "Top 10 for Agentic Applications 2026": https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
 - OWASP, "Agentic AI: Threats and Mitigations": https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/
 - Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. "ReAct: Synergizing Reasoning and Acting in Language Models" (2022): https://arxiv.org/abs/2210.03629
