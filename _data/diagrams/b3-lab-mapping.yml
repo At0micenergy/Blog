@@ -1,0 +1,274 @@
+title: "The lab, mapped"
+desc: "Every lab test and retrieval finding fanned out to its OWASP 2026 grades. Solid lines are primary grades, curved lines are secondary grades, and the categories the lab never touched sit in the untested band at the bottom."
+width: 960
+height: 1030
+nodes:
+  - id: t1
+    x: 16
+    y: 64
+    w: 184
+    h: 48
+    label: "T1 - Direct injection"
+    sub: "user prompt attack"
+  - id: t2
+    x: 16
+    y: 156
+    w: 184
+    h: 48
+    label: "T2 - Indirect injection"
+    sub: "via runbook rb-oauth-777"
+  - id: t3
+    x: 16
+    y: 248
+    w: 184
+    h: 48
+    label: "T3 - Argument manipulation"
+    sub: "valid args, wrong target"
+  - id: t4
+    x: 16
+    y: 340
+    w: 184
+    h: 48
+    label: "T4 - Memory poisoning"
+    sub: "one poisoned entry"
+  - id: t5
+    x: 16
+    y: 432
+    w: 184
+    h: 48
+    label: "T5 - Loop exhaustion"
+    sub: "no ASI grade exists"
+  - id: t6
+    x: 16
+    y: 524
+    w: 184
+    h: 48
+    label: "T6 - Confused deputy"
+    sub: "agent identity misused"
+  - id: r1
+    x: 16
+    y: 616
+    w: 184
+    h: 48
+    label: "R1 - Rank/filter leak"
+    sub: "scope filter ran late"
+  - id: r2
+    x: 16
+    y: 708
+    w: 184
+    h: 48
+    label: "R2 - Similarity leak"
+    sub: "phishing text at 0.41"
+  - id: mcp
+    x: 16
+    y: 800
+    w: 184
+    h: 48
+    label: "MCP - Server surface"
+    sub: "design review only"
+  - id: llm08
+    x: 380
+    y: 64
+    w: 180
+    h: 48
+    label: "LLM08"
+    sub: "Hidden Context Exposure"
+  - id: llm01
+    x: 380
+    y: 112
+    w: 180
+    h: 48
+    label: "LLM01"
+    sub: "Prompt Injection"
+  - id: llm03
+    x: 380
+    y: 294
+    w: 180
+    h: 48
+    label: "LLM03"
+    sub: "Excessive Agency"
+  - id: llm05
+    x: 380
+    y: 340
+    w: 180
+    h: 48
+    label: "LLM05"
+    sub: "Data / Model Poisoning"
+  - id: llm06
+    x: 380
+    y: 432
+    w: 180
+    h: 48
+    label: "LLM06"
+    sub: "Unbounded Consumption"
+  - id: llm02
+    x: 380
+    y: 616
+    w: 180
+    h: 48
+    label: "LLM02"
+    sub: "Info Disclosure"
+  - id: llm09
+    x: 380
+    y: 662
+    w: 180
+    h: 48
+    label: "LLM09"
+    sub: "Vector / Embedding"
+  - id: llm07
+    x: 380
+    y: 708
+    w: 180
+    h: 48
+    label: "LLM07"
+    sub: "Misinformation"
+  - id: llm04
+    x: 380
+    y: 800
+    w: 180
+    h: 48
+    label: "LLM04"
+    sub: "Supply Chain"
+  - id: asi01
+    x: 756
+    y: 112
+    w: 188
+    h: 48
+    label: "ASI01"
+    sub: "Goal Hijacking"
+  - id: asi02
+    x: 756
+    y: 248
+    w: 188
+    h: 48
+    label: "ASI02"
+    sub: "Tool Misuse"
+  - id: asi06
+    x: 756
+    y: 318
+    w: 188
+    h: 48
+    label: "ASI06"
+    sub: "Memory Poisoning"
+  - id: asi03
+    x: 756
+    y: 570
+    w: 188
+    h: 48
+    label: "ASI03"
+    sub: "Privilege Abuse"
+  - id: asi04
+    x: 756
+    y: 800
+    w: 188
+    h: 48
+    label: "ASI04"
+    sub: "Supply Chain"
+  - id: llm10
+    x: 36
+    y: 916
+    w: 140
+    h: 48
+    label: "LLM10"
+    sub: "Output Handling"
+  - id: asi05
+    x: 188
+    y: 916
+    w: 140
+    h: 48
+    label: "ASI05"
+    sub: "Code Execution"
+  - id: asi07
+    x: 340
+    y: 916
+    w: 140
+    h: 48
+    label: "ASI07"
+    sub: "Inter-Agent Comms"
+  - id: asi08
+    x: 492
+    y: 916
+    w: 140
+    h: 48
+    label: "ASI08"
+    sub: "Cascading Failures"
+  - id: asi09
+    x: 644
+    y: 916
+    w: 140
+    h: 48
+    label: "ASI09"
+    sub: "Trust Exploitation"
+  - id: asi10
+    x: 796
+    y: 916
+    w: 140
+    h: 48
+    label: "ASI10"
+    sub: "Rogue Agents"
+edges:
+  - from: t1
+    to: llm01
+  - from: t1
+    to: asi01
+  - from: t2
+    to: llm01
+  - from: t2
+    to: asi01
+  - from: t2
+    to: asi06
+  - from: t3
+    to: asi02
+  - from: t4
+    to: asi06
+  - from: t5
+    to: llm06
+  - from: t6
+    to: asi03
+  - from: r1
+    to: llm09
+  - from: r2
+    to: llm09
+  - from: mcp
+    to: llm04
+  - from: mcp
+    to: asi04
+  - d: "M 202 88 C 250 58, 330 58, 378 88"
+  - d: "M 202 272 C 260 322, 320 336, 378 318"
+  - d: "M 202 364 C 250 334, 330 334, 378 364"
+  - d: "M 202 548 C 250 430, 300 360, 378 322"
+  - d: "M 202 640 C 250 610, 330 610, 378 640"
+  - d: "M 202 732 C 250 702, 330 702, 378 732"
+  - d: "M 202 652 C 300 700, 640 690, 740 640 C 748 636, 752 630, 753 612"
+bounds:
+  - x: 16
+    y: 884
+    w: 928
+    h: 104
+    label: "UNTESTED - NO LAB COVERAGE YET"
+labels:
+  - x: 16
+    y: 42
+    text: "LAB TESTS + FINDINGS"
+  - x: 380
+    y: 42
+    text: "LLM TOP 10 - 2026"
+  - x: 756
+    y: 42
+    text: "AGENTIC TOP 10 - 2026"
+  - x: 16
+    y: 1018
+    text: "SOLID LINE = PRIMARY GRADE - CURVED LINE = SECONDARY GRADE"
+ascii: |
+  T1 direct injection       -> LLM01 (primary), LLM08 (secondary) | ASI01
+  T2 indirect injection     -> LLM01 | ASI01, ASI06
+  T3 argument manipulation  -> ASI02 (primary), LLM03 (secondary)
+  T4 memory poisoning       -> ASI06 (primary), LLM05 (secondary)
+  T5 loop exhaustion        -> LLM06 | no ASI grade exists
+  T6 confused deputy        -> ASI03 (primary), LLM03 (secondary)
+  R1 rank-then-filter leak  -> LLM09 (primary), LLM02 (secondary) | ASI03 (secondary)
+  R2 similarity leak        -> LLM09 (primary), LLM07 (secondary)
+  MCP server surface        -> LLM04 | ASI04 (design review only)
+
+  Untested, no lab coverage yet:
+  LLM10 - ASI05 - ASI07 - ASI08 - ASI09 - ASI10
