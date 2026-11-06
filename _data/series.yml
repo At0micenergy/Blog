@@ -11,9 +11,10 @@
   url: /before-owasp-learn-the-agent-by-building-it/
   hook: "Seven hands-on lab steps that teach you the agent by building one - before the frameworks arrive."
 - part: 3
-  title: "OWASP systematization"
-  status: planned
-  hook: "Mapping what you built onto the OWASP agent threat model."
+  title: "The Coverage Check: OWASP systematization"
+  status: published
+  url: /the-coverage-check-mapping-the-lab-agent-onto-both-owasp-2026-lists/
+  hook: "Every lab test graded against both OWASP 2026 lists - and the categories the lab never reached."
 - part: 4
   title: "Defending agents in production"
   status: planned
