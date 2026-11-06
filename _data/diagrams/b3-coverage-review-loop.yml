@@ -1,0 +1,85 @@
+title: "The coverage-review loop"
+desc: "Evidence feeds a dual-list mapping, the mapping produces a gap list, each gap becomes a lab extension, and extensions produce new evidence. A new edition of either OWASP list restarts the loop."
+width: 960
+height: 600
+nodes:
+  - id: evidence
+    x: 60
+    y: 90
+    w: 300
+    h: 64
+    label: "Evidence"
+    sub: "tests - findings - design reviews"
+    kind: entry
+  - id: mapping
+    x: 600
+    y: 90
+    w: 300
+    h: 64
+    label: "Dual-list mapping"
+    sub: "LLM 2026 + ASI 2026 grades"
+  - id: gaps
+    x: 600
+    y: 330
+    w: 300
+    h: 64
+    label: "Gap list"
+    sub: "categories with no grade"
+  - id: extensions
+    x: 60
+    y: 330
+    w: 300
+    h: 64
+    label: "Lab extensions"
+    sub: "one new test per gap"
+  - id: trigger
+    x: 330
+    y: 462
+    w: 300
+    h: 56
+    label: "New edition of either list"
+    sub: "OWASP revises LLM or ASI"
+edges:
+  - x1: 364
+    y1: 122
+    x2: 596
+    y2: 122
+    label: "grade every finding"
+  - x1: 750
+    y1: 156
+    x2: 750
+    y2: 326
+    label: "which categories stay empty?"
+  - x1: 596
+    y1: 362
+    x2: 364
+    y2: 362
+    label: "one extension per gap"
+  - x1: 210
+    y1: 326
+    x2: 210
+    y2: 156
+    label: "run it, log it"
+  - d: "M 480 458 V 366"
+    kind: warn
+    label: "restarts the loop"
+    label_x: 494
+    label_y: 416
+    label_anchor: start
+labels:
+  - x: 60
+    y: 566
+    text: "THE LOOP RUNS PER EDITION - NOT PER INCIDENT"
+ascii: |
+  Evidence (tests, findings, design reviews)
+     |  grade every finding
+     v
+  Dual-list mapping (LLM 2026 + ASI 2026)
+     |  which categories stay empty?
+     v
+  Gap list
+     |  one extension per gap
+     v
+  Lab extensions -> run them -> new evidence (back to the top)
+
+  Trigger: a new edition of either OWASP list restarts the loop.
