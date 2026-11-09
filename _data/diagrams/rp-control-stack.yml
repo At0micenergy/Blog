@@ -1,0 +1,115 @@
+title: "The control set as one system"
+desc: "The six controls the incident argues for, arranged on the execution path: an authorization layer between the model's proposal and the platform's execution, holding identity and environment separation, freeze state, the destructive-action class, and human approval, with blast-radius limits on what executes and an audit log the agent cannot write."
+width: 960
+height: 640
+nodes:
+  - id: model
+    x: 40
+    y: 180
+    w: 200
+    h: 56
+    label: "Agent proposes"
+    sub: "model output = a request"
+  - id: c1
+    x: 330
+    y: 84
+    w: 270
+    h: 56
+    label: "Identity + environment"
+    sub: "no production handle"
+  - id: c3
+    x: 330
+    y: 168
+    w: 270
+    h: 56
+    label: "Freeze state"
+    sub: "checked on every mutation"
+  - id: c2
+    x: 330
+    y: 252
+    w: 270
+    h: 56
+    label: "Destructive-action class"
+    sub: "deny by default"
+  - id: c4
+    x: 330
+    y: 336
+    w: 270
+    h: 56
+    label: "Human approval"
+    sub: "system-rendered, out-of-band"
+    kind: gate
+  - id: exec
+    x: 700
+    y: 120
+    w: 220
+    h: 58
+    label: "Platform executes"
+    sub: "permitted operations only"
+  - id: devstore
+    x: 700
+    y: 252
+    w: 220
+    h: 56
+    label: "Development store"
+    sub: "the agent's working data"
+  - id: prodstore
+    x: 700
+    y: 352
+    w: 220
+    h: 56
+    label: "Production store"
+    sub: "reached by deployment"
+  - id: blast
+    x: 40
+    y: 480
+    w: 240
+    h: 56
+    label: "Blast-radius limits"
+    sub: "row caps - soft-delete - restore"
+  - id: audit
+    x: 360
+    y: 480
+    w: 270
+    h: 56
+    label: "Audit log"
+    sub: "outside the agent's context"
+edges:
+  - from: model
+    to: c3
+    label: "proposal"
+  - from: c4
+    to: exec
+    label: "permitted"
+  - from: exec
+    to: devstore
+  - from: exec
+    to: prodstore
+    label: "deployment step only"
+  - d: "M 810 310 V 452 H 635"
+bounds:
+  - x: 305
+    y: 55
+    w: 320
+    h: 365
+    label: "AUTHORIZATION LAYER"
+labels:
+  - x: 40
+    y: 600
+    text: "EVERY CONTROL SITS BETWEEN PROPOSAL AND EXECUTION"
+ascii: |
+  Agent proposes
+     |
+     v
+  AUTHORIZATION LAYER
+    1. Identity + environment: no production handle
+    2. Freeze state: checked on every mutation
+    3. Destructive-action class: deny by default
+    4. Human approval: system-rendered, out-of-band
+     |
+     v  (permitted operations only)
+  Platform executes -> Development store
+                    -> Production store (by deployment, never by the agent)
+
+  Underneath: blast-radius limits (row caps, soft-delete, tested restore)
+  and an audit log the agent cannot write.
