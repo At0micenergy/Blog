@@ -18,7 +18,8 @@
 .dg-bound-danger rect { stroke: #FF4D2E; }
 .dg-bound-warn rect { stroke: #ffb224; }
 .dg-bound-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
-  text-transform: uppercase; }
+  text-transform: uppercase; paint-order: stroke; stroke: #0E0B0B; stroke-width: 5px;
+  stroke-linejoin: round; }
 .dg-bound-danger .dg-bound-label { fill: #ff7a5c; }
 .dg-bound-warn .dg-bound-label { fill: #ffbe4d; }
 .dg-lane { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em;
