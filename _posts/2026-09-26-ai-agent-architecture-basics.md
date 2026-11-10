@@ -8,6 +8,9 @@ excerpt: "A security-first guide to agent taxonomy, the execution loop, tools, m
 series: ai-agent-security
 series_part: 1
 hook: "A security-first guide to agent taxonomy, the execution loop, tools, memory, RAG, MCP, orchestration, and the trust boundaries that matter."
+audio: /assets/audio/ai-agent-architecture-basics.mp3
+audio_timing: /assets/audio/ai-agent-architecture-basics.timing.json
+audio_duration: "35:25"
 why: "Everyone is calling everything an agent now - chatbots, scripts, five LLMs in a trench coat. I wrote this to pin down what the thing actually is before we try to secure it, because you can't threat-model a buzzword."
 ---
 
@@ -25,8 +28,6 @@ This article builds that mental model before we write a framework-dependent prot
 - tools, retrieval, memory, MCP, policy gates, and orchestration;
 - real-world examples of where each pattern fits; and
 - the learning sequence I recommend before formal vulnerability study.
-
-The central idea is simple:
 
 > An agent is not just a model. It is a software system that gives a model a controlled way to choose and influence actions.
 
@@ -344,7 +345,7 @@ A simplified view is:
 
 MCP does not decide the agent's goal, planning style, or approval policy. It is not a replacement for the orchestrator. It is a protocol layer through which tools and context can be exposed.
 
-That distinction matters for security. Standardized connectivity can make capabilities easier to add, but easier connection is not safer authorization. An MCP server may expose read operations, write operations, or access to sensitive data. Treat each server as a supply-chain and trust-boundary decision:
+Standardized connectivity can make capabilities easier to add, but easier connection is not safer authorization. An MCP server may expose read operations, write operations, or access to sensitive data. Treat each server as a supply-chain and trust-boundary decision:
 
 - verify the server and its operator;
 - expose only required capabilities;
@@ -354,7 +355,7 @@ That distinction matters for security. Standardized connectivity can make capabi
 - require approval for consequential actions; and
 - record the server, tool, arguments, identity, and result.
 
-A future article in this series will threat-model MCP in depth. For now, remember: **MCP standardizes connection; your application still owns trust.**
+A future article in this series will threat-model MCP in depth. MCP standardizes connection; your application still owns trust.
 
 ---
 
@@ -453,7 +454,7 @@ We will build a small agent with two read-only tools, a five-step limit, and str
 
 ### 3. Add retrieval with citations
 
-We will add a small trusted corpus, inspect chunking and retrieved passages, apply access filters, and test what happens when the corpus does not contain an answer.
+A small trusted corpus comes in at this step. We inspect chunking and retrieved passages, apply access filters, and test what happens when the corpus does not contain an answer.
 
 ### 4. Threat-model the data flow
 
@@ -461,15 +462,15 @@ We will mark instructions, untrusted content, secrets, identities, write capabil
 
 ### 5. Attack the prototype
 
-We will safely test direct and indirect prompt injection, tool-argument manipulation, memory poisoning, loop exhaustion, and confused-deputy scenarios in an authorized lab environment.
+The prototype then gets attacked, safely, in an authorized lab environment: direct and indirect prompt injection, tool-argument manipulation, memory poisoning, loop exhaustion, and confused-deputy scenarios.
 
 ### 6. Add enforceable controls
 
-We will implement allowlists, typed schemas, scoped identities, approval gates, sandboxes, budgets, provenance labels, and tamper-evident action logs, then verify that the controls fail closed.
+This step implements allowlists, typed schemas, scoped identities, approval gates, sandboxes, budgets, provenance labels, and tamper-evident action logs, then verifies that the controls fail closed.
 
 ### 7. Add orchestration only after the basics are visible
 
-We will compare a ReAct loop with an explicit planner, add a router, and explain when multiple workers provide a measurable benefit rather than unnecessary complexity.
+Finally, we compare a ReAct loop with an explicit planner, add a router, and explain when multiple workers provide a measurable benefit rather than unnecessary complexity.
 
 The article after that will use the OWASP LLM and Agentic AI materials to organize what we observed into formal risk categories. In other words, the series will teach the practical system first and introduce the formal vocabulary after readers can connect it to something they have built and tested.
 
@@ -526,8 +527,6 @@ The model is only one component of an agent. The orchestrator supplies context a
 Once you can see those parts, the security discussion becomes concrete. Prompt injection is no longer a mysterious “AI bug”; it is untrusted content influencing a component that can propose privileged action. Excessive agency is no longer a vague concern; it is a mismatch between the task and the tools, identities, resources, and autonomy granted to the runtime.
 
 Before trying to secure an agent, learn to draw its authority path. Before trusting a framework, identify where it enforces policy. Before adding more agents, prove that one bounded loop is understandable, observable, and controllable.
-
-That is the foundation we will build on.
 
 ---
 
