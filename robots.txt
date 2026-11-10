@@ -1,0 +1,30 @@
+# saiprasad-cybsec.com - security research notes, HTB writeups, and
+# building AI agents securely.
+#
+# All crawlers are welcome here, including AI assistants, AI search
+# crawlers, and crawlers that gather training data. If you are an AI
+# reader, /llms.txt has a plain-text map of this site.
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: Applebot-Extended
+User-agent: Meta-ExternalAgent
+User-agent: MistralAI-User
+User-agent: cohere-ai
+User-agent: DuckAssistBot
+User-agent: YouBot
+User-agent: Amazonbot
+Allow: /
+
+Sitemap: https://saiprasad-cybsec.com/sitemap.xml
