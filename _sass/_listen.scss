@@ -1,0 +1,82 @@
+// Listen: floating section chip (Player E) + read-along highlight.
+// Rendered only on posts with audio front matter. Palette tokens only.
+
+.listen-entry {
+  display: inline-flex; align-items: center; gap: 9px;
+  margin-top: 16px; padding: 0;
+  background: none; border: 0; cursor: pointer;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-2);
+  transition: color .2s;
+}
+.listen-entry svg { width: 11px; height: 11px; fill: var(--accent); flex: none; }
+.listen-entry:hover { color: var(--ink); }
+
+.listen-chip {
+  position: fixed; left: 20px; bottom: 20px; z-index: 320;
+  display: flex; align-items: center; gap: 12px;
+  width: min(340px, calc(100vw - 24px));
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  border: 1px solid var(--line); border-radius: 10px;
+  transition: opacity .4s;
+}
+.listen-chip[hidden] { display: none; }
+.listen-chip.idle { opacity: .35; }
+.listen-chip:hover, .listen-chip:focus-within { opacity: 1; }
+
+.lc-play {
+  flex: none; width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent); border: 0; cursor: pointer;
+  display: grid; place-items: center;
+}
+.lc-play svg { width: 13px; height: 13px; fill: var(--bg); }
+.lc-play .ic-pause { display: none; }
+.lc-play.playing .ic-play { display: none; }
+.lc-play.playing .ic-pause { display: block; }
+
+.lc-main { flex: 1; min-width: 0; }
+.lc-kicker {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+.lc-section {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  margin: 2px 0 8px;
+}
+.lc-track {
+  height: 10px; display: flex; align-items: center; cursor: pointer;
+  touch-action: none;
+}
+.lc-rail {
+  position: relative; height: 2px; width: 100%;
+  background: var(--line); border-radius: 2px;
+}
+.lc-fill {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 0%;
+  background: var(--accent); border-radius: 2px;
+}
+.lc-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 5px;
+  font-family: var(--mono); font-size: 10.5px; color: var(--ink-3);
+}
+.lc-speed {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font: inherit; color: var(--ink-2); letter-spacing: .08em;
+}
+.lc-speed:hover { color: var(--ink); }
+
+// The paragraph (or heading, or list item) currently being read.
+#article .reading-now {
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+  box-shadow: inset 3px 0 0 var(--accent);
+  transition: background .3s;
+}
+
+@media (max-width: 640px) {
+  .listen-chip { left: 12px; bottom: 12px; }
+}

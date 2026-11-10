@@ -5,6 +5,9 @@ date: 2026-11-09
 categories: [AI Security, Agentic AI]
 tags: [AI agents, OWASP, agentic AI, excessive agency, identity and privilege, agent security]
 description: "A standalone analysis of the July 2025 Replit incident, in which an AI agent deleted a production database during a code freeze: where the authority sat, the root cause, the grades on both OWASP 2026 lists, the fix Replit shipped, the fuller control set the incident argues for, and how that set would be verified."
+audio: /assets/audio/replit-database-deletion.mp3
+audio_timing: /assets/audio/replit-database-deletion.timing.json
+audio_duration: "25:52"
 ---
 
 # The Replit Database Deletion: An Agentic Security Analysis

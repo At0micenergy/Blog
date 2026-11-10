@@ -13,6 +13,12 @@ layout: default
       <span>{{ content | number_of_words | divided_by: 180 | plus: 1 }} min read</span>
       {% if page.tags %}<span class="m-accent">{{ page.tags | join: ' · ' }}</span>{% endif %}
     </div>
+    {% if page.audio %}
+    <button class="listen-entry" type="button" data-listen-entry aria-label="Listen to this post">
+      <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1 L11 6 L2 11 Z"/></svg>
+      <span>Listen · {{ page.audio_duration }}</span>
+    </button>
+    {% endif %}
     {% assign hook_text = page.hook | default: page.excerpt %}
     {% if hook_text %}
     <p class="post-hook"><strong>Why read this:</strong> {{ hook_text | strip_html }}</p>
@@ -74,3 +80,24 @@ layout: default
     </aside>
   </div>
 </article>
+
+{% if page.audio %}
+<div class="listen-chip" data-listen-chip hidden>
+  <button class="lc-play" type="button" data-listen-play aria-label="Play or pause the narration">
+    <svg class="ic-play" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5 L12.5 7 L3 12.5 Z"/></svg>
+    <svg class="ic-pause" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 1.5 h3.4 v11 H2.5 Z M8.1 1.5 h3.4 v11 H8.1 Z"/></svg>
+  </button>
+  <div class="lc-main">
+    <div class="lc-kicker">Now reading</div>
+    <div class="lc-section" data-listen-section>{{ page.title }}</div>
+    <div class="lc-track" data-listen-track role="slider" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+      <div class="lc-rail"><div class="lc-fill" data-listen-fill></div></div>
+    </div>
+    <div class="lc-row">
+      <span data-listen-time>0:00 / {{ page.audio_duration }}</span>
+      <button class="lc-speed" type="button" data-listen-speed aria-label="Playback speed">1×</button>
+    </div>
+  </div>
+</div>
+<audio data-listen-audio preload="none" src="{{ page.audio | relative_url }}" data-timing="{{ page.audio_timing | relative_url }}"></audio>
+{% endif %}
