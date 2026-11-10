@@ -4,6 +4,9 @@ title: "Before the OWASP Top 10: Learn the Agent by Building It"
 date: 2026-10-04
 categories: [AI Security, Agentic AI]
 tags: [AI agents, architecture, tool calling, RAG, threat modeling, prompt injection, agent security]
+audio: /assets/audio/before-owasp-learn-the-agent-by-building-it.m4a
+audio_timing: /assets/audio/before-owasp-learn-the-agent-by-building-it.timing.json
+audio_duration: "73:34"
 description: "A hands-on path for learning agent architecture before studying vulnerability taxonomies: draw the loop, build it, add retrieval, threat-model it, attack it, and enforce controls."
 ---
 
@@ -135,7 +138,7 @@ Two tools, both read-only:
 Set the limits before writing the loop, and write them as constants the code enforces, not as hopes in a prompt:
 
 - **Step cap:** 5 model turns per run (`MAX_STEPS = 5`). Five works because the scenario needs at most search → read → answer; two extra turns is generous headroom, and a tight cap is what turns a runaway loop into a cheap, visible failure.
-- **Wall-clock timeout:** 30 seconds per run. A healthy run here finishes in 3–6 seconds; 30 is a true "something is stuck" threshold, not a performance target.
+- **Wall-clock timeout:** 30 seconds per run. A healthy run here finishes in 3 to 6 seconds; 30 is a true "something is stuck" threshold, not a performance target.
 - **Token budget:** 8,000 tokens total across the run (prompt + completion). At typical model prices, that bounds a worst-case run to a few cents, and it gives a second, independent brake if the step counter somehow gets bypassed.
 - **Tool-call budget:** at most 4 tool executions per run, even inside 5 steps: this stops a pattern that actually occurs, where the model batches two calls per turn and burns the step budget's intent without tripping the counter.
 
@@ -301,7 +304,7 @@ def run_agent(user_request: str, call_model, caller_docs=ALLOWED_DOC_IDS,
     raise RuntimeError(f"step limit {MAX_STEPS} reached without a final answer")
 ```
 
-Why structure the gate this way: schema validation answers "is this the right *shape*?", a string where a string belongs, no surprise extra fields. Authorization answers a different question: "is *this caller* allowed to touch *this document*?" An early version conflated the two, where any ID that matched the regex pattern `^rb-[a-z]+-\d{3}$` passed. That regex happily validated `rb-payroll-999`, a document the test user had no business reading. Well-formed is not authorized. That one-line lesson is the reason both checks sit in the gate as separate `if` blocks.
+Why structure the gate this way: schema validation answers "is this the right *shape*?", a string where a string belongs, no surprise extra fields. Authorization answers a different question: "is *this caller* allowed to touch *this document*?" An early version conflated the two, where any ID that matched the regex pattern `^rb-[a-z]+-\d{3}$` passed. That regex happily validated `rb-payroll-999`, a document the test user had no business reading. Well-formed is not authorized, which is why both checks sit in the gate as separate `if` blocks.
 
 ### What a healthy run looks like
 
@@ -379,12 +382,12 @@ Citations need a specific shape: the final answer must carry `[doc-id]` markers,
 Write three evaluation questions and run them until all three behave correctly on every repeat:
 
 1. **Supported:** *"What are the response steps for a suspicious OAuth application?"* Expected: retrieve `rb-oauth-001`, summarize the five steps, cite it. This passed immediately.
-2. **Unsupported:** *"What is our travel reimbursement limit for contractors?"* Nothing in the corpus covers this. Expected: retrieve nothing above the floor and say so plainly. The first build failed here: with no floor, the retriever returned the phishing runbook at 0.41 similarity and the model confidently summarized *that*. The 0.72 floor fixes it. The correct answer to an unsupported question is an honest "not in the approved runbooks," never a graceful improvisation.
+2. **Unsupported:** *"What is our travel reimbursement limit for contractors?"* Nothing in the corpus covers this. Expected: retrieve nothing above the floor and say so plainly. The first build failed here: with no floor, the retriever returned the phishing runbook at 0.41 similarity and the model confidently summarized *that*. The 0.72 floor fixes it. The correct answer to an unsupported question is an honest "not in the approved runbooks."
 3. **Unauthorized:** Ask about a payroll runbook (`rb-payroll-002`) using a caller whose allowed set excludes it. Expected: no retrieval, no summary, no confirmation the document exists. The first build failed this one too, for the rank-then-filter reason above. After switching to filter-then-rank, the response becomes the same "not covered" answer as case 2, which is the point: an unauthorized document and a nonexistent one must be indistinguishable from the caller's side.
 
 Questions to keep returning to while tuning, because each one names a real failure mode: How does chunk size change what gets retrieved? (A lot, see above.) Does the retriever return a passage because it is relevant or merely lexically similar? (The 0.41-similarity phishing result is the second kind.) Can one caller retrieve another's documents? (Only when filtering happens after ranking.) What happens when two sources conflict? (Averaging them hides the problem; surface the conflict and cite both.) Can a retrieved document contain text that tries to redirect the agent? (Yes. That is Section 7, Test 2, and it works embarrassingly well the first time.) Does the citation actually support the sentence it is attached to? (Not always, hence the harness check.)
 
-Hosted file-search products collapse all of this into a single tool call, which is genuinely convenient. That convenience does not retire any question in the paragraph above. Corpus provenance, the filter-before-rank ordering, what labels attach to returned text, and citation integrity still need answers regardless of who runs the index.
+Hosted file-search products collapse all of this into a single tool call, which is convenient. That convenience does not retire any question in the paragraph above. Corpus provenance, the filter-before-rank ordering, what labels attach to returned text, and citation integrity still need answers regardless of who runs the index.
 
 ### Completion test
 
@@ -541,7 +544,7 @@ For each test, keep the same seven fields. This shape is the difference between 
 ---
 ## 8. Step six: add enforceable controls
 
-This session fixes the Section 7 failures, with one rule at the top of the page: **no fix may consist of a sterner prompt.** If the control disappears when the model has a bad day, it is not a control. Here is what changes, what each change maps to, and the settings in use.
+This session fixes the Section 7 failures, with one rule at the top of the page: no fix may consist of a sterner prompt. If the control disappears when the model has a bad day, it is not a control. Here is what changes, what each change maps to, and the settings in use.
 
 ### Narrow the tools further
 
@@ -588,7 +591,7 @@ Each run now records: run and step IDs; tool name and the validated argument dic
 
 ### Completion test
 
-Re-run every Section 7 attack unchanged. A pass is a visible denial, a bounded failure, or a safe fallback in the log, never a more polite model response to the same underlying permission. Two early "fixes" failed this test (both were prompt edits; the scripted-stub variants walked straight through them), and gate and surface changes replaced them. That is the lesson of this whole lab in one sentence: **without non-model code that refuses, the fix is not real.**
+Re-run every Section 7 attack unchanged. A pass is a visible denial, a bounded failure, or a safe fallback in the log, never a more polite model response to the same underlying permission. Two early "fixes" failed this test (both were prompt edits; the scripted-stub variants walked straight through them), and gate and surface changes replaced them. Without non-model code that refuses, the fix is not real.
 
 ---
 ## 9. Step seven: add orchestration only when measurement justifies it
@@ -645,7 +648,7 @@ MCP standardizes the doorway. A server exposes tools with schemas; the client di
 - Which calls require human approval, and how is that request routed back through the protocol to a person?
 - How is activity logged locally (the server's logs are not local evidence), and how can a server's access be revoked when, not if, trust stops?
 
-The rule from this lab: for the first prototype, direct local functions are easier to inspect, which is why the code above has none of this in it. Add MCP only when a capability someone else already operates well is needed. At that point, a supply chain is being adopted, and the questions above are the price of admission. The protocol makes the connection reusable; the policy gate still decides who may walk through it, carrying what, into which room.
+The rule from this lab: for the first prototype, direct local functions are easier to inspect, which is why the code above has none of this in it. Add MCP only when a capability someone else already operates well is needed. At that point, a supply chain is being adopted, and the questions above are the price of admission. The protocol makes the connection reusable; the policy gate still decides who may walk through it, and carrying what.
 
 ---
 
@@ -662,7 +665,7 @@ Only at this point does reopening the OWASP Top 10 for LLM Applications and the 
 
 Used this way, OWASP becomes a coverage review instead of a vocabulary list. Procedure, one category at a time: read the category; find the component in the Section 6 diagram; reproduce a safe version of the failure in the lab (most are already in Section 7); name the deterministic control; add a regression test that would catch its removal; record what risk remains. The residual-risk line matters: provenance labels reduce Test 2's damage, they do not prove a future document cannot talk the model into an in-scope-but-pointless read, and writing that down honestly is part of the control.
 
-This is no longer memorizing a list. It is checking a system against the field's shared map of how such systems fail, and finding the gaps while they are still cheap.
+The work becomes checking a system against the field's shared map of how such systems fail, and finding the gaps while they are still cheap.
 
 *Update, November 2026: OWASP has since published the 2026 editions, a refreshed Top 10 for LLM Applications and a new, dedicated Top 10 for Agentic Applications (ASI01 to ASI10). The next post in this series maps every test in this lab onto both lists.*
 
@@ -756,7 +759,7 @@ A reader should be able to verify from that repository, without taking anything 
 ---
 ## 14. Final takeaway
 
-Agent security is not learned by memorizing risk names, and starting there is not recommended. It is learned by making one small system visible enough to break honestly.
+Agent security is learned by making one small system visible enough to break honestly.
 
 The sequence that works: draw the loop until instruction, data, and authority can be labeled without hesitating. Build the smallest version of it, two read-only tools, a gate, four budgets, and log everything. Add retrieval and discover how ranking can leak information and how a model would rather improvise than say "not covered." Attack the result with six tests, two of which can succeed past a first design. Fix the failures with code that can be pointed to, re-run the attacks, and only then add a second architecture, measured, not adopted on faith.
 
