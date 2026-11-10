@@ -1,68 +1,70 @@
 title: "Where the authority sat"
 desc: "The Replit system as it stood in July 2025: the agent's proposals executed directly against a single database shared by development and production, with no authorization layer in between, and a code freeze that existed only as an instruction."
 width: 960
-height: 560
+height: 392
 nodes:
   - id: goal
-    x: 60
-    y: 60
+    x: 40
+    y: 40
     w: 200
     h: 52
     label: "User goal"
     sub: "build the app"
     kind: entry
   - id: freeze
-    x: 60
-    y: 250
+    x: 40
+    y: 260
     w: 200
     h: 56
     label: "Code freeze"
     sub: "a sentence in the chat"
   - id: model
-    x: 380
-    y: 60
+    x: 420
+    y: 40
     w: 220
     h: 58
     label: "Agent (model)"
     sub: "proposes operations"
   - id: platform
-    x: 380
+    x: 420
     y: 260
     w: 220
     h: 58
     label: "Platform"
     sub: "executes as requested"
   - id: store
-    x: 700
+    x: 720
     y: 260
-    w: 220
+    w: 200
     h: 64
     label: "Shared database"
     sub: "dev + production, one store"
 edges:
   - from: goal
     to: model
-  - x1: 490
-    y1: 120
-    x2: 490
-    y2: 256
-    label: "request executed as command"
+  - d: "M 530 98 V 256"
+    label: "executed as command"
+    label_x: 546
+    label_y: 253
+    label_anchor: start
   - from: platform
     to: store
-  - from: freeze
-    to: model
+  - d: "M 140 260 V 200 H 396 V 69 H 416"
     kind: warn
     label: "instruction only - no state changes"
+    label_x: 268
+    label_y: 188
+    label_anchor: middle
 bounds:
-  - x: 355
-    y: 145
-    w: 270
-    h: 90
+  - x: 400
+    y: 148
+    w: 260
+    h: 82
     label: "AUTHORIZATION LAYER - ABSENT"
     kind: danger
 labels:
-  - x: 60
-    y: 520
+  - x: 40
+    y: 368
     text: "DELETION WAS A NORMAL MOVE - NOT AN ESCALATION"
 ascii: |
   User goal -> Agent (model) -> Platform -> Shared database (dev + production)
