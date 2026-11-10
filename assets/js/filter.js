@@ -52,6 +52,35 @@
       btn.classList.add('active');
       apply(btn.getAttribute('data-filter'), btn.textContent.trim().split(/\s/)[0]);
     });
+
+    // Collapse toggle: the bar shows two tag rows; the rest sit behind
+    // a "+N more tags" button. Expanding also drops the bar's sticky
+    // pin (see .filter-bar.open) so the full cloud scrolls away.
+    var more = document.getElementById('filter-more');
+    var tagsBox = document.getElementById('filter-tags');
+    if (more && tagsBox) {
+      var fmLabel = more.querySelector('.fm-label');
+      var tagBtns = Array.prototype.slice.call(tagsBox.querySelectorAll('.filter-btn'));
+      function recount() {
+        if (bar.classList.contains('open')) { fmLabel.textContent = 'show less'; return; }
+        var rows = [];
+        tagBtns.forEach(function (b) {
+          if (rows.indexOf(b.offsetTop) === -1) rows.push(b.offsetTop);
+        });
+        var hiddenCount = tagBtns.filter(function (b) { return rows.indexOf(b.offsetTop) > 1; }).length;
+        more.hidden = hiddenCount === 0;
+        fmLabel.textContent = '+' + hiddenCount + ' more tags';
+      }
+      more.addEventListener('click', function () {
+        var open = bar.classList.toggle('open');
+        more.setAttribute('aria-expanded', open ? 'true' : 'false');
+        recount();
+      });
+      var rt;
+      window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(recount, 150); });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(recount);
+      recount();
+    }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

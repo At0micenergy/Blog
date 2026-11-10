@@ -8,10 +8,15 @@ layout: default
 </header>
 <div class="wrap" style="padding-bottom: var(--section-gap);">
   <div class="filter-bar" id="filter-bar" role="group" aria-label="Filter posts by tag">
-    <button class="filter-btn active" data-filter="all" type="button">all <span class="count">{{ site.posts | size }}</span></button>
-    {% for t in site.tags %}
-    <button class="filter-btn" data-filter="{{ t[0] | slugify }}" type="button">{{ t[0] }} <span class="count">{{ t[1] | size }}</span></button>
-    {% endfor %}
+    <div class="filter-tags" id="filter-tags">
+      <button class="filter-btn active" data-filter="all" type="button">all <span class="count">{{ site.posts | size }}</span></button>
+      {% for t in site.tags %}
+      <button class="filter-btn" data-filter="{{ t[0] | slugify }}" type="button">{{ t[0] }} <span class="count">{{ t[1] | size }}</span></button>
+      {% endfor %}
+    </div>
+    <button class="filter-more" id="filter-more" type="button" aria-expanded="false" hidden>
+      <span class="fm-label"></span><span class="fm-arrow" aria-hidden="true">↓</span>
+    </button>
   </div>
   <div class="posts-grid" id="posts-grid">
     {% for post in site.posts %}{% include post-card.html %}{% endfor %}
