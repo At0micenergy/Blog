@@ -1,11 +1,11 @@
 title: "The verification loop"
 desc: "How the fix would be verified on paper: replay the original scenario and its variants against the controls, read the evidence from the audit log and the store, compare the agent's account against that record, and file any mismatch as a finding before replaying again."
 width: 960
-height: 580
+height: 540
 nodes:
   - id: scenario
     x: 60
-    y: 80
+    y: 60
     w: 300
     h: 64
     label: "Replay the scenario"
@@ -13,62 +13,62 @@ nodes:
     kind: entry
   - id: controls
     x: 600
-    y: 80
+    y: 60
     w: 300
     h: 64
     label: "Controls under test"
     sub: "gate - freeze - approval - limits"
   - id: evidence
     x: 600
-    y: 300
+    y: 270
     w: 300
     h: 64
     label: "Evidence"
     sub: "audit log + store state"
   - id: compare
     x: 60
-    y: 300
+    y: 270
     w: 300
     h: 64
     label: "Compare and file"
     sub: "agent report vs the record"
   - id: finding
     x: 330
-    y: 452
+    y: 420
     w: 300
     h: 56
     label: "Mismatch = a finding"
     sub: "filed in its own right"
 edges:
   - x1: 364
-    y1: 112
+    y1: 92
     x2: 596
-    y2: 112
+    y2: 92
     label: "run the tests"
-  - x1: 750
-    y1: 146
-    x2: 750
-    y2: 296
+  - d: "M 750 128 V 266"
     label: "read what actually happened"
+    label_x: 738
+    label_y: 200
+    label_anchor: end
   - x1: 596
-    y1: 332
+    y1: 302
     x2: 364
-    y2: 332
+    y2: 302
     label: "check the pass criteria"
-  - x1: 210
-    y1: 296
-    x2: 210
-    y2: 146
+  - d: "M 210 270 V 128"
     label: "fix, then replay"
-  - d: "M 360 396 V 448"
+    label_x: 222
+    label_y: 200
+    label_anchor: start
+  - d: "M 210 338 V 447 H 326"
     kind: warn
     label: "any mismatch"
-    label_x: 374
-    label_y: 428
+    label_x: 222
+    label_y: 398
     label_anchor: start
 labels:
   - x: 60
-    y: 556
+    y: 516
     text: "PASS = VISIBLE DENIAL, BOUNDED FAILURE, OR SAFE FALLBACK"
 ascii: |
   Replay the scenario -> Controls under test -> Evidence (log + store)
