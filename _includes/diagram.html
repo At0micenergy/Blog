@@ -52,7 +52,7 @@
 {%- assign mx = x1 | plus: x2 | divided_by: 2 -%}{%- assign my = y1 | plus: y2 | divided_by: 2 | minus: 8 -%}{%- endif -%}
 <line class="dg-edge dg-edge-{{ ekind }}" x1="{{ x1 }}" y1="{{ y1 }}" x2="{{ x2 }}" y2="{{ y2 }}" marker-end="url(#{{ arr }})"/>
 {%- if e.label -%}
-<text class="dg-edge-label" x="{{ mx }}" y="{{ my }}">{{ e.label }}</text>
+<text class="dg-edge-label" x="{{ mx }}" y="{{ my }}" text-anchor="middle">{{ e.label }}</text>
 {%- endif -%}
 {%- endif -%}
 {%- endfor -%}
