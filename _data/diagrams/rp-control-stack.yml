@@ -1,11 +1,11 @@
 title: "The control set as one system"
 desc: "The six controls the incident argues for, arranged on the execution path: an authorization layer between the model's proposal and the platform's execution, holding identity and environment separation, freeze state, the destructive-action class, and human approval, with blast-radius limits on what executes and an audit log the agent cannot write."
 width: 960
-height: 640
+height: 600
 nodes:
   - id: model
     x: 40
-    y: 180
+    y: 230
     w: 200
     h: 56
     label: "Agent proposes"
@@ -41,52 +41,65 @@ nodes:
     kind: gate
   - id: exec
     x: 700
-    y: 120
+    y: 110
     w: 220
     h: 58
     label: "Platform executes"
     sub: "permitted operations only"
   - id: devstore
     x: 700
-    y: 252
+    y: 228
     w: 220
     h: 56
     label: "Development store"
     sub: "the agent's working data"
   - id: prodstore
     x: 700
-    y: 352
+    y: 344
     w: 220
     h: 56
     label: "Production store"
     sub: "reached by deployment"
   - id: blast
     x: 40
-    y: 480
+    y: 470
     w: 240
     h: 56
     label: "Blast-radius limits"
     sub: "row caps - soft-delete - restore"
   - id: audit
     x: 360
-    y: 480
+    y: 470
     w: 270
     h: 56
     label: "Audit log"
     sub: "outside the agent's context"
 edges:
-  - from: model
-    to: c3
+  - d: "M 240 258 H 296 V 196 H 326"
     label: "proposal"
-  - from: c4
-    to: exec
+    label_x: 278
+    label_y: 182
+    label_anchor: middle
+  - d: "M 600 280 H 648 V 139 H 696"
     label: "permitted"
-  - from: exec
-    to: devstore
-  - from: exec
-    to: prodstore
+    label_x: 655
+    label_y: 302
+    label_anchor: middle
+  - x1: 810
+    y1: 168
+    x2: 810
+    y2: 224
+  - x1: 810
+    y1: 284
+    x2: 810
+    y2: 340
     label: "deployment step only"
-  - d: "M 810 310 V 452 H 635"
+  - d: "M 810 400 V 498 H 634"
+  - d: "M 465 420 V 466"
+  - x1: 360
+    y1: 498
+    x2: 284
+    y2: 498
 bounds:
   - x: 305
     y: 55
@@ -95,7 +108,7 @@ bounds:
     label: "AUTHORIZATION LAYER"
 labels:
   - x: 40
-    y: 600
+    y: 572
     text: "EVERY CONTROL SITS BETWEEN PROPOSAL AND EXECUTION"
 ascii: |
   Agent proposes
