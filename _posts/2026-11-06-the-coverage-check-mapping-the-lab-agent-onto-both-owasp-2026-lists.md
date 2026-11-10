@@ -316,14 +316,14 @@ The next post takes the hint the gap analysis keeps giving. Defending agents in 
 
 ## References
 
-- OWASP GenAI Security Project, "Top 10 for LLM Applications 2026" (resource page): https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/
-- OWASP GenAI Security Project, "Top 10 for LLM Applications 2026" (full text, project repository, including the LLM00 Preface, LLM03 Excessive Agency, and LLM08 Hidden Context Exposure): https://github.com/GenAI-Security-Project/GenAI-LLM-Top10/tree/main/2026/final
-- OWASP GenAI Security Project, "Top 10 for Agentic Applications 2026": https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
-- OWASP GenAI Security Project, "Agentic AI: Threats and Mitigations" (v1.1): https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/
-- OWASP GenAI Security Project, "Securing Agentic Applications Guide 1.0" (July 2025), and "Multi-Agentic System Threat Modeling Guide v1.0" (April 2025): https://genai.owasp.org/
-- Microsoft Security Response Center, "CVE-2025-32711" (EchoLeak): https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-32711
-- Aim Security, EchoLeak disclosure research (2025): https://www.aim.security/
-- Fortune, "AI coding tool Replit wiped database" (July 23, 2025): https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/
-- MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems): https://atlas.mitre.org/
-- Cloud Security Alliance, "Agentic AI Threat Modeling Framework: MAESTRO" (February 2025): https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro
-- Simon Willison, "The lethal trifecta for AI agents" (June 2025): https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/
+- OWASP GenAI Security Project, "Top 10 for LLM Applications 2026" (resource page): [https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/)
+- OWASP GenAI Security Project, "Top 10 for LLM Applications 2026" (full text, project repository, including the LLM00 Preface, LLM03 Excessive Agency, and LLM08 Hidden Context Exposure): [https://github.com/GenAI-Security-Project/GenAI-LLM-Top10/tree/main/2026/final](https://github.com/GenAI-Security-Project/GenAI-LLM-Top10/tree/main/2026/final)
+- OWASP GenAI Security Project, "Top 10 for Agentic Applications 2026": [https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/)
+- OWASP GenAI Security Project, "Agentic AI: Threats and Mitigations" (v1.1): [https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/](https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/)
+- OWASP GenAI Security Project, "Securing Agentic Applications Guide 1.0" (July 2025), and "Multi-Agentic System Threat Modeling Guide v1.0" (April 2025): [https://genai.owasp.org/](https://genai.owasp.org/)
+- Microsoft Security Response Center, "CVE-2025-32711" (EchoLeak): [https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-32711](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-32711)
+- Aim Security, EchoLeak disclosure research (2025): [https://www.aim.security/](https://www.aim.security/)
+- Fortune, "AI coding tool Replit wiped database" (July 23, 2025): [https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/](https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/)
+- MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems): [https://atlas.mitre.org/](https://atlas.mitre.org/)
+- Cloud Security Alliance, "Agentic AI Threat Modeling Framework: MAESTRO" (February 2025): [https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro](https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro)
+- Simon Willison, "The lethal trifecta for AI agents" (June 2025): [https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)
