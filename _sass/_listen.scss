@@ -71,9 +71,14 @@
 .lc-speed:hover { color: var(--ink); }
 
 // The paragraph (or heading, or list item) currently being read.
+// The tint and bar extend 14px into the left gutter (negative margin)
+// and the text gains the same 14px as padding, so the bar never touches
+// the first letters and the text itself does not move or reflow.
 #article .reading-now {
   background: color-mix(in srgb, var(--ink) 5%, transparent);
   box-shadow: inset 3px 0 0 var(--accent);
+  padding-left: 14px;
+  margin-left: -14px;
   transition: background .3s;
 }
 
