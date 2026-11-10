@@ -4,6 +4,9 @@ title: "The Coverage Check: Mapping the Lab Agent onto Both OWASP 2026 Lists"
 date: 2026-11-06
 categories: [AI Security, Agentic AI]
 tags: [AI agents, OWASP, LLM security, agentic AI, threat modeling, prompt injection, agent security]
+audio: /assets/audio/the-coverage-check-mapping-the-lab-agent-onto-both-owasp-2026-lists.m4a
+audio_timing: /assets/audio/the-coverage-check-mapping-the-lab-agent-onto-both-owasp-2026-lists.timing.json
+audio_duration: "73:33"
 description: "The systematization pass for the runbook agent built in the previous post: every lab test mapped onto the OWASP Top 10 for LLM Applications 2026 and the OWASP Top 10 for Agentic Applications 2026, the categories the lab never reached, and a coverage-review method that works on any agent."
 ---
 
@@ -204,7 +207,7 @@ Section 10 of Blog 2 never connected an MCP server. It asked six admission quest
 
 ## 4. What the lab never touched: the gap analysis
 
-A coverage review earns its name in this section. The mappings above grade what the lab did. The list below grades what it did not, category by category, with the reason each gap exists and the smallest lab extension that would close it. Read the reasons carefully: most gaps are not oversights. They are the shadow of deliberate scope decisions (one agent, local only, read-only, synthetic corpus), and naming the decision that created each gap is what turns this from a confession into a plan.
+A coverage review earns its name in this section. The mappings above grade what the lab did. The list below grades what it did not, category by category, with the reason each gap exists and the smallest lab extension that would close it. Read the reasons carefully: most gaps are the shadow of deliberate scope decisions (one agent, local only, read-only, synthetic corpus), and naming the decision that created each gap is what turns this from a confession into a plan.
 
 ### ASI05, Unexpected Code Execution: no code exists to execute
 
