@@ -772,11 +772,11 @@ Every clause of that sentence names a component, a control, or a gap in a built 
 
 ## References
 
-- Anthropic, "Building effective agents": https://www.anthropic.com/engineering/building-effective-agents
-- Anthropic, "Writing effective tools for AI agents": https://www.anthropic.com/engineering/writing-tools-for-agents
-- LangChain documentation, "Checkpointers": https://docs.langchain.com/oss/python/langgraph/checkpointers
-- Model Context Protocol blog, "MCP Prompts: Building Workflow Automation": http://blog.modelcontextprotocol.io/posts/2025-07-29-prompts-for-automation/
-- OWASP, "Top 10 for LLM Applications 2026": https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/
-- OWASP, "Top 10 for Agentic Applications 2026": https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
-- OWASP, "Agentic AI: Threats and Mitigations": https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/
-- Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. "ReAct: Synergizing Reasoning and Acting in Language Models" (2022): https://arxiv.org/abs/2210.03629
+- Anthropic, "Building effective agents": [https://www.anthropic.com/engineering/building-effective-agents](https://www.anthropic.com/engineering/building-effective-agents)
+- Anthropic, "Writing effective tools for AI agents": [https://www.anthropic.com/engineering/writing-tools-for-agents](https://www.anthropic.com/engineering/writing-tools-for-agents)
+- LangChain documentation, "Checkpointers": [https://docs.langchain.com/oss/python/langgraph/checkpointers](https://docs.langchain.com/oss/python/langgraph/checkpointers)
+- Model Context Protocol blog, "MCP Prompts: Building Workflow Automation": [http://blog.modelcontextprotocol.io/posts/2025-07-29-prompts-for-automation/](http://blog.modelcontextprotocol.io/posts/2025-07-29-prompts-for-automation/)
+- OWASP, "Top 10 for LLM Applications 2026": [https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/)
+- OWASP, "Top 10 for Agentic Applications 2026": [https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/)
+- OWASP, "Agentic AI: Threats and Mitigations": [https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/](https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/)
+- Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. "ReAct: Synergizing Reasoning and Acting in Language Models" (2022): [https://arxiv.org/abs/2210.03629](https://arxiv.org/abs/2210.03629)
