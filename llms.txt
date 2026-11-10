@@ -1,0 +1,24 @@
+# At0micenergy - saiprasad-cybsec.com
+
+> Security research notes by At0micenergy: hands-on cybersecurity writeups and a current focus on AI agent security - how agents are built, how they fail in the real world, and the controls that stop them. Posts are written to be self-contained references, with diagrams paired with plain-text versions.
+
+## AI agent security series
+
+- [AI Agent Architecture Basics](https://saiprasad-cybsec.com/ai-agent-architecture-basics/): The parts of an AI agent - model, memory, tools, planning loop - and where the attack surface sits in each one.
+- [Before OWASP: Learn the Agent by Building It](https://saiprasad-cybsec.com/before-owasp-learn-the-agent-by-building-it/): A small Python agent built in a lab and attacked six ways - prompt injection, tool abuse, memory poisoning and more - before any framework is named.
+- [The Coverage Check: Mapping the Lab Agent onto Both OWASP 2026 Lists](https://saiprasad-cybsec.com/the-coverage-check-mapping-the-lab-agent-onto-both-owasp-2026-lists/): Every lab attack graded against the OWASP Top 10 for LLM Applications 2026 and the OWASP Top 10 for Agentic Applications 2026, including the attacks neither list covers well.
+
+## Incident analyses
+
+- [The Replit Database Deletion: An Agentic Security Analysis](https://saiprasad-cybsec.com/the-replit-database-deletion-an-agentic-security-analysis/): In July 2025 a coding agent deleted Replit's production database during a code freeze. What failed, graded as ASI03 and LLM03 (excessive agency, identity and privilege abuse), and the control set that would have stopped it.
+
+## Site pages
+
+- [About](https://saiprasad-cybsec.com/about/): Who writes this site and what it covers.
+- [All posts](https://saiprasad-cybsec.com/posts/): The full archive, newest first - AI security series, incident analyses, HTB and lab writeups.
+- [Tags](https://saiprasad-cybsec.com/tags/): Posts grouped by topic, including ai-agents, owasp, agentic-ai, llm-security, mcp and rag.
+
+## Optional
+
+- [Sitemap](https://saiprasad-cybsec.com/sitemap.xml): Every URL on the site.
+- [RSS feed](https://saiprasad-cybsec.com/feed.xml): New posts as they publish.
