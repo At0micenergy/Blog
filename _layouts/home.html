@@ -25,9 +25,6 @@ layout: default
 </div>
 
 <section class="section wrap" id="latest">
-  <p class="eyebrow">// Latest transmissions</p>
-  <h2 class="section-head" data-velocity data-split>Fresh from the <span class="it">lab notebook</span>.</h2>
-  <p class="section-sub">The newest notes - newest first, no filler. Everything here was broken, built, or both before it was written down.</p>
   <div class="bento">
     {% for post in site.posts limit:6 %}{% include post-card.html %}{% endfor %}
   </div>
