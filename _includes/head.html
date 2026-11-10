@@ -3,6 +3,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if page.title %}{{ page.title | escape }} - {% endif %}{{ site.title | escape }}</title>
 <meta name="description" content="{{ page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 160 | escape }}">
+{% assign desc = page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 200 | escape %}
+{% assign pagetitle = page.title | default: site.title %}
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ pagetitle | escape }}">
+<meta property="og:description" content="{{ desc }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+{% if page.layout == 'post' %}<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{% for t in page.tags %}<meta property="article:tag" content="{{ t | escape }}">
+{% endfor %}{% endif %}<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@At0micenergy">
+<meta name="twitter:creator" content="@At0micenergy">
+<meta name="twitter:title" content="{{ pagetitle | escape }}">
+<meta name="twitter:description" content="{{ desc }}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": {{ site.title | jsonify }},
+      "description": {{ site.description | jsonify }},
+      "publisher": { "@id": "{{ site.url }}/#author" }
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ site.url }}/#author",
+      "name": "At0micenergy",
+      "url": "{{ site.url }}/about/",
+      "sameAs": [
+        "https://github.com/At0micenergy",
+        "https://twitter.com/At0micenergy"
+      ]
+    }{% if page.layout == 'post' %},
+    {
+      "@type": "BlogPosting",
+      "@id": "{{ page.url | absolute_url }}#article",
+      "mainEntityOfPage": "{{ page.url | absolute_url }}",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 300 | jsonify }},
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "author": { "@id": "{{ site.url }}/#author" },
+      "publisher": { "@id": "{{ site.url }}/#author" },
+      "keywords": {{ page.tags | join: ", " | jsonify }}
+    }{% endif %}
+  ]
+}
+</script>
 <meta name="theme-color" content="#0E0B0B">
 <link rel="preload" href="{{ '/assets/fonts/space-grotesk-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/jetbrains-mono-var.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
