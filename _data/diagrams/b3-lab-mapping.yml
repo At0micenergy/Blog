@@ -6,204 +6,204 @@ nodes:
   - id: t1
     x: 16
     y: 64
-    w: 184
-    h: 48
+    w: 216
+    h: 44
     label: "T1 - Direct injection"
     sub: "user prompt attack"
   - id: t2
     x: 16
     y: 156
-    w: 184
-    h: 48
+    w: 216
+    h: 44
     label: "T2 - Indirect injection"
     sub: "via runbook rb-oauth-777"
   - id: t3
     x: 16
     y: 248
-    w: 184
-    h: 48
+    w: 216
+    h: 44
     label: "T3 - Argument manipulation"
     sub: "valid args, wrong target"
   - id: t4
     x: 16
     y: 340
-    w: 184
-    h: 48
+    w: 216
+    h: 44
     label: "T4 - Memory poisoning"
     sub: "one poisoned entry"
   - id: t5
     x: 16
     y: 432
-    w: 184
-    h: 48
+    w: 216
+    h: 44
     label: "T5 - Loop exhaustion"
     sub: "no ASI grade exists"
   - id: t6
     x: 16
     y: 524
-    w: 184
-    h: 48
+    w: 216
+    h: 44
     label: "T6 - Confused deputy"
     sub: "agent identity misused"
   - id: r1
     x: 16
     y: 616
-    w: 184
-    h: 48
+    w: 216
+    h: 44
     label: "R1 - Rank/filter leak"
     sub: "scope filter ran late"
   - id: r2
     x: 16
     y: 708
-    w: 184
-    h: 48
+    w: 216
+    h: 44
     label: "R2 - Similarity leak"
     sub: "phishing text at 0.41"
   - id: mcp
     x: 16
     y: 800
-    w: 184
-    h: 48
+    w: 216
+    h: 44
     label: "MCP - Server surface"
     sub: "design review only"
   - id: llm08
-    x: 380
+    x: 416
     y: 64
     w: 180
-    h: 48
+    h: 44
     label: "LLM08"
     sub: "Hidden Context Exposure"
   - id: llm01
-    x: 380
-    y: 112
+    x: 416
+    y: 116
     w: 180
-    h: 48
+    h: 44
     label: "LLM01"
     sub: "Prompt Injection"
   - id: llm03
-    x: 380
+    x: 416
     y: 294
     w: 180
-    h: 48
+    h: 44
     label: "LLM03"
     sub: "Excessive Agency"
   - id: llm05
-    x: 380
-    y: 340
+    x: 416
+    y: 346
     w: 180
-    h: 48
+    h: 44
     label: "LLM05"
     sub: "Data / Model Poisoning"
   - id: llm06
-    x: 380
+    x: 416
     y: 432
     w: 180
-    h: 48
+    h: 44
     label: "LLM06"
     sub: "Unbounded Consumption"
   - id: llm02
-    x: 380
+    x: 416
     y: 616
     w: 180
-    h: 48
+    h: 44
     label: "LLM02"
     sub: "Info Disclosure"
   - id: llm09
-    x: 380
-    y: 662
+    x: 416
+    y: 668
     w: 180
-    h: 48
+    h: 44
     label: "LLM09"
     sub: "Vector / Embedding"
   - id: llm07
-    x: 380
-    y: 708
+    x: 416
+    y: 720
     w: 180
-    h: 48
+    h: 44
     label: "LLM07"
     sub: "Misinformation"
   - id: llm04
-    x: 380
+    x: 416
     y: 800
     w: 180
-    h: 48
+    h: 44
     label: "LLM04"
     sub: "Supply Chain"
   - id: asi01
     x: 756
     y: 112
     w: 188
-    h: 48
+    h: 44
     label: "ASI01"
     sub: "Goal Hijacking"
   - id: asi02
     x: 756
     y: 248
     w: 188
-    h: 48
+    h: 44
     label: "ASI02"
     sub: "Tool Misuse"
   - id: asi06
     x: 756
     y: 318
     w: 188
-    h: 48
+    h: 44
     label: "ASI06"
     sub: "Memory Poisoning"
   - id: asi03
     x: 756
     y: 570
     w: 188
-    h: 48
+    h: 44
     label: "ASI03"
     sub: "Privilege Abuse"
   - id: asi04
     x: 756
     y: 800
     w: 188
-    h: 48
+    h: 44
     label: "ASI04"
     sub: "Supply Chain"
   - id: llm10
     x: 36
     y: 916
     w: 140
-    h: 48
+    h: 44
     label: "LLM10"
     sub: "Output Handling"
   - id: asi05
     x: 188
     y: 916
     w: 140
-    h: 48
+    h: 44
     label: "ASI05"
     sub: "Code Execution"
   - id: asi07
     x: 340
     y: 916
     w: 140
-    h: 48
+    h: 44
     label: "ASI07"
     sub: "Inter-Agent Comms"
   - id: asi08
     x: 492
     y: 916
     w: 140
-    h: 48
+    h: 44
     label: "ASI08"
     sub: "Cascading Failures"
   - id: asi09
     x: 644
     y: 916
     w: 140
-    h: 48
+    h: 44
     label: "ASI09"
     sub: "Trust Exploitation"
   - id: asi10
     x: 796
     y: 916
     w: 140
-    h: 48
+    h: 44
     label: "ASI10"
     sub: "Rogue Agents"
 edges:
@@ -233,13 +233,13 @@ edges:
     to: llm04
   - from: mcp
     to: asi04
-  - d: "M 202 88 C 250 58, 330 58, 378 88"
-  - d: "M 202 272 C 260 322, 320 336, 378 318"
-  - d: "M 202 364 C 250 334, 330 334, 378 364"
-  - d: "M 202 548 C 250 430, 300 360, 378 322"
-  - d: "M 202 640 C 250 610, 330 610, 378 640"
-  - d: "M 202 732 C 250 702, 330 702, 378 732"
-  - d: "M 202 652 C 300 700, 640 690, 740 640 C 748 636, 752 630, 753 612"
+  - d: "M 234 88 C 280 58, 350 58, 414 86"
+  - d: "M 234 272 C 290 322, 350 336, 414 316"
+  - d: "M 234 364 C 280 336, 350 336, 414 368"
+  - d: "M 234 548 C 280 430, 330 360, 414 316"
+  - d: "M 234 640 C 280 612, 350 612, 414 638"
+  - d: "M 234 732 C 280 712, 350 712, 414 742"
+  - d: "M 234 652 C 320 700, 640 690, 740 640 C 748 636, 752 630, 753 612"
 bounds:
   - x: 16
     y: 884
@@ -250,7 +250,7 @@ labels:
   - x: 16
     y: 42
     text: "LAB TESTS + FINDINGS"
-  - x: 380
+  - x: 416
     y: 42
     text: "LLM TOP 10 - 2026"
   - x: 756
