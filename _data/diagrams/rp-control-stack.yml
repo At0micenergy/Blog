@@ -82,7 +82,7 @@ edges:
     label_anchor: middle
   - d: "M 600 280 H 648 V 139 H 696"
     label: "permitted"
-    label_x: 655
+    label_x: 668
     label_y: 302
     label_anchor: middle
   - x1: 810
