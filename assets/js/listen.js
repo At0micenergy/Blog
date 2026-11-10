@@ -12,6 +12,11 @@
   var track = chip.querySelector('[data-listen-track]');
   var fill = chip.querySelector('[data-listen-fill]');
   var speedBtn = chip.querySelector('[data-listen-speed]');
+  var chaptersBtn = chip.querySelector('[data-listen-chapters-btn]');
+  var drawer = document.querySelector('[data-listen-drawer]');
+  var drawerList = drawer.querySelector('[data-listen-drawer-list]');
+  var drawerClose = drawer.querySelector('[data-listen-drawer-close]');
+  var rail = chip.querySelector('.lc-rail');
 
   // Page units in narration order: headings, paragraphs, list items in the
   // article body, excluding layout furniture and diagram fallbacks.
@@ -24,6 +29,9 @@
     });
 
   var map = null;         // [{s, sec, el}] from the timing JSON
+  var chapters = null;    // [{t, label, el}] from the timing JSON
+  var chapterRows = [];
+  var curChapter = -2;
   var curUnit = -2;       // map index currently shown
   var rates = [1, 1.25, 1.5, 2];
   var rateIdx = 0;
@@ -31,8 +39,56 @@
 
   fetch(audio.getAttribute('data-timing'))
     .then(function (r) { return r.json(); })
-    .then(function (j) { map = j.units; })
+    .then(function (j) {
+      map = j.units;
+      if (j.chapters && j.chapters.length) buildChapters(j.chapters, j.duration);
+    })
     .catch(function () { map = null; });
+
+  function buildChapters(list, total) {
+    chapters = list;
+    list.forEach(function (c, i) {
+      if (c.t > 0 && total > 0) {
+        var tick = document.createElement('span');
+        tick.className = 'lc-tick';
+        tick.style.left = (c.t / total * 100).toFixed(2) + '%';
+        rail.appendChild(tick);
+      }
+      var row = document.createElement('button');
+      row.className = 'ld-row';
+      row.type = 'button';
+      var t = document.createElement('span');
+      t.className = 'ld-t';
+      t.textContent = fmt(c.t);
+      var n = document.createElement('span');
+      n.className = 'ld-name';
+      n.textContent = c.label;
+      row.appendChild(t);
+      row.appendChild(n);
+      row.addEventListener('click', function () {
+        audio.currentTime = c.t;
+        if (audio.paused) audio.play();
+        if (c.el !== null && c.el !== undefined && units[c.el]) {
+          units[c.el].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        drawer.hidden = true;
+        update();
+      });
+      drawerList.appendChild(row);
+      chapterRows.push(row);
+    });
+  }
+
+  function markChapter(t) {
+    if (!chapters) return;
+    var idx = -1;
+    for (var i = 0; i < chapters.length; i++) {
+      if (chapters[i].t <= t + 0.05) idx = i; else break;
+    }
+    if (idx === curChapter) return;
+    curChapter = idx;
+    chapterRows.forEach(function (row, i) { row.classList.toggle('now', i === idx); });
+  }
 
   function fmt(t) {
     t = Math.max(0, Math.floor(t || 0));
@@ -47,7 +103,7 @@
   function armIdle() {
     chip.classList.remove('idle');
     if (idleTimer) clearTimeout(idleTimer);
-    if (!audio.paused) {
+    if (!audio.paused && drawer.hidden) {
       idleTimer = setTimeout(function () { chip.classList.add('idle'); }, 3000);
     }
   }
@@ -56,6 +112,7 @@
     var t = audio.currentTime, d = audio.duration || 0;
     if (d > 0) fill.style.width = (t / d * 100).toFixed(2) + '%';
     timeEl.textContent = fmt(t) + ' / ' + fmt(d);
+    markChapter(t);
     if (!map) return;
     var idx = -1;
     for (var i = 0; i < map.length; i++) {
@@ -97,6 +154,16 @@
     rateIdx = (rateIdx + 1) % rates.length;
     audio.playbackRate = rates[rateIdx];
     speedBtn.textContent = rates[rateIdx] + '×';
+  });
+
+  chaptersBtn.addEventListener('click', function () {
+    drawer.hidden = !drawer.hidden;
+    if (!drawer.hidden) { chip.classList.remove('idle'); if (idleTimer) clearTimeout(idleTimer); }
+    else armIdle();
+  });
+  drawerClose.addEventListener('click', function () { drawer.hidden = true; armIdle(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !drawer.hidden) { drawer.hidden = true; armIdle(); }
   });
 
   function seekFromEvent(e) {

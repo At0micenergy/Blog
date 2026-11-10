@@ -95,9 +95,19 @@ layout: default
     </div>
     <div class="lc-row">
       <span data-listen-time>0:00 / {{ page.audio_duration }}</span>
-      <button class="lc-speed" type="button" data-listen-speed aria-label="Playback speed">1×</button>
+      <span class="lc-actions">
+        <button class="lc-chapters-btn" type="button" data-listen-chapters-btn aria-label="Open chapters">Chapters</button>
+        <button class="lc-speed" type="button" data-listen-speed aria-label="Playback speed">1×</button>
+      </span>
     </div>
   </div>
+</div>
+<div class="listen-drawer" data-listen-drawer hidden>
+  <div class="ld-head">
+    <span>Chapters</span>
+    <button class="ld-close" type="button" data-listen-drawer-close aria-label="Close chapters">×</button>
+  </div>
+  <div class="ld-list" data-listen-drawer-list></div>
 </div>
 <audio data-listen-audio preload="none" src="{{ page.audio | relative_url }}" data-timing="{{ page.audio_timing | relative_url }}"></audio>
 {% endif %}
