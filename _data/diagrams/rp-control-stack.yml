@@ -77,8 +77,8 @@ nodes:
 edges:
   - d: "M 240 258 H 296 V 196 H 326"
     label: "proposal"
-    label_x: 278
-    label_y: 182
+    label_x: 264
+    label_y: 180
     label_anchor: middle
   - d: "M 600 280 H 648 V 139 H 696"
     label: "permitted"
@@ -89,11 +89,11 @@ edges:
     y1: 168
     x2: 810
     y2: 224
-  - x1: 810
-    y1: 284
-    x2: 810
-    y2: 340
+  - d: "M 810 284 V 338"
     label: "deployment step only"
+    label_x: 800
+    label_y: 316
+    label_anchor: end
   - d: "M 810 400 V 498 H 634"
   - d: "M 465 420 V 466"
   - x1: 360
