@@ -94,6 +94,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .btn {
   display: inline-flex; align-items: center; gap: 0.6em;
+  background: transparent;
   font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.12em;
   text-transform: uppercase; text-decoration: none;
   color: var(--ink); border: 1px solid var(--line);
