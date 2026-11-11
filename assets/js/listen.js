@@ -37,6 +37,56 @@
   var rateIdx = 0;
   var idleTimer = null;
 
+  // Follow-scroll: while the narration plays, keep the highlighted unit in
+  // a comfortable band of the viewport with smooth scrolls. Any manual
+  // scroll (wheel, touch, scroll keys, scrollbar) releases the page to the
+  // reader until follow is re-engaged by pressing play again, seeking, a
+  // chapter tap, or tapping the section name in the chip. Paused or ended
+  // playback never scrolls.
+  var follow = true;
+  var progTarget = null;
+  var progScrollUntil = 0;
+  var motionOK = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function scrollToEl(el) {
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var target = Math.max(0, window.scrollY + r.top - vh * 0.30);
+    progTarget = target;
+    progScrollUntil = Date.now() + 2500;
+    window.scrollTo({ top: target, behavior: motionOK ? 'smooth' : 'auto' });
+  }
+
+  function maybeFollow(el) {
+    if (!follow || audio.paused || !el) return;
+    var r = el.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    if (r.bottom < vh * 0.15 || r.top > vh * 0.75) scrollToEl(el);
+  }
+
+  function releaseFollow(e) {
+    if (e && e.target && e.target.closest && e.target.closest('[data-listen-chip], [data-listen-drawer]')) return;
+    follow = false;
+  }
+  window.addEventListener('wheel', releaseFollow, { passive: true });
+  window.addEventListener('touchmove', releaseFollow, { passive: true });
+  window.addEventListener('scroll', function () {
+    if (chip.hidden || audio.paused) return;
+    if (progTarget !== null) {
+      if (Math.abs(window.scrollY - progTarget) <= 2 || Date.now() > progScrollUntil) progTarget = null;
+      return;  // still animating toward the follow target
+    }
+    follow = false;  // scrollbar drag or any other non-programmatic scroll
+  }, { passive: true });
+
+  sectionEl.style.cursor = 'pointer';
+  sectionEl.title = 'Jump to what is playing';
+  sectionEl.addEventListener('click', function () {
+    follow = true;
+    if (curUnit >= 0 && map && map[curUnit] && units[map[curUnit].el]) scrollToEl(units[map[curUnit].el]);
+  });
+
   fetch(audio.getAttribute('data-timing'))
     .then(function (r) { return r.json(); })
     .then(function (j) {
@@ -66,10 +116,14 @@
       row.appendChild(t);
       row.appendChild(n);
       row.addEventListener('click', function () {
+        follow = true;
         audio.currentTime = c.t;
         if (audio.paused) audio.play();
         if (c.el !== null && c.el !== undefined && units[c.el]) {
-          units[c.el].scrollIntoView({ behavior: 'smooth', block: 'start' });
+          var cr = units[c.el].getBoundingClientRect();
+          progTarget = Math.max(0, window.scrollY + cr.top);
+          progScrollUntil = Date.now() + 2500;
+          units[c.el].scrollIntoView({ behavior: motionOK ? 'smooth' : 'auto', block: 'start' });
         }
         drawer.hidden = true;
         update();
@@ -126,6 +180,7 @@
       sectionEl.textContent = map[idx].sec;
       if (map[idx].el !== null && map[idx].el !== undefined && units[map[idx].el]) {
         units[map[idx].el].classList.add('reading-now');
+        maybeFollow(units[map[idx].el]);
       }
     }
   }
@@ -139,10 +194,10 @@
     toggle();
   });
   playBtn.addEventListener('click', toggle);
-  audio.addEventListener('play', function () { setPlayingUI(true); armIdle(); });
+  audio.addEventListener('play', function () { follow = true; setPlayingUI(true); armIdle(); });
   audio.addEventListener('pause', function () { setPlayingUI(false); chip.classList.remove('idle'); if (idleTimer) clearTimeout(idleTimer); });
   audio.addEventListener('timeupdate', update);
-  audio.addEventListener('seeked', update);
+  audio.addEventListener('seeked', function () { follow = true; update(); });
   audio.addEventListener('loadedmetadata', update);
   audio.addEventListener('ended', function () {
     setPlayingUI(false);
@@ -164,6 +219,8 @@
   drawerClose.addEventListener('click', function () { drawer.hidden = true; armIdle(); });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && !drawer.hidden) { drawer.hidden = true; armIdle(); }
+    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].indexOf(e.key) >= 0 &&
+        e.target === document.body) follow = false;
   });
 
   function seekFromEvent(e) {
