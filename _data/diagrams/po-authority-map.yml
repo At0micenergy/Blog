@@ -1,0 +1,97 @@
+title: "Where the authority sat"
+desc: "The PocketOS system in April 2026: a staging task, an agent that could read beyond its task, and a root-scoped Railway token sitting in an unrelated file. Everything the token could reach - the API, the production volume, and the volume's backups - sat inside one scope; the backups that saved the company sat outside it."
+width: 960
+height: 470
+nodes:
+  - id: task
+    x: 40
+    y: 36
+    w: 210
+    h: 52
+    label: "Staging task"
+    sub: "the assignment"
+    kind: entry
+  - id: agent
+    x: 375
+    y: 36
+    w: 220
+    h: 58
+    label: "Cursor agent"
+    sub: "Claude Opus 4.6"
+  - id: file
+    x: 700
+    y: 36
+    w: 220
+    h: 58
+    label: "Unrelated file"
+    sub: "readable from the session"
+  - id: token
+    x: 700
+    y: 216
+    w: 220
+    h: 58
+    label: "Root-scoped token"
+    sub: "account-wide reach"
+    kind: gate
+  - id: api
+    x: 375
+    y: 216
+    w: 220
+    h: 58
+    label: "Railway API"
+    sub: "executes as requested"
+  - id: volume
+    x: 40
+    y: 216
+    w: 240
+    h: 58
+    label: "Production volume"
+    sub: "backups deleted with it"
+  - id: offsite
+    x: 700
+    y: 330
+    w: 220
+    h: 58
+    label: "Offsite backups"
+    sub: "outside every customer token"
+edges:
+  - from: task
+    to: agent
+  - from: agent
+    to: file
+  - d: "M 810 94 V 212"
+    label: "found and used"
+    label_x: 824
+    label_y: 150
+    label_anchor: start
+  - from: token
+    to: api
+  - from: api
+    to: volume
+    label: "one call"
+bounds:
+  - x: 20
+    y: 176
+    w: 920
+    h: 116
+    label: "WITHIN THE TOKEN'S REACH"
+    kind: danger
+labels:
+  - x: 40
+    y: 445
+    text: "THE BOUNDARY THAT MATTERED WAS THE TOKEN'S SCOPE"
+ascii: |
+  Staging task -> Cursor agent -> Unrelated file
+                                       |
+                                  found and used
+                                       v
+  Production volume <- Railway API <- Root-scoped token
+
+  WITHIN THE TOKEN'S REACH: the token, the API, the production
+  volume, and the volume's backups - one scope covered all of it.
+
+  Outside that reach: Railway's offsite disaster-recovery backups,
+  which no customer token could touch - and which saved the company.
+
+  The boundary that mattered was not staging vs production.
+  It was the token's scope.

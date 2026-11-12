@@ -1,0 +1,75 @@
+title: "The control set the incident argues for"
+desc: "Six controls, layered: keep production credentials out of the agent's readable space, bind what remains to the task and its environment, stop the session at a credential failure, gate destructive operations in the platform below the agent, hold backups under a separate authority, and audit the reachable blast radius before any run."
+width: 960
+height: 540
+nodes:
+  - id: s1
+    x: 180
+    y: 30
+    w: 600
+    h: 56
+    label: "Task-scoped credential"
+    sub: "minted per session - expires with it"
+  - id: s2
+    x: 180
+    y: 112
+    w: 600
+    h: 56
+    label: "Secret isolation"
+    sub: "no production secrets in agent-readable space"
+  - id: s3
+    x: 180
+    y: 194
+    w: 600
+    h: 56
+    label: "Stop rule"
+    sub: "credential failure halts the session"
+  - id: s4
+    x: 180
+    y: 276
+    w: 600
+    h: 56
+    label: "Destructive-action gate"
+    sub: "soft-delete - delayed purge - owner confirm"
+    kind: gate
+  - id: s5
+    x: 180
+    y: 358
+    w: 600
+    h: 56
+    label: "Backups under separate authority"
+    sub: "the running identity cannot delete them"
+  - id: s6
+    x: 180
+    y: 440
+    w: 600
+    h: 56
+    label: "Blast-radius audit"
+    sub: "enumerate reachable destruction before the run"
+edges:
+  - d: "M 480 86 V 108"
+  - d: "M 480 168 V 190"
+  - d: "M 480 250 V 272"
+  - d: "M 480 332 V 354"
+  - d: "M 480 414 V 436"
+labels:
+  - x: 180
+    y: 524
+    text: "SCOPE DECIDES THE BLAST RADIUS BEFORE THE MODEL ACTS"
+ascii: |
+  THE CONTROL SET THE INCIDENT ARGUES FOR
+
+    1. Task-scoped credential
+       minted per session - expires with it
+    2. Secret isolation
+       no production secrets in agent-readable space
+    3. Stop rule
+       credential failure halts the session
+    4. Destructive-action gate
+       soft-delete - delayed purge - owner confirm
+    5. Backups under separate authority
+       the running identity cannot delete them
+    6. Blast-radius audit
+       enumerate reachable destruction before the run
+
+  Scope decides the blast radius before the model acts.

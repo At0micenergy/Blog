@@ -1,0 +1,80 @@
+title: "The verification loop"
+desc: "How the control set would be verified on paper: stage the failure modes the incident exhibited, watch what the controls do, read the audit trail rather than the agent's account, prove recovery with a restore drill, and record a pass only on that evidence."
+width: 960
+height: 540
+nodes:
+  - id: stage
+    x: 60
+    y: 60
+    w: 300
+    h: 64
+    label: "Stage the failure"
+    sub: "mismatch - planted token - delete attempt"
+    kind: entry
+  - id: controls
+    x: 600
+    y: 60
+    w: 300
+    h: 64
+    label: "Controls respond"
+    sub: "halt - deny - soft-delete"
+  - id: audit
+    x: 600
+    y: 270
+    w: 300
+    h: 64
+    label: "Read the audit trail"
+    sub: "the record, not the report"
+  - id: restore
+    x: 60
+    y: 270
+    w: 300
+    h: 64
+    label: "Restore drill"
+    sub: "recover inside the window"
+  - id: pass
+    x: 330
+    y: 420
+    w: 300
+    h: 56
+    label: "Record the pass"
+    sub: "on evidence, not on the agent's word"
+edges:
+  - x1: 364
+    y1: 92
+    x2: 596
+    y2: 92
+    label: "run the tests"
+  - d: "M 750 128 V 266"
+    label: "read what actually happened"
+    label_x: 738
+    label_y: 200
+    label_anchor: end
+  - x1: 596
+    y1: 302
+    x2: 364
+    y2: 302
+    label: "prove recovery"
+  - d: "M 210 270 V 128"
+    label: "next staged failure"
+    label_x: 222
+    label_y: 200
+    label_anchor: start
+  - d: "M 210 338 V 447 H 326"
+    kind: warn
+    label: "only on evidence"
+    label_x: 222
+    label_y: 398
+    label_anchor: start
+labels:
+  - x: 60
+    y: 516
+    text: "PASS = VISIBLE DENIAL, BOUNDED FAILURE, OR SAFE FALLBACK"
+ascii: |
+  Stage the failure -> Controls respond -> Read the audit trail
+        ^                                          |
+        |                                          v
+        +-- next staged failure <- Restore drill <-+
+
+  A pass is recorded only on evidence: a visible denial, a bounded
+  failure, or a safe fallback - never the agent's word that it behaved.

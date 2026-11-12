@@ -11,6 +11,7 @@
 ## Incident analyses
 
 - [The Replit Database Deletion: An Agentic Security Analysis](https://saiprasad-cybsec.com/the-replit-database-deletion-an-agentic-security-analysis/): In July 2025 a coding agent deleted Replit's production database during a code freeze. What failed, graded as ASI03 and LLM03 (excessive agency, identity and privilege abuse), and the control set that would have stopped it.
+- [The PocketOS Database Deletion: An Agentic Security Analysis](https://saiprasad-cybsec.com/the-pocketos-database-deletion-an-agentic-security-analysis/): In April 2026 a Cursor agent on a routine staging task found a root-scoped Railway token in an unrelated file and deleted PocketOS's production database and its backups in seconds. Graded ASI03 and LLM03 with ASI02 behind them; the data survived only because Railway kept recovery backups outside that token's reach.
 
 ## Site pages
 
