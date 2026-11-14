@@ -1,0 +1,77 @@
+title: "The lethal trifecta"
+desc: "Simon Willison's lethal trifecta: an agent that can reach private data, takes in untrusted content, and can communicate outward. When all three are true at once, a single piece of planted content can in principle walk the private data out. All three legs are properties of the harness, not the model."
+width: 960
+height: 360
+nodes:
+  - id: data
+    x: 40
+    y: 56
+    w: 260
+    h: 58
+    label: "Reaches private data"
+    sub: "files, records, mail, keys"
+  - id: untr
+    x: 350
+    y: 56
+    w: 260
+    h: 58
+    label: "Takes in untrusted content"
+    sub: "pages, documents, messages"
+  - id: out
+    x: 660
+    y: 56
+    w: 260
+    h: 58
+    label: "Can communicate outward"
+    sub: "network calls, posts, sends"
+  - id: risk
+    x: 350
+    y: 216
+    w: 260
+    h: 58
+    label: "Data can be walked out"
+    sub: "one planted instruction is enough"
+    kind: gate
+edges:
+  - from: data
+    to: risk
+    x1: 170
+    y1: 117
+    x2: 430
+    y2: 213
+  - from: untr
+    to: risk
+    x1: 480
+    y1: 117
+    x2: 480
+    y2: 213
+  - from: out
+    to: risk
+    x1: 790
+    y1: 117
+    x2: 530
+    y2: 213
+bounds:
+  - x: 20
+    y: 16
+    w: 920
+    h: 118
+    label: "WHEN ALL THREE ARE TRUE AT ONCE"
+    kind: danger
+labels:
+  - x: 40
+    y: 335
+    text: "ALL THREE LEGS ARE SET BY THE HARNESS."
+ascii: |
+  WHEN ALL THREE ARE TRUE AT ONCE:
+
+  Reaches private data | Takes in untrusted | Can communicate
+   (files, records,      content              outward
+    mail, keys)           (pages, documents,   (network calls,
+                             messages)          posts, sends)
+              \               |               /
+               v              v              v
+            Data can be walked out
+             (one planted instruction is enough)
+
+  All three legs are set by the harness.

@@ -1,0 +1,98 @@
+title: "One job, inside the loop"
+desc: "The agent loop for one ordinary task, fixing a failing test: the request arrives, the harness assembles the context, the model proposes an action, the harness checks permission, the tool executes, and the result returns into the context for the next round. Only one of the six steps is the model; the other five are the harness."
+width: 960
+height: 360
+nodes:
+  - id: req
+    x: 40
+    y: 36
+    w: 210
+    h: 52
+    label: "Your request"
+    sub: "fix the failing test"
+    kind: entry
+  - id: ctx
+    x: 375
+    y: 36
+    w: 220
+    h: 58
+    label: "Context assembled"
+    sub: "instructions, code, test output"
+  - id: prop
+    x: 700
+    y: 36
+    w: 220
+    h: 58
+    label: "Model proposes"
+    sub: "run the test suite"
+  - id: check
+    x: 700
+    y: 216
+    w: 220
+    h: 58
+    label: "Permission check"
+    sub: "run freely, ask, or refuse"
+    kind: gate
+  - id: exec
+    x: 375
+    y: 216
+    w: 220
+    h: 58
+    label: "Tool executes"
+    sub: "the command actually runs"
+  - id: back
+    x: 40
+    y: 216
+    w: 220
+    h: 58
+    label: "Result returns"
+    sub: "output joins the context"
+edges:
+  - from: req
+    to: ctx
+  - from: ctx
+    to: prop
+  - d: "M 810 94 V 212"
+    label: "proposed action"
+    label_x: 796
+    label_y: 150
+    label_anchor: end
+  - from: check
+    to: exec
+    x1: 698
+    y1: 245
+    x2: 598
+    y2: 245
+  - from: exec
+    to: back
+    x1: 373
+    y1: 245
+    x2: 263
+    y2: 245
+  - d: "M 150 213 V 91"
+    label: "the loop repeats"
+    label_x: 162
+    label_y: 156
+    label_anchor: start
+labels:
+  - x: 40
+    y: 335
+    text: "THE MODEL PROPOSES. THE HARNESS DISPOSES."
+ascii: |
+  Your request -> Context assembled -> Model proposes
+   (fix the          (instructions,       (run the
+    failing test)      code, test output)   test suite)
+                                                 |
+                                          proposed action
+                                                 v
+  Result returns <- Tool executes <- Permission check
+   (output joins      (the command        (run freely,
+    the context)        actually runs)      ask, or refuse)
+        |
+        +-- the loop repeats, until the tests pass
+            or a limit the harness set says stop.
+
+  Five of the six steps are the harness. The model
+  supplies judgment inside a process it does not control.
+
+  The model proposes. The harness disposes.

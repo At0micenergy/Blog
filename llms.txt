@@ -7,6 +7,7 @@
 - [AI Agent Architecture Basics](https://saiprasad-cybsec.com/ai-agent-architecture-basics/): The parts of an AI agent - model, memory, tools, planning loop - and where the attack surface sits in each one.
 - [Before OWASP: Learn the Agent by Building It](https://saiprasad-cybsec.com/before-owasp-learn-the-agent-by-building-it/): A small Python agent built in a lab and attacked six ways - prompt injection, tool abuse, memory poisoning and more - before any framework is named.
 - [The Coverage Check: Mapping the Lab Agent onto Both OWASP 2026 Lists](https://saiprasad-cybsec.com/the-coverage-check-mapping-the-lab-agent-onto-both-owasp-2026-lists/): Every lab attack graded against the OWASP Top 10 for LLM Applications 2026 and the OWASP Top 10 for Agentic Applications 2026, including the attacks neither list covers well.
+- [What Is an Agent Harness? (And Why It's Where Agent Security Actually Lives)](https://saiprasad-cybsec.com/what-is-an-agent-harness/): A plain-language explainer: an agent is a model plus a harness - the loop, context, tools, memory, identity and permissions wrapped around the model - and the security view of that layer: the model proposes, the harness disposes, so the harness is where an agent's worst case is set.
 
 ## Incident analyses
 
