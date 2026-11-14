@@ -1,0 +1,110 @@
+title: "How an approval became a public secret"
+desc: "The leak path: a shell command carrying a credential is approved once with 'don't ask again', the full command is saved word for word as an allow rule in .claude/settings.local.json, and the file is committed - in 539 of 1,105 traced repositories by a commit Claude co-authored - into public GitHub repositories, where history and forks keep it after deletion, and where standard secret scanners missed 215 of the 1,122 secret-bearing files."
+width: 960
+height: 470
+nodes:
+  - id: cmd
+    x: 40
+    y: 36
+    w: 210
+    h: 52
+    label: "Command proposed"
+    sub: "a credential inside the line"
+    kind: entry
+  - id: approval
+    x: 375
+    y: 36
+    w: 220
+    h: 58
+    label: "Developer approval"
+    sub: "yes, and don't ask again"
+  - id: store
+    x: 700
+    y: 36
+    w: 220
+    h: 58
+    label: "settings.local.json"
+    sub: "the rule saved word for word"
+  - id: commit
+    x: 700
+    y: 216
+    w: 220
+    h: 58
+    label: "Commit"
+    sub: "Claude co-authored 539 of 1,105"
+    kind: gate
+  - id: public
+    x: 375
+    y: 216
+    w: 220
+    h: 58
+    label: "Public GitHub"
+    sub: "104,185 copies"
+  - id: history
+    x: 40
+    y: 216
+    w: 240
+    h: 58
+    label: "History and forks"
+    sub: "deletion does not recall it"
+  - id: scanners
+    x: 700
+    y: 330
+    w: 220
+    h: 58
+    label: "Secret scanners"
+    sub: "215 files missed by both"
+edges:
+  - from: cmd
+    to: approval
+  - from: approval
+    to: store
+  - d: "M 810 94 V 212"
+    label: "carried into the repo"
+    label_x: 796
+    label_y: 150
+    label_anchor: end
+  - from: commit
+    to: public
+    x1: 698
+    y1: 245
+    x2: 598
+    y2: 245
+  - from: public
+    to: history
+    x1: 373
+    y1: 245
+    x2: 283
+    y2: 245
+bounds:
+  - x: 20
+    y: 176
+    w: 920
+    h: 116
+    label: "PUBLIC, AND EFFECTIVELY PERMANENT"
+    kind: danger
+labels:
+  - x: 40
+    y: 445
+    text: "THE APPROVAL WAS MOMENTARY. THE RECORD WAS PERMANENT."
+ascii: |
+  Command proposed -> Developer approval -> settings.local.json
+   (credential in        (yes, and don't      (the rule saved
+    the line)             ask again)           word for word)
+                                                    |
+                                             carried into the repo
+                                                    v
+  History and forks <- Public GitHub <- Commit
+   (deletion does       (104,185 copies)  (Claude co-authored
+    not recall it)                          539 of 1,105 traced)
+
+  PUBLIC, AND EFFECTIVELY PERMANENT: the commit, the public
+  repositories, and their history and forks - 1,122 of the
+  files held a real secret.
+
+  Beside that path: the standard secret scanners, which
+  flagged only part of the exposure - 215 of the 1,122
+  secret-bearing files were flagged by neither gitleaks
+  nor TruffleHog.
+
+  The approval was momentary. The record was permanent.

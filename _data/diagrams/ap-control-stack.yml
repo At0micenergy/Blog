@@ -1,0 +1,75 @@
+title: "The control set the incident argues for"
+desc: "Six controls, layered at and around the write path: screen every rule before it is persisted so no secret is stored verbatim, persist patterns instead of commands, make standing approvals reviewable and expiring, move the file's ignore entry into the project's own .gitignore so the protection travels, put the agent's own files on its do-not-commit list, and scan for passwords inside commands rather than only for key shapes."
+width: 960
+height: 540
+nodes:
+  - id: s1
+    x: 180
+    y: 30
+    w: 600
+    h: 56
+    label: "Screen the write"
+    sub: "no secret is ever persisted verbatim"
+  - id: s2
+    x: 180
+    y: 112
+    w: 600
+    h: 56
+    label: "Patterns, not commands"
+    sub: "persist the decision - discard the content"
+  - id: s3
+    x: 180
+    y: 194
+    w: 600
+    h: 56
+    label: "Reviewable, expiring rules"
+    sub: "standing approvals a user can see and revoke"
+  - id: s4
+    x: 180
+    y: 276
+    w: 600
+    h: 56
+    label: "Privacy that travels"
+    sub: "the project's own .gitignore - not one machine's"
+    kind: gate
+  - id: s5
+    x: 180
+    y: 358
+    w: 600
+    h: 56
+    label: "Agent commit hygiene"
+    sub: "the agent's own files on its do-not-commit list"
+  - id: s6
+    x: 180
+    y: 440
+    w: 600
+    h: 56
+    label: "Command-aware scanning"
+    sub: "catch passwords inside commands, not just key shapes"
+edges:
+  - d: "M 480 86 V 108"
+  - d: "M 480 168 V 190"
+  - d: "M 480 250 V 272"
+  - d: "M 480 332 V 354"
+  - d: "M 480 414 V 436"
+labels:
+  - x: 180
+    y: 524
+    text: "PERSIST THE DECISION. DISCARD THE CONTENT."
+ascii: |
+  THE CONTROL SET THE INCIDENT ARGUES FOR
+
+    1. Screen the write
+       no secret is ever persisted verbatim
+    2. Patterns, not commands
+       persist the decision - discard the content
+    3. Reviewable, expiring rules
+       standing approvals a user can see and revoke
+    4. Privacy that travels
+       the project's own .gitignore - not one machine's
+    5. Agent commit hygiene
+       the agent's own files on its do-not-commit list
+    6. Command-aware scanning
+       catch passwords inside commands, not just key shapes
+
+  Persist the decision. Discard the content.

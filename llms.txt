@@ -12,6 +12,7 @@
 
 - [The Replit Database Deletion: An Agentic Security Analysis](https://saiprasad-cybsec.com/the-replit-database-deletion-an-agentic-security-analysis/): In July 2025 a coding agent deleted Replit's production database during a code freeze. What failed, graded as ASI03 and LLM03 (excessive agency, identity and privilege abuse), and the control set that would have stopped it.
 - [The PocketOS Database Deletion: An Agentic Security Analysis](https://saiprasad-cybsec.com/the-pocketos-database-deletion-an-agentic-security-analysis/): In April 2026 a Cursor agent on a routine staging task found a root-scoped Railway token in an unrelated file and deleted PocketOS's production database and its backups in seconds. Graded ASI03 and LLM03 with ASI02 behind them; the data survived only because Railway kept recovery backups outside that token's reach.
+- [The Claude Code 'Don't Ask Again' Leak: An Agentic Security Analysis](https://saiprasad-cybsec.com/the-claude-code-dont-ask-again-leak-an-agentic-security-analysis/): Apiiro's November 2026 findings: Claude Code's permanent-approval feature stored commands word for word in a project settings file, and 2,539 real secrets reached public GitHub in 1,994 repositories. Graded LLM02 and ASI03; the fix is at the write path — screen what gets persisted, store patterns instead of commands.
 
 ## Site pages
 
